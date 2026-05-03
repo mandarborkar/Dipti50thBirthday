@@ -1,33 +1,49 @@
 order,type,event_label,presenter,songs,status,duration,location,contact,notes
-1,Main,"Meet & Greet","","Photos with Dipti, Tea and Appetizers",Confirmed,60,"","",""
-2,Main,"Cake Cutting, Performances and Speeches","",Sub-program,Confirmed,60,"","",""
-2.1,Sing,"Sing — NSNT","Samina and team","Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye",TBD,10,"","",""
-2.2,Speech,"Speech — Ruchi","Ruchi",,TBD,3,"","",""
-2.3,Dance,"Dance — ZNMD","Ruchi and team","Koi Kahe Kehta Rahe*, Shararath, Aaj Kal Tere mere Paay ke charche",TBD,5,"","",""
-2.4,Speech,"Speech — Navneet","Navneet",,TBD,5,"","",""
-2.5,Dance,"Dance — Shipi","Shilpi","Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi",TBD,10,"","",""
-2.6,Dance,"Dance — Belmont group","Rajeshwari and team","Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe*",TBD,8,"","",""
-2.7,Speech,"Speech — Rajendra","Rajendra",,TBD,5,"","",""
-2.8,Dance,"Dance — Marathi group","Dipti and team","Shaky Shaky, Hawa Hawa, Gulabi Saadi",TBD,8,"","",""
-2.9,Sing,"Duet — Swati & Mayank","Swati / Mayank",Duet Song,TBD,3,"","",""
-2.10,Sing,"Duet — Leena & Nirav","Leena / Nirav",Duet Song,TBD,3,"","",""
-2.11,Speech,"Speech — Chaitali","Chaitali",,TBD,3,"","",""
-2.12,Speech,"Speech — Rajashree Mausi","Rajashree",,TBD,3,"","",""
-3,Main,"Cake Cutting","",,Confirmed,30,"","",""
-4,Main,"Dinner and Thank You Speeches","",Sub-program,Confirmed,60,"","",""
-4.1,Dinner,"Dinner","",,Confirmed,45,"","",""
-4.2,Speech,"Speech — Mihir","Mihir",,TBD,3,"","",""
-4.3,Speech,"Speech — Maya","Maya",,TBD,3,"","",""
-4.4,Video,"Video — Mandar","Mandar","Ek Ladki ko Dekha to Aaisa Laga, Yaar bina chain kha ree",TBD,10,"","",""
-4.5,Speech,"Speech — Dipti","Dipti",,TBD,3,"","",""
-4.6,Dance,"Dance — Anamika and Family","Anamika",Family Dance Song,TBD,8,"","",""
-4.7,Dance,"Dance — Anamika & Dipti","Anamika / Dipti",Desi Girl,TBD,5,"","",""
-5,Main,"Dancing","",,Confirmed,60,"","",""
-
-# Event Personnel
-P1,Personnel,"Photographer","Melvin","","",,"17:00","22:00",Covering the full evening
-P2,Personnel,"DJ","Tej","","",,"17:30","23:00",Music throughout the evening
-P3,Personnel,"Appetizers & Tea","Tarun","","",,"17:00","19:00",Set up and serve appetizers and tea during Meet & Greet
-P4,Personnel,"Transition — Appetizers out, Dinner in","Tarun","","",,"19:00","19:30","Clear appetizers, lay down dinner service"
-P5,Personnel,"Dinner Service","Tarun","","",,"19:30","21:30",Serve dinner to guests
-P6,Personnel,"Dessert & Tea","Tarun","","",,"21:00","22:30",Set out dessert and tea service
+1,Main,Meet & Greet,,"Photos with Dipti, Tea and Appetizers",Confirmed,60,,,
+2,Main,"Cake Cutting, Performances and Speeches",,Sub-program,Confirmed,60,,,
+2.1,Sing,Sing — NSNT,Samina and team,"Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye",TBD,10,,,
+2.2,Speech,Speech — Ruchi,Ruchi,,TBD,3,,,
+2.3,Dance,Dance — ZNMD,Ruchi and team,"Koi Kahe Kehta Rahe*, Shararath, Aaj Kal Tere mere Paay ke charche",TBD,5,,,
+2.4,Speech,Speech — Navneet,Navneet,,TBD,5,,,
+2.5,Dance,Dance — Shipi,Shilpi,"Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi",TBD,10,,,
+2.6,Dance,Dance — Belmont group,Rajeshwari and team,"Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe*",TBD,8,,,
+2.7,Speech,Speech — Rajendra,Rajendra,,TBD,5,,,
+2.8,Dance,Dance — Marathi group,Dipti and team,"Shaky Shaky, Hawa Hawa, Gulabi Saadi",TBD,8,,,
+2.9,Sing,Duet — Swati & Mayank,Swati / Mayank,Duet Song,TBD,3,,,
+2.1,Sing,Duet — Leena & Nirav,Leena / Nirav,Duet Song,TBD,3,,,
+2.11,Speech,Speech — Chaitali,Chaitali,,TBD,3,,,
+2.12,Speech,Speech — Rajashree Mausi,Rajashree,,TBD,3,,,
+3,Main,Cake Cutting,,,Confirmed,30,,,
+4,Main,Dinner and Thank You Speeches,,Sub-program,Confirmed,60,,,
+4.1,Dinner,Dinner,,,Confirmed,45,,,
+4.2,Speech,Speech — Mihir,Mihir,,TBD,3,,,
+4.3,Speech,Speech — Maya,Maya,,TBD,3,,,
+4.4,Video,Video — Mandar,Mandar,"Ek Ladki ko Dekha to Aaisa Laga, Yaar bina chain kha ree",TBD,10,,,
+4.5,Speech,Speech — Dipti,Dipti,,TBD,3,,,
+4.6,Dance,Dance — Anamika and Family,Anamika,Family Dance Song,TBD,8,,,
+4.7,Dance,Dance — Anamika & Dipti,Anamika / Dipti,Desi Girl,TBD,5,,,
+5,Main,Dancing,,,Confirmed,60,,,
+6,Main,Gaapa Gosti / Chat / Tea,,,Confirmed,60,,,
+,,,,,,,,,
+# Event Personnel,,,,,,,,,
+P1,Personnel,Photographer,Melvin,Covering the full evening,,,17:00,22:00,
+P2,Personnel,DJ,Tej,Music throughout the evening,,,17:30,23:00,
+P3,Personnel,Appetizers & Tea,Tarun,Set up and serve appetizers and tea during Meet & Greet,,,17:00,19:00,
+P4,Personnel,"Transition — Appetizers out, Dinner in",Tarun,"Clear appetizers, lay down dinner service",,,19:00,19:30,
+P5,Personnel,Dinner Service,Tarun,Serve dinner to guests,,,19:30,21:30,
+P6,Personnel,Dessert & Tea,Tarun,Set out dessert and tea service,,,21:00,22:30,
+P7,Personnel,Hair and Saree Preparation / Make up,Poonam / Dipti / Maya,Hair and Saree Preparation / Make up,,,13:00,16:00,
+P8,Personnel,Hall Setup,Mandar,Hall Setup,,,14:00,16:00,
+P8,Personnel,Cal Breakroom,Cal,Cal Breakroom 1,,,16:15,16:30,
+P10,Personnel,Leave Home,Dipti,Leave Home,,,16:30,16:30,
+P11,Personnel,Arrive Crowne Plaza,Dipti,Arrive Crowne Plaza,,,17:00,17:00,
+P12,Personnel,Settle In/Appetizer,Dipti,Settle In/Appetizer,,,17:00,17:20,
+P13,Personnel,Dipti Breakroom,Dipti,Dipti Breakroom,,,17:20,17:30,
+P14,Personnel,Dipti Welcome and Photos,Dipti,Dipti Welcome and Photos,,,17:30,18:20,
+P15,Personnel,Dipti Breakroom 2,Dipti,Dipti Breakroom 2,,,18:20,18:30,
+P16,Personnel,Dipti Program Start/Cake Cutting,Dipti,Dipti Program Start/Cake Cutting,,,18:30,20:30,
+P17,Personnel,Dipti Breakroom 3,Dipti,Dipti Breakroom 3,,,20:30,20:45,
+P18,Personnel,Dipti Thank you/Dancing,Dipti,Dipti Thank you/Dancing,,,20:45,23:00,
+P19,Personnel,Cal Breakroom,Cal,Cal Breakroom 2,,,20:00,20:30,
+P19,Personnel,Cal Dinner,Cal,Cal Dinner,,,20:30,21:00,
+P20,Personnel,Cal Breakroom,Cal,Cal Breakroom 3 / Sleep,,,23:00,23:59,

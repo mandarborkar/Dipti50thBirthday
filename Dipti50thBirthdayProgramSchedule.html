@@ -456,12 +456,27 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 //  These appear only in My Schedule, not in the main program
 // ══════════════════════════════════════════
 const staffResponsibilities = [
-  { presenter:'Melvin', startTime:'17:00', endTime:'22:00', description:'Photographer', notes:'Covering the full evening' },
-  { presenter:'Tej',    startTime:'17:30', endTime:'23:00', description:'DJ', notes:'Music throughout the evening' },
-  { presenter:'Tarun',  startTime:'17:00', endTime:'19:00', description:'Appetizers & Tea', notes:'Set up and serve appetizers and tea during Meet & Greet' },
-  { presenter:'Tarun',  startTime:'19:00', endTime:'19:30', description:'Transition — Appetizers out, Dinner in', notes:'Clear appetizers, lay down dinner service' },
-  { presenter:'Tarun',  startTime:'19:30', endTime:'21:30', description:'Dinner Service', notes:'Serve dinner to guests' },
-  { presenter:'Tarun',  startTime:'21:00', endTime:'22:30', description:'Dessert & Tea', notes:'Set out dessert and tea service' },
+  { presenter:'Melvin',           startTime:'17:00', endTime:'22:00', description:'Photographer',                            notes:'Covering the full evening' },
+  { presenter:'Tej',              startTime:'17:30', endTime:'23:00', description:'DJ',                                      notes:'Music throughout the evening' },
+  { presenter:'Tarun',            startTime:'17:00', endTime:'19:00', description:'Appetizers & Tea',                        notes:'Set up and serve appetizers and tea during Meet & Greet' },
+  { presenter:'Tarun',            startTime:'19:00', endTime:'19:30', description:'Transition — Appetizers out, Dinner in',  notes:'Clear appetizers, lay down dinner service' },
+  { presenter:'Tarun',            startTime:'19:30', endTime:'21:30', description:'Dinner Service',                          notes:'Serve dinner to guests' },
+  { presenter:'Tarun',            startTime:'21:00', endTime:'22:30', description:'Dessert & Tea',                           notes:'Set out dessert and tea service' },
+  { presenter:'Poonam / Dipti / Maya', startTime:'13:00', endTime:'16:00', description:'Hair and Saree Preparation / Make up', notes:'Hair and Saree Preparation / Make up' },
+  { presenter:'Mandar',           startTime:'14:00', endTime:'16:00', description:'Hall Setup',                              notes:'Hall Setup' },
+  { presenter:'Cal',              startTime:'16:15', endTime:'16:30', description:'Cal Breakroom',                           notes:'Cal Breakroom 1' },
+  { presenter:'Dipti',            startTime:'16:30', endTime:'16:30', description:'Leave Home',                              notes:'Leave Home' },
+  { presenter:'Dipti',            startTime:'17:00', endTime:'17:00', description:'Arrive Crowne Plaza',                     notes:'Arrive Crowne Plaza' },
+  { presenter:'Dipti',            startTime:'17:00', endTime:'17:20', description:'Settle In / Appetizer',                   notes:'Settle In/Appetizer' },
+  { presenter:'Dipti',            startTime:'17:20', endTime:'17:30', description:'Dipti Breakroom',                         notes:'Dipti Breakroom' },
+  { presenter:'Dipti',            startTime:'17:30', endTime:'18:20', description:'Dipti Welcome and Photos',                notes:'Dipti Welcome and Photos' },
+  { presenter:'Dipti',            startTime:'18:20', endTime:'18:30', description:'Dipti Breakroom 2',                       notes:'Dipti Breakroom 2' },
+  { presenter:'Dipti',            startTime:'18:30', endTime:'20:30', description:'Dipti Program Start / Cake Cutting',      notes:'Dipti Program Start/Cake Cutting' },
+  { presenter:'Dipti',            startTime:'20:30', endTime:'20:45', description:'Dipti Breakroom 3',                       notes:'Dipti Breakroom 3' },
+  { presenter:'Dipti',            startTime:'20:45', endTime:'23:00', description:'Dipti Thank you / Dancing',               notes:'Dipti Thank you/Dancing' },
+  { presenter:'Cal',              startTime:'20:00', endTime:'20:30', description:'Cal Breakroom',                           notes:'Cal Breakroom 2' },
+  { presenter:'Cal',              startTime:'20:30', endTime:'21:00', description:'Cal Dinner',                              notes:'Cal Dinner' },
+  { presenter:'Cal',              startTime:'23:00', endTime:'23:59', description:'Cal Breakroom',                           notes:'Cal Breakroom 3 / Sleep' },
 ];
 
 function timeToMins(t){
@@ -488,7 +503,7 @@ const BASE_START = () => { const v=document.getElementById('eventStart')?.value|
 function defaultData(){
   return [
     {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[]},
-    {id:nextId++,label:'Cake Cutting, Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[  // 6:30–7:30
+    {id:nextId++,label:'Cake Cutting, Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
       {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and team',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'TBD',duration:10,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and team',songs:'Koi Kahe Kehta Rahe*, Shararath, Aaj Kal Tere mere Paay ke charche',status:'TBD',duration:5,location:'',contact:'',notes:''},
@@ -502,8 +517,8 @@ function defaultData(){
       {id:nextId++,type:'Speech',label:'Speech — Chaitali',presenter:'Chaitali',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Rajashree Mausi',presenter:'Rajashree',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
     ]},
-    {id:nextId++,label:'Cake Cutting',description:'',duration:30,status:'Confirmed',expanded:false,slots:[]},      // 7:30–8:00
-    {id:nextId++,label:'Dinner and Thank You Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[  // 8:00–9:00
+    {id:nextId++,label:'Cake Cutting',description:'',duration:30,status:'Confirmed',expanded:false,slots:[]},
+    {id:nextId++,label:'Dinner and Thank You Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
       {id:nextId++,type:'Dinner',label:'Dinner',presenter:'',songs:'',status:'Confirmed',duration:45,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Mihir',presenter:'Mihir',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Maya',presenter:'Maya',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
@@ -512,7 +527,8 @@ function defaultData(){
       {id:nextId++,type:'Dance',label:'Dance — Anamika and Family',presenter:'Anamika',songs:'Family Dance Song',status:'TBD',duration:8,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Anamika & Dipti',presenter:'Anamika / Dipti',songs:'Desi Girl',status:'TBD',duration:5,location:'',contact:'',notes:''},
     ]},
-    {id:nextId++,label:'Dancing',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},  // 9:00–10:00
+    {id:nextId++,label:'Dancing',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},
+    {id:nextId++,label:'Gaapa Gosti / Chat / Tea',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},
   ];
 }
 
