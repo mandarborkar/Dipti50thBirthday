@@ -133,6 +133,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .slot-nav-btn{font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);cursor:pointer;font-family:'DM Sans',sans-serif;}
 .slot-nav-btn.active{background:var(--gold);color:#fff;border-color:var(--gold);}
 
+/* Full schedule toggle button */
+.fullsched-toggle-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border2);background:var(--surface);color:var(--text2);cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
+.fullsched-toggle-btn:hover{border-color:var(--gold);color:var(--gold);}
+.fullsched-toggle-btn.active{background:var(--gold);color:#fff;border-color:var(--gold);}
+
 /* Event Personnel card — distinct purple style */
 .staff-slot-card{background:var(--surface);border:2px solid #9b6bbf;border-radius:12px;overflow:hidden;margin:4px 0;}
 .staff-slot-header{background:#f5eeff;padding:1.2rem 1.4rem 1rem;}
@@ -394,6 +399,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <select id="presenterSelect" onchange="renderMySchedule()">
         <option value="">— Choose a name —</option>
       </select>
+      <div style="margin-top:10px;text-align:right">
+        <button class="fullsched-toggle-btn" id="fullSchedBtn" onclick="toggleFullSchedule()">📋 View full event schedule</button>
+      </div>
     </div>
     <div id="mySchedOutput">
       <div class="my-sched-empty">
@@ -581,6 +589,12 @@ function presenterMatches(slotPresenter,selected){
 }
 
 function renderMySchedule(){
+  // If full schedule is showing, switching presenter should exit full schedule mode
+  if(showingFullSchedule){
+    showingFullSchedule = false;
+    const btn = document.getElementById('fullSchedBtn');
+    if(btn){ btn.textContent='📋 View full event schedule'; btn.classList.remove('active'); }
+  }
   const selected=document.getElementById('presenterSelect').value;
   const out=document.getElementById('mySchedOutput');
   if(!selected){out.innerHTML=`<div class="my-sched-empty"><div class="big">Who's performing?</div><div>Choose your name above to see your personal schedule.</div></div>`;return;}
@@ -688,6 +702,83 @@ function scrollToMySlot(id){
   const idx=id.split('-').pop();const btns=document.querySelectorAll('.slot-nav-btn');
   if(btns[idx])btns[idx].classList.add('active');
   const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── FULL SCHEDULE VIEW ────────────────────────────────────
+let showingFullSchedule = false;
+
+function toggleFullSchedule(){
+  showingFullSchedule = !showingFullSchedule;
+  const btn = document.getElementById('fullSchedBtn');
+  if(showingFullSchedule){
+    btn.textContent = '👤 Back to my schedule';
+    btn.classList.add('active');
+    // Clear presenter selection highlight but keep select visible
+    renderFullSchedule();
+  } else {
+    btn.textContent = '📋 View full event schedule';
+    btn.classList.remove('active');
+    renderMySchedule();
+  }
+}
+
+function renderFullSchedule(){
+  const out = document.getElementById('mySchedOutput');
+
+  // Build one flat list of ALL events ordered by start time
+  const allEvents = [];
+
+  // Main program events (from mainBlocks)
+  const mainTimes = computeMainStartTimes();
+  mainBlocks.forEach((block, bi) => {
+    if(block.slots.length === 0){
+      allEvents.push({ startMins: mainTimes[bi], endMins: mainTimes[bi] + block.duration, label: block.label, presenter: '', type: 'Main', duration: block.duration, isMain: true });
+    } else {
+      const subTimes = computeSubStartTimes(block);
+      block.slots.forEach((slot, si) => {
+        allEvents.push({ startMins: subTimes[si], endMins: subTimes[si] + slot.duration, label: slot.label, presenter: slot.presenter, type: slot.type, duration: slot.duration, isMain: false, parentLabel: block.label });
+      });
+    }
+  });
+
+  // Event personnel responsibilities
+  staffResponsibilities.forEach(r => {
+    const startM = timeToMins(r.startTime);
+    const endM   = timeToMins(r.endTime);
+    allEvents.push({ startMins: startM, endMins: endM, label: r.description, presenter: r.presenter, type: 'Personnel', duration: endM - startM, isMain: false, parentLabel: '' });
+  });
+
+  // Sort by start time, then by type (Main first within same time)
+  allEvents.sort((a, b) => a.startMins - b.startMins || (a.isMain ? -1 : 1));
+
+  const typeBgP = {Sing:'var(--sing-bg)',Song:'var(--sing-bg)',Dance:'var(--dance-bg)',Speech:'var(--speech-bg)',Video:'var(--video-bg)',Break:'var(--break-bg)',Dinner:'var(--gold-bg)',Main:'var(--gold-bg)',Personnel:'#f0e8f8'};
+  const typeCP  = {Sing:'var(--sing-c)',Song:'var(--sing-c)',Dance:'var(--dance-c)',Speech:'var(--speech-c)',Video:'var(--video-c)',Break:'var(--break-c)',Dinner:'var(--gold-dark)',Main:'var(--gold-dark)',Personnel:'#7b2fa0'};
+
+  let html = `<div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);font-weight:500;margin-bottom:12px;">Full Event Schedule — All Events by Start Time</div>`;
+
+  // Group rows into a table-like layout
+  html += `<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;">`;
+
+  allEvents.forEach((ev, i) => {
+    const cleanLabel = ev.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner)\s*[—\-]\s*/i,'').trim();
+    const bg = i % 2 === 0 ? 'var(--surface)' : 'var(--surface2)';
+    const timeStr = minsToTime12(ev.startMins);
+    const endStr  = ev.endMins > ev.startMins ? ` – ${minsToTime12(ev.endMins)}` : '';
+    const durStr  = ev.duration > 0 ? fmtDur(ev.duration) : '';
+    const presStr = ev.presenter || '';
+    const badge   = `<span style="display:inline-block;font-size:10px;font-weight:500;padding:1px 7px;border-radius:20px;background:${typeBgP[ev.type]||'var(--break-bg)'};color:${typeCP[ev.type]||'var(--break-c)'};white-space:nowrap">${ev.type}</span>`;
+    const sub     = ev.parentLabel ? `<div style="font-size:10px;color:var(--text3);margin-top:1px">${ev.parentLabel}</div>` : '';
+
+    html += `<div style="display:grid;grid-template-columns:100px 1fr 120px 55px;align-items:center;gap:0 12px;padding:9px 14px;background:${bg};border-bottom:0.5px solid var(--border);">
+      <div style="font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums">${timeStr}${endStr.length < 10 ? '' : ''}</div>
+      <div><div style="font-size:13px;font-weight:500;color:var(--text)">${cleanLabel}</div>${sub}${presStr ? `<div style="font-size:11px;color:var(--text2);margin-top:1px">${presStr}</div>` : ''}</div>
+      <div>${badge}</div>
+      <div style="font-size:11px;color:var(--text3);text-align:right">${durStr}</div>
+    </div>`;
+  });
+
+  html += `</div>`;
+  out.innerHTML = html;
 }
 
 // ══════════════════════════════════════════
