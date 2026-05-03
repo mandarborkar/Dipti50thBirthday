@@ -83,6 +83,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .info-btn:hover{border-color:var(--gold);color:var(--gold);}
 .info-tooltip{display:none;position:absolute;left:0;top:26px;z-index:100;background:var(--text);color:#f4f1eb;font-size:12px;border-radius:8px;padding:10px 13px;min-width:220px;max-width:300px;line-height:1.55;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.18);}
 .info-tooltip::before{content:'';position:absolute;top:-5px;left:7px;width:10px;height:10px;background:var(--text);transform:rotate(45deg);border-radius:1px;}
+/* Upward-opening tooltip variant for mobile sub-event rows */
+.info-tooltip-up{bottom:30px;top:auto;left:auto;right:-4px;}
+.info-tooltip-up::before{bottom:-5px;top:auto;left:auto;right:9px;}
 .info-wrap:hover .info-tooltip,.info-btn:focus+.info-tooltip{display:block;}
 .info-tooltip .tt-title{font-weight:500;margin-bottom:6px;font-size:12px;color:#fff;}
 .info-tooltip .tt-song{padding:2px 0;color:#c8bfb0;}
@@ -276,11 +279,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .prog-sub-name>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   /* Row 2, col 1: duration */
   .prog-sub-dur{grid-row:2;grid-column:1;font-size:10px;color:var(--text3);text-align:left;}
-  /* Row 2, col 2: presenter + type badge inline */
+  /* Row 2, col 2: type badge + presenter + i icon at far right */
   .prog-sub-presenter{grid-row:2;grid-column:2;font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px;flex-wrap:nowrap;}
+  .prog-sub-presenter .info-wrap{margin-left:auto;}
   /* type badge sits inline with presenter in row 2 */
   /* type badge is inside presenter div, no extra col to hide */
   .prog-sub-presenter .prog-type-badge{font-size:10px;padding:1px 7px;flex-shrink:0;}
+  /* Upward tooltip on mobile — full width, right-anchored */
+  .info-tooltip-up{max-width:88vw;}
 
   .myschedule-wrap{padding:.9rem .85rem 5rem;}
   .presenter-picker{padding:.9rem 1rem;border-radius:10px;}
@@ -747,8 +753,8 @@ function renderProgram(){
         if(!hasSongs&&!s.notes){tooltipInner=`<div style="color:#888;font-style:italic">No additional details</div>`;}
         html+=`<div class="prog-sub-row">
           <div class="prog-sub-time">${s.duration>0?minsToTime12(subTimes[si]):''}</div>
-          <div class="prog-sub-name" data-presenter="${s.presenter||''}"><span>${cleanLabel}</span><div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip">${tooltipInner}</div></div></div>
-          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${s.presenter||'—'}</div>
+          <div class="prog-sub-name" data-presenter="${s.presenter||''}"><span>${cleanLabel}</span></div>
+          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${s.presenter||'—'}<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip info-tooltip-up">${tooltipInner}</div></div></div>
           <div class="prog-sub-dur">${s.duration>0?fmtDur(s.duration):'—'}</div>
         </div>`;
       });
