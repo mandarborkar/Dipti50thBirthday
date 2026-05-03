@@ -213,6 +213,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .add-sub-row{display:flex;gap:6px;margin-top:6px;}
 .add-main-row{display:flex;gap:8px;margin-top:10px;}
 
+/* Mobile manage notice — hidden on desktop, shown on mobile */
+.mobile-manage-notice{display:none;margin-top:1rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;border-left:3px solid var(--gold);}
+.mobile-manage-notice p{font-size:13px;color:var(--text2);line-height:1.55;}
+.mobile-manage-notice strong{color:var(--text);font-weight:500;}
+
 /* ══ SETTINGS PANEL ══ */
 .settings-wrap{max-width:600px;margin:0 auto;padding:2rem;}
 .settings-wrap h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin-bottom:1.5rem;}
@@ -321,28 +326,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .multi-slot-nav{gap:5px;}
   .slot-nav-btn{font-size:11px;padding:5px 10px;min-height:36px;}
 
-  .manage-wrap{padding:.9rem .6rem 5rem;}
-  .stats{gap:5px;margin-bottom:1rem;}
+  .manage-wrap{padding:.9rem .6rem 3rem;}
+  .stats{gap:5px;margin-bottom:.75rem;}
   .stat{padding:5px 10px;border-radius:6px;}
   .stat-val{font-size:15px;}
   .stat-label{font-size:9px;}
   .main-col-hdr{display:none;}
   .sub-col-hdr{display:none;}
-  .main-row{grid-template-columns:26px 22px 1fr auto;min-height:46px;}
-  .col-time,.col-dur,.col-status{display:none;}
-  .col-main-label{font-size:14px;}
-  .col-main-label small{font-size:10px;}
-  .col-actions{padding-right:6px;gap:4px;}
-  .col{padding:7px 5px;}
-  .sub-events{padding:5px 4px 8px 28px;}
-  .sub-row{grid-template-columns:20px 1fr auto;min-height:38px;}
-  .sc-num,.sc-time,.sc-dur,.sc-status,.sc-presenter{display:none;}
-  .sc{padding:6px 4px;}
-  .sc-event{font-size:12px;}
-  .sc-event small{font-size:10px;}
-  .sc-actions{padding-right:5px;}
-  .add-sub-row{flex-wrap:wrap;gap:5px;}
-  .add-main-row{margin-top:8px;}
+  /* Hide the full edit timeline and add button on mobile */
+  .timeline{display:none;}
+  .add-main-row{display:none;}
+  /* Show the mobile-only notice */
+  .mobile-manage-notice{display:block;}
 
   .settings-wrap{padding:.9rem .85rem;}
   .settings-wrap h2{font-size:1.3rem;margin-bottom:1rem;}
@@ -413,6 +408,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 <div id="panel-manage" class="panel">
   <div class="manage-wrap">
     <div class="stats" id="statsBar"></div>
+    <div class="mobile-manage-notice">
+      <p><strong>Program summary shown above.</strong><br>Full editing — reordering events, adding or removing performances, and updating details — is only available when viewing on a laptop or desktop browser.</p>
+    </div>
     <div class="main-col-hdr">
       <span></span><span></span><span>Time</span><span>Event</span>
       <span style="text-align:center">Duration</span><span style="text-align:center">Status</span><span></span>
