@@ -227,10 +227,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .toast{position:fixed;bottom:2rem;right:2rem;background:var(--text);color:var(--bg);padding:9px 16px;border-radius:8px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:999;}
 .toast.show{opacity:1;}
 
-/* Floating save CSV button */
-.fab-save{position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:10px 20px;border-radius:24px;border:none;background:var(--gold);color:#fff;cursor:pointer;box-shadow:0 4px 16px rgba(201,149,42,.35);transition:background .15s,transform .1s;white-space:nowrap;}
-.fab-save:hover{background:var(--gold-dark);transform:scale(1.03);}
-.fab-save:active{transform:scale(0.97);}
 
 /* ══════════════════════════════════════
    MOBILE — iPhone & Android first
@@ -357,7 +353,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .sfield input{font-size:14px;padding:6px 9px;}
   .info-tooltip{left:auto;right:-4px;max-width:82vw;font-size:11px;}
   .info-tooltip::before{left:auto;right:9px;}
-  .fab-save{bottom:1rem;right:1rem;font-size:12px;padding:9px 18px;border-radius:22px;}
 }
 @media (max-width: 375px) {
   .ph-title{font-size:1.55rem;}
@@ -454,8 +449,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 </div>
 
 <div class="toast" id="toast"></div>
-<!-- Floating save CSV button — visible when changes made in Manage panel -->
-<button class="fab-save" id="fabSave" onclick="exportCSV()" title="Download updated CSV" style="display:none">⬇ Save CSV</button>
 
 <script>
 // ══════════════════════════════════════════
@@ -686,17 +679,6 @@ function scrollToMySlot(id){
 // ══════════════════════════════════════════
 //  TAB SWITCHING
 // ══════════════════════════════════════════
-let isDirty = false;
-function markDirty(){ isDirty = true; const fab=document.getElementById('fabSave'); if(fab&&document.getElementById('panel-manage').classList.contains('active'))fab.style.display='block'; }
-
-function switchTab(name,btn){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');document.getElementById('panel-'+name).classList.add('active');
-  const fab=document.getElementById('fabSave');
-  if(fab) fab.style.display=(name==='manage'&&isDirty)?'block':'none';
-  if(name==='myschedule')renderMySchedule();
-}
 
 // ══════════════════════════════════════════
 //  SYNC HEADER
@@ -748,10 +730,10 @@ function renderProgram(){
         const cleanLabel=s.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner)\s*[—\-]\s*/i,'').trim();
         const songList=s.songs?s.songs.split(',').map(x=>x.trim()).filter(Boolean):[];
         const hasSongs=songList.length>0&&s.type!=='Speech'&&s.type!=='Dinner';
+        const hasDetails=hasSongs||!!s.notes;
         let tooltipInner='';
         if(hasSongs){tooltipInner+=`<div class="tt-title">Songs / Performance</div>`;tooltipInner+=songList.map(sg=>`<div class="tt-song">${sg}</div>`).join('');}
         if(s.notes){tooltipInner+=`<div class="tt-notes">${s.notes}</div>`;}
-        if(!hasSongs&&!s.notes){tooltipInner=`<div style="color:#888;font-style:italic">No additional details</div>`;}
         html+=`<div class="prog-sub-row">
           <div class="prog-sub-time">${s.duration>0?minsToTime12(subTimes[si]):''}</div>
           <div class="prog-sub-name" data-presenter="${s.presenter||''}"><span>${cleanLabel}</span></div>
@@ -863,10 +845,8 @@ function renderManage(){
 // ══════════════════════════════════════════
 //  MASTER RENDER
 // ══════════════════════════════════════════
-let _initialLoad = true;
 function render(){
   renderProgram();renderManage();rebuildPresenterDropdown();syncHeader();
-  if(!_initialLoad) markDirty();
   if(document.getElementById('panel-myschedule').classList.contains('active'))renderMySchedule();
 }
 
@@ -891,29 +871,8 @@ function addSubBreak(pid){const b=mainBlocks.find(b=>b.id===pid);if(!b)return;b.
 //  CSV
 // ══════════════════════════════════════════
 function slotsToCSV(){const lines=['order,type,event_label,presenter,songs,status,duration,location,contact,notes'];mainBlocks.forEach((b,bi)=>{const desc=b.slots.length>0?'Sub-program':(b.description||'');lines.push(`${bi+1},Main,"${b.label}","",${desc.includes(',')? '"'+desc+'"':desc},${b.status},${b.duration},"","",""`);b.slots.forEach((s,si)=>{const sg=s.songs&&s.songs.includes(',')? `"${s.songs}"`:s.songs||'';lines.push(`${bi+1}.${si+1},${s.type},"${s.label}","${s.presenter}",${sg},${s.status||'TBD'},${s.duration||0},"${s.location||''}","${s.contact||''}","${s.notes||''}"`);});});return lines.join('\n');}
-function exportCSV(){
-  const csv=slotsToCSV();
-  // Save to localStorage so next session loads from this
-  try{localStorage.setItem('dipti_program_csv',csv);}catch(e){}
-  const blob=new Blob([csv],{type:'text/csv'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='Dipti50thBirthdayProgramSchedule.csv';a.click();
-  isDirty=false;const fab=document.getElementById('fabSave');if(fab)fab.style.display='none';
-  toast('CSV saved & downloaded ✓');
-}
-function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{importCSVText(ev.target.result);};reader.readAsText(file);}
-function importCSVText(text){
-  const rows=parseCSV(text);const blocks=[];let cur=null;
-  rows.forEach(r=>{
-    if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}
-    else if(cur){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}
-  });
-  if(blocks.length){
-    mainBlocks=blocks;
-    try{localStorage.setItem('dipti_program_csv',text);}catch(e){}
-    render();toast('Program loaded — '+blocks.length+' events');
-  }
-}
+function exportCSV(){const blob=new Blob([slotsToCSV()],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Dipti50thBirthdayProgramSchedule.csv';a.click();toast('CSV downloaded ✓');}
+function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const rows=parseCSV(ev.target.result);const blocks=[];let cur=null;rows.forEach(r=>{if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}else if(cur&&r.type&&r.event_label){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}});if(blocks.length){mainBlocks=blocks;render();toast('Loaded — '+blocks.length+' events');}};reader.readAsText(file);}
 function parseCSV(text){const lines=text.trim().split('\n');const headers=lines[0].split(',').map(h=>h.trim());return lines.slice(1).map(line=>{const vals=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){vals.push(cur.trim());cur='';}else{cur+=c;}}vals.push(cur.trim());const obj={};headers.forEach((h,i)=>obj[h]=(vals[i]||'').replace(/^"|"$/g,'').trim());return obj;});}
 
 // ══════════════════════════════════════════
@@ -931,24 +890,8 @@ function exportPrint(){
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
-// ── INIT: load from localStorage if a saved session exists, else use defaults ──
-(function(){
-  let loaded = false;
-  try{
-    const saved = localStorage.getItem('dipti_program_csv');
-    if(saved){
-      const rows=parseCSV(saved);const blocks=[];let cur=null;
-      rows.forEach(r=>{
-        if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}
-        else if(cur){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}
-      });
-      if(blocks.length){mainBlocks=blocks;loaded=true;}
-    }
-  }catch(e){}
-  if(!loaded) mainBlocks=defaultData();
-  render();
-  _initialLoad = false;
-})();
+mainBlocks=defaultData();
+render();
 </script>
 </body>
 </html>
