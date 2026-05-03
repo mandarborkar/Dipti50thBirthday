@@ -3,24 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Event Program</title>
+<title>Dipti's 50th Birthday</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#faf8f4; --surface:#fff; --surface2:#f4f1eb; --surface3:#edeae2;
-  --border:#e8e2d6; --border2:#d4ccbc;
-  --text:#1a1714; --text2:#6b6358; --text3:#9c9286;
-  --gold:#c9952a; --gold-bg:#fdf8ee; --gold-dark:#a87820;
-  --accent:#b85c20; --accent-bg:#fdf0e8;
-  --sing-c:#1a5c3a;--sing-bg:#e8f5ee;
-  --dance-c:#7b2fa0;--dance-bg:#f5ebfc;
-  --speech-c:#1e4a8a;--speech-bg:#e8f0fb;
-  --video-c:#8a3a1e;--video-bg:#fbeee8;
-  --song-c:#4a6e1a;--song-bg:#edf5e0;
-  --break-c:#5e5a54;--break-bg:#f0ede8;
-}
+:root{--bg:#faf8f4;--surface:#fff;--surface2:#f4f1eb;--surface3:#edeae2;--border:#e8e2d6;--border2:#d4ccbc;--text:#1a1714;--text2:#6b6358;--text3:#9c9286;--gold:#c9952a;--gold-bg:#fdf8ee;--gold-dark:#a87820;--accent:#b85c20;--accent-bg:#fdf0e8;--sing-c:#1a5c3a;--sing-bg:#e8f5ee;--dance-c:#7b2fa0;--dance-bg:#f5ebfc;--speech-c:#1e4a8a;--speech-bg:#e8f0fb;--video-c:#8a3a1e;--video-bg:#fbeee8;--song-c:#4a6e1a;--song-bg:#edf5e0;--break-c:#5e5a54;--break-bg:#f0ede8;--staff-c:#5a3a6b;--staff-bg:#f0e8f8;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* HEADER */
 .program-header{background:var(--text);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
 .program-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);}
 .ph-inner{max-width:860px;margin:0 auto;}
@@ -29,6 +19,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .ph-meta{display:flex;gap:1.8rem;flex-wrap:wrap;margin-top:1rem;font-size:13px;color:#a09080;}
 .ph-meta span{display:flex;align-items:center;gap:5px;}
 .ph-meta .dot{width:3px;height:3px;border-radius:50%;background:#555;}
+
+/* TAB BAR */
 .tab-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;}
 .tab-bar-inner{max-width:1060px;margin:0 auto;width:100%;display:flex;align-items:center;}
 .tab{font-size:13px;font-weight:500;padding:13px 18px;border:none;background:none;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s,border-color .15s;font-family:'DM Sans',sans-serif;white-space:nowrap;}
@@ -36,6 +28,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .tab.active{color:var(--text);border-bottom-color:var(--gold);}
 .tab-spacer{flex:1;}
 .tab-actions{display:flex;gap:8px;align-items:center;padding:8px 0;}
+
+/* BUTTONS */
 .btn{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--text);cursor:pointer;transition:background .12s;}
 .btn:hover{background:var(--surface2);}
 .btn-gold{background:var(--gold);color:#fff;border-color:var(--gold);}
@@ -48,12 +42,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .file-label{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:6px 14px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);color:var(--text);cursor:pointer;}
 .file-label:hover{background:var(--surface2);}
 #csvInput{display:none;}
+
+/* PANELS */
 .panel{display:none;}
 .panel.active{display:block;}
+
+/* ══ PROGRAM PANEL ══ */
 .program-wrap{max-width:860px;margin:0 auto;padding:2rem 2rem 4rem;}
 .prog-block{margin-bottom:1.8rem;}
 .prog-main-row{display:grid;grid-template-columns:110px 1fr auto;gap:0 1.5rem;align-items:center;padding:.9rem 0;border-bottom:1px solid var(--border);user-select:none;}
-.prog-main-row:hover .prog-toggle{color:var(--text2);}
 .prog-time{font-size:15px;font-weight:700;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums;}
 .prog-event-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--text);line-height:1.2;}
 .prog-event-desc{font-size:12px;color:var(--text3);margin-top:2px;}
@@ -79,6 +76,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .ptb-Speech{background:var(--speech-bg);color:var(--speech-c);}
 .ptb-Video{background:var(--video-bg);color:var(--video-c);}
 .ptb-Break{background:var(--break-bg);color:var(--break-c);}
+.ptb-Dinner{background:var(--gold-bg);color:var(--gold-dark);}
 .info-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;}
 .info-btn{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--border2);background:var(--surface);color:var(--text3);font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .15s,color .15s;font-family:'DM Sans',sans-serif;line-height:1;}
 .info-btn:hover{border-color:var(--gold);color:var(--gold);}
@@ -89,11 +87,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .info-tooltip .tt-song{padding:2px 0;color:#c8bfb0;}
 .info-tooltip .tt-song::before{content:'♪ ';color:var(--gold);}
 .info-tooltip .tt-notes{margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.12);color:#a09080;font-style:italic;}
-.dot-Sing,.dot-Song{background:var(--sing-c);}
-.dot-Dance{background:var(--dance-c);}
-.dot-Speech{background:var(--speech-c);}
-.dot-Video{background:var(--video-c);}
-.dot-Break{background:var(--text3);}
+
+/* ══ MY SCHEDULE PANEL ══ */
 .myschedule-wrap{max-width:700px;margin:0 auto;padding:2rem 2rem 4rem;}
 .presenter-picker{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:2rem;}
 .presenter-picker label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);display:block;margin-bottom:8px;font-weight:500;}
@@ -131,6 +126,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .multi-slot-nav{display:flex;gap:8px;margin-bottom:1.2rem;flex-wrap:wrap;}
 .slot-nav-btn{font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);cursor:pointer;font-family:'DM Sans',sans-serif;}
 .slot-nav-btn.active{background:var(--gold);color:#fff;border-color:var(--gold);}
+
+/* Event Personnel card — distinct purple style */
+.staff-slot-card{background:var(--surface);border:2px solid #9b6bbf;border-radius:12px;overflow:hidden;margin:4px 0;}
+.staff-slot-header{background:#f5eeff;padding:1.2rem 1.4rem 1rem;}
+.staff-slot-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#7b2fa0;font-weight:500;margin-bottom:.3rem;}
+.staff-time-range{font-size:1.8rem;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--text);line-height:1;}
+.staff-dur{font-size:13px;color:var(--text2);margin-top:2px;}
+.staff-desc{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--text);margin-top:.6rem;line-height:1.3;}
+.staff-badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;margin-top:.5rem;background:#ede0f8;color:#7b2fa0;}
+
+/* ══ MANAGE PANEL ══ */
 .manage-wrap{max-width:1060px;margin:0 auto;padding:1.5rem 2rem 4rem;}
 .stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem;}
 .stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 16px;}
@@ -176,6 +182,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .type-Speech{background:var(--speech-bg);color:var(--speech-c);}
 .type-Video{background:var(--video-bg);color:var(--video-c);}
 .type-Break{background:var(--break-bg);color:var(--break-c);}
+.type-Dinner{background:var(--gold-bg);color:var(--gold-dark);}
 .status-badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:20px;white-space:nowrap;}
 .s-Confirmed{background:#e6f6eb;color:#2a7a3a;}
 .s-Tentative{background:#fdf3de;color:#8a5a10;}
@@ -199,6 +206,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .main-col-hdr span,.sub-col-hdr span{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);padding:0 7px;}
 .add-sub-row{display:flex;gap:6px;margin-top:6px;}
 .add-main-row{display:flex;gap:8px;margin-top:10px;}
+
+/* ══ SETTINGS PANEL ══ */
 .settings-wrap{max-width:600px;margin:0 auto;padding:2rem;}
 .settings-wrap h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin-bottom:1.5rem;}
 .settings-group{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1rem;}
@@ -211,20 +220,123 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .csv-note{font-size:12px;color:var(--text3);margin-top:.5rem;line-height:1.5;}
 .toast{position:fixed;bottom:2rem;right:2rem;background:var(--text);color:var(--bg);padding:9px 16px;border-radius:8px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:999;}
 .toast.show{opacity:1;}
+
+/* ══════════════════════════════════════
+   MOBILE RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .program-header{padding:1.6rem 1.1rem 1.4rem;}
+  .ph-title{font-size:2rem;}
+  .ph-meta{gap:.8rem;font-size:12px;margin-top:.6rem;}
+
+  /* Tabs scroll horizontally */
+  .tab-bar{padding:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .tab-bar::-webkit-scrollbar{display:none;}
+  .tab-bar-inner{min-width:max-content;padding:0 .5rem;}
+  .tab{font-size:12px;padding:11px 13px;}
+  .tab-spacer{display:none;}
+  .tab-actions{display:none;}
+
+  /* Program panel */
+  .program-wrap{padding:1rem .9rem 3rem;}
+  .prog-main-row{grid-template-columns:76px 1fr;gap:0 8px;padding:.7rem 0;}
+  .prog-time{font-size:13px;}
+  .prog-event-name{font-size:1.05rem;}
+  .prog-event-desc{font-size:11px;}
+  .prog-main-right{flex-direction:column;align-items:flex-end;gap:5px;}
+  .prog-toggle-btn{font-size:11px;padding:4px 10px;}
+  .prog-dur{font-size:11px;}
+
+  /* Sub-events — simplified 2-column layout on mobile */
+  .prog-sub-hdr{display:none;}
+  .prog-sub-row{
+    display:flex;flex-direction:column;
+    padding:9px 0 9px 14px;gap:2px;
+    border-left:2px solid var(--border);
+    margin-left:4px;
+  }
+  .prog-sub-time{font-size:11px;color:var(--text3);font-weight:500;}
+  .prog-sub-name{font-size:13px;font-weight:500;flex-wrap:wrap;}
+  .prog-sub-presenter{font-size:11px;color:var(--text2);}
+  .prog-sub-dur{font-size:11px;text-align:left;}
+  /* Show type badge and presenter inline, hide nothing */
+  .prog-subs{padding-left:0;}
+
+  /* My Schedule */
+  .myschedule-wrap{padding:1rem .9rem 3rem;}
+  .presenter-picker{padding:1rem 1.1rem;}
+  .presenter-picker select{font-size:15px;}
+  .my-slot-time{font-size:1.5rem;}
+  .my-slot-title{font-size:1.15rem;}
+  .my-slot-header{padding:1rem 1.1rem .8rem;}
+  .my-slot-body{padding:.8rem 1.1rem 1rem;}
+  .staff-time-range{font-size:1.4rem;}
+  .staff-desc{font-size:1.1rem;}
+  .staff-slot-header{padding:1rem 1.1rem .8rem;}
+  .ctx-row{padding:9px 11px;gap:8px;}
+  .ctx-time{min-width:56px;font-size:11px;}
+  .ctx-label{font-size:12px;}
+  .ctx-dur{font-size:11px;}
+  .multi-slot-nav{gap:5px;}
+  .slot-nav-btn{font-size:11px;padding:4px 9px;}
+  .my-slot-meta{grid-template-columns:1fr;}
+  .my-slot-divider{margin:.5rem 0;}
+
+  /* Manage panel — simplified on mobile */
+  .manage-wrap{padding:1rem .6rem 3rem;}
+  .main-col-hdr{display:none;}
+  .sub-col-hdr{display:none;}
+  .main-row{grid-template-columns:26px 22px 1fr 80px;gap:0;}
+  .col-time{display:none;}
+  .col-dur{display:none;}
+  .col-status{display:none;}
+  .col-main-label{font-size:14px;}
+  .sub-events{padding:6px 4px 8px 30px;}
+  .sub-row{grid-template-columns:20px 1fr 60px;}
+  .sc-num{display:none;}
+  .sc-time{display:none;}
+  .sc-dur{display:none;}
+  .sc-status{display:none;}
+  .sc-presenter{display:none;}
+  .sc{padding:6px 5px;}
+  .stats{gap:5px;}
+  .stat{padding:6px 10px;}
+  .stat-val{font-size:15px;}
+  .stat-label{font-size:9px;}
+  .add-sub-row{flex-wrap:wrap;}
+
+  /* Settings */
+  .settings-wrap{padding:1rem .9rem;}
+  .settings-grid{grid-template-columns:1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .field-full{grid-column:1;}
+
+  /* Tooltip repositioned for mobile */
+  .info-tooltip{left:auto;right:-4px;max-width:82vw;}
+  .info-tooltip::before{left:auto;right:9px;}
+}
+
+@media (max-width: 380px) {
+  .ph-title{font-size:1.65rem;}
+  .tab{font-size:11px;padding:10px 10px;}
+  .prog-main-row{grid-template-columns:68px 1fr;}
+}
 </style>
 </head>
 <body>
+
 <header class="program-header">
   <div class="ph-inner">
     <div class="ph-eyebrow">Evening Program</div>
-    <div class="ph-title" id="dispTitle">Celebration Evening</div>
+    <div class="ph-title" id="dispTitle">Dipti's 50th Birthday</div>
     <div class="ph-meta" id="dispMeta"></div>
   </div>
 </header>
+
 <div class="tab-bar">
   <div class="tab-bar-inner">
     <button class="tab active" onclick="switchTab('program',this)">Program</button>
-    <button class="tab" onclick="switchTab('myschedule',this)" id="mySchedTab">My Schedule</button>
+    <button class="tab" onclick="switchTab('myschedule',this)">My Schedule</button>
     <button class="tab" onclick="switchTab('manage',this)">Manage Program</button>
     <button class="tab" onclick="switchTab('settings',this)">Event Details</button>
     <div class="tab-spacer"></div>
@@ -233,15 +345,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
   </div>
 </div>
+
+<!-- PANEL 1: PROGRAM -->
 <div id="panel-program" class="panel active">
   <div class="program-wrap"><div id="prog-output"></div></div>
 </div>
+
+<!-- PANEL 2: MY SCHEDULE -->
 <div id="panel-myschedule" class="panel">
   <div class="myschedule-wrap">
     <div class="presenter-picker">
       <label>Select your name to see your schedule</label>
       <select id="presenterSelect" onchange="renderMySchedule()">
-        <option value="">— Choose a presenter —</option>
+        <option value="">— Choose a name —</option>
       </select>
     </div>
     <div id="mySchedOutput">
@@ -252,6 +368,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
   </div>
 </div>
+
+<!-- PANEL 3: MANAGE -->
 <div id="panel-manage" class="panel">
   <div class="manage-wrap">
     <div class="stats" id="statsBar"></div>
@@ -263,13 +381,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="add-main-row"><button class="btn" onclick="addMainBlock()">+ Add main event</button></div>
   </div>
 </div>
+
+<!-- PANEL 4: SETTINGS -->
 <div id="panel-settings" class="panel">
   <div class="settings-wrap">
     <h2>Event Details</h2>
     <div class="settings-group">
       <h3>About this event</h3>
       <div class="settings-grid">
-        <div class="sfield sfield-full"><label>Event name</label><input id="eventName" value="Celebration Evening" oninput="syncHeader()" /></div>
+        <div class="sfield sfield-full"><label>Event name</label><input id="eventName" value="Dipti's 50th Birthday" oninput="syncHeader()" /></div>
         <div class="sfield"><label>Date</label><input id="eventDate" placeholder="e.g. June 28, 2025" oninput="syncHeader()" /></div>
         <div class="sfield"><label>Venue</label><input id="eventVenue" placeholder="Venue name" oninput="syncHeader()" /></div>
         <div class="sfield"><label>Host / MC</label><input id="eventHost" placeholder="MC name" oninput="syncHeader()" /></div>
@@ -283,36 +403,420 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         <input type="file" id="csvInput" accept=".csv" onchange="loadCSV(event)" />
         <button class="btn" onclick="exportCSV()">Export CSV</button>
       </div>
-      <p class="csv-note">Load a CSV to replace the current program. Export saves all current data back to a CSV file you can edit and reload.</p>
+      <p class="csv-note">Load a CSV to replace the current program. Export saves all current data back to a CSV file.</p>
     </div>
   </div>
 </div>
+
 <div class="toast" id="toast"></div>
+
 <script>
-let mainBlocks=[];let nextId=200;let dragMainSrc=null,dragSubSrc=null,dragSubParentId=null;
-const BASE_START=()=>{const v=document.getElementById('eventStart')?.value||'17:30';const[h,m]=v.split(':').map(Number);return h*60+m;};
-function defaultData(){return[{id:nextId++,label:'Meet & Greet',description:'Pictures, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[]},{id:nextId++,label:'Speeches, Videos and Performances',description:'',duration:60,status:'Confirmed',expanded:true,slots:[{id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and team',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'TBD',duration:10,location:'',contact:'',notes:''},{id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},{id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and team',songs:'Koi Kahe Kehta Rahe*, Shararath, Aaj Kal Tere mere Paay ke charche',status:'TBD',duration:8,location:'',contact:'',notes:''},{id:nextId++,type:'Speech',label:'Speech — Navneet',presenter:'Navneet',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},{id:nextId++,type:'Dance',label:'Dance — Shipi',presenter:'Shilpi',songs:'Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi',status:'TBD',duration:10,location:'',contact:'',notes:''},{id:nextId++,type:'Dance',label:'Dance — Belmont group',presenter:'Rajeshwari and team',songs:'Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe*',status:'TBD',duration:8,location:'',contact:'',notes:''},{id:nextId++,type:'Speech',label:'Speech — Rajendra',presenter:'Rajendra',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},{id:nextId++,type:'Dance',label:'Dance — Marathi group',presenter:'Dipti and team',songs:'Shaky Shaky, Hawa Hawa, Gulabi Saadi',status:'TBD',duration:8,location:'',contact:'',notes:''},{id:nextId++,type:'Song',label:'Duet — Swati & Mayank',presenter:'Swati / Mayank',songs:'Duet Song?',status:'TBD',duration:6,location:'',contact:'',notes:''},{id:nextId++,type:'Song',label:'Duet — Leena & Nirav',presenter:'Leena / Nirav',songs:'Duet Song?',status:'TBD',duration:6,location:'',contact:'',notes:''},{id:nextId++,type:'Dance',label:'Dance — Anamika and Family',presenter:'Anamika',songs:'Family Dance Song??',status:'TBD',duration:8,location:'',contact:'',notes:''},{id:nextId++,type:'Dance',label:'Dance — Anamika & Dipti',presenter:'Anamika / Dipti',songs:'Desi Girl',status:'TBD',duration:6,location:'',contact:'',notes:''},{id:nextId++,type:'Speech',label:'Speech — Chaitali',presenter:'Chaitali',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},{id:nextId++,type:'Speech',label:'Speech — Rajashree Mausi',presenter:'Rajashree',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},{id:nextId++,type:'Speech',label:'Speech — Mihir',presenter:'Mihir',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},{id:nextId++,type:'Speech',label:'Speech — Maya',presenter:'Maya',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},{id:nextId++,type:'Video',label:'Video — Mandar',presenter:'Mandar',songs:'Ek Ladki ko Dekha to Aaisa Laga, Yaar bina chain kha ree',status:'TBD',duration:8,location:'',contact:'',notes:''},{id:nextId++,type:'Speech',label:'Speech — Dipti',presenter:'Dipti',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''}]},{id:nextId++,label:'Dinner',description:'',duration:90,status:'Confirmed',expanded:false,slots:[]},{id:nextId++,label:'Cake Cutting & Tea',description:'',duration:30,status:'Confirmed',expanded:false,slots:[]},{id:nextId++,label:'DJ Dancing',description:'',duration:90,status:'Confirmed',expanded:false,slots:[]}];}
+// ══════════════════════════════════════════
+//  EVENT PERSONNEL RESPONSIBILITIES (time-window slots)
+//  These appear only in My Schedule, not in the main program
+// ══════════════════════════════════════════
+const staffResponsibilities = [
+  { presenter:'Melvin', startTime:'17:00', endTime:'22:00', description:'Photographer', notes:'Covering the full evening' },
+  { presenter:'Tej',    startTime:'17:30', endTime:'23:00', description:'DJ', notes:'Music throughout the evening' },
+  { presenter:'Tarun',  startTime:'17:00', endTime:'19:30', description:'Appetizers & Tea', notes:'Set up and serve appetizers and tea during Meet & Greet' },
+  { presenter:'Tarun',  startTime:'19:30', endTime:'20:00', description:'Transition — Appetizers out, Dinner in', notes:'Clear appetizers, lay down dinner service' },
+  { presenter:'Tarun',  startTime:'20:00', endTime:'21:30', description:'Dinner Service', notes:'Serve dinner to guests' },
+  { presenter:'Tarun',  startTime:'21:00', endTime:'22:30', description:'Dessert & Tea', notes:'Set out dessert and tea service' },
+];
+
+function timeToMins(t){
+  // accepts "17:00" or "5:30 PM" etc
+  if(!t) return 0;
+  t = t.trim();
+  const pm = /pm/i.test(t); const am = /am/i.test(t);
+  t = t.replace(/[apm\s]/gi,'');
+  const[h,m]= t.split(':').map(Number);
+  let hrs = h; if(pm && h<12) hrs+=12; if(am && h===12) hrs=0;
+  return hrs*60+(m||0);
+}
+function minsToTime12(m){let h=Math.floor(m/60)%24,mn=m%60,ap=h>=12?'PM':'AM';if(h>12)h-=12;if(h===0)h=12;return `${h}:${String(mn).padStart(2,'0')} ${ap}`;}
+function fmtDurFromMins(m){if(!m||m<=0)return '—';return m>=60?`${Math.floor(m/60)}h${m%60>0?' '+m%60+'m':''}`:m+'m';}
+
+// ══════════════════════════════════════════
+//  MAIN DATA
+// ══════════════════════════════════════════
+let mainBlocks = [];
+let nextId = 200;
+let dragMainSrc = null, dragSubSrc = null, dragSubParentId = null;
+const BASE_START = () => { const v=document.getElementById('eventStart')?.value||'17:00'; const[h,m]=v.split(':').map(Number); return h*60+m; };
+
+function defaultData(){
+  return [
+    {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[]},
+    {id:nextId++,label:'Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[  // 6:30–7:30
+      {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and team',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'TBD',duration:10,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and team',songs:'Koi Kahe Kehta Rahe*, Shararath, Aaj Kal Tere mere Paay ke charche',status:'TBD',duration:5,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Speech',label:'Speech — Navneet',presenter:'Navneet',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — Shipi',presenter:'Shilpi',songs:'Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi',status:'TBD',duration:10,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — Belmont group',presenter:'Rajeshwari and team',songs:'Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe*',status:'TBD',duration:8,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Speech',label:'Speech — Rajendra',presenter:'Rajendra',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — Marathi group',presenter:'Dipti and team',songs:'Shaky Shaky, Hawa Hawa, Gulabi Saadi',status:'TBD',duration:8,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Song',label:'Duet — Swati & Mayank',presenter:'Swati / Mayank',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Song',label:'Duet — Leena & Nirav',presenter:'Leena / Nirav',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Speech',label:'Speech — Chaitali',presenter:'Chaitali',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Speech',label:'Speech — Rajashree Mausi',presenter:'Rajashree',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
+    ]},
+    {id:nextId++,label:'Cake Cutting',description:'',duration:30,status:'Confirmed',expanded:false,slots:[]},      // 7:30–8:00
+    {id:nextId++,label:'Dinner and Thank You Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[  // 8:00–9:00
+      {id:nextId++,type:'Dinner',label:'Dinner',presenter:'',songs:'',status:'Confirmed',duration:0,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Speech',label:'Speech — Mihir',presenter:'Mihir',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Speech',label:'Speech — Maya',presenter:'Maya',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Video',label:'Video — Mandar',presenter:'Mandar',songs:'Ek Ladki ko Dekha to Aaisa Laga, Yaar bina chain kha ree',status:'TBD',duration:10,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Speech',label:'Speech — Dipti',presenter:'Dipti',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — Anamika and Family',presenter:'Anamika',songs:'Family Dance Song',status:'TBD',duration:8,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — Anamika & Dipti',presenter:'Anamika / Dipti',songs:'Desi Girl',status:'TBD',duration:5,location:'',contact:'',notes:''},
+    ]},
+    {id:nextId++,label:'DJ Dancing',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},  // 9:00–10:00
+  ];
+}
+
+// ══════════════════════════════════════════
+//  TIME UTILS
+// ══════════════════════════════════════════
 function computeMainStartTimes(){let t=BASE_START();return mainBlocks.map(b=>{const s=t;t+=(b.duration||0);return s;});}
 function computeSubStartTimes(block){const mi=mainBlocks.findIndex(b=>b.id===block.id);const mt=computeMainStartTimes();let t=mt[mi]||BASE_START();return block.slots.map(s=>{const st=t;t+=(s.duration||0);return st;});}
-function minsToTime12(m){let h=Math.floor(m/60)%24,mn=m%60,ap=h>=12?'PM':'AM';if(h>12)h-=12;if(h===0)h=12;return `${h}:${String(mn).padStart(2,'0')} ${ap}`;}
 function fmtDur(m){if(!m)return '—';return m>=60?`${Math.floor(m/60)}h${m%60>0?' '+m%60+'m':''}`:m+'m';}
 function totalMins(){return mainBlocks.reduce((a,b)=>a+(b.duration||0),0);}
 function subTotalMins(b){return b.slots.reduce((a,s)=>a+(s.duration||0),0);}
-function buildFlatList(){const flat=[];const mainTimes=computeMainStartTimes();mainBlocks.forEach((block,bi)=>{if(block.slots.length===0){flat.push({slot:{id:'main-'+block.id,label:block.label,type:'Main',presenter:'',songs:'',duration:block.duration,notes:'',location:''},startMins:mainTimes[bi],parentBlock:null,isMain:true,blockIndex:bi});}else{const subTimes=computeSubStartTimes(block);block.slots.forEach((slot,si)=>{flat.push({slot,startMins:subTimes[si],parentBlock:block,isMain:false,blockIndex:bi,subIndex:si});});}});return flat;}
-function getPresenterList(){const set=new Set();mainBlocks.forEach(b=>b.slots.forEach(s=>{if(s.presenter&&s.type!=='Break'){s.presenter.split(/[,\/]/).map(p=>p.trim()).filter(Boolean).forEach(p=>set.add(p));set.add(s.presenter.trim());}}));return Array.from(set).sort((a,b)=>a.localeCompare(b));}
-function rebuildPresenterDropdown(){const sel=document.getElementById('presenterSelect');const current=sel.value;const presenters=getPresenterList();sel.innerHTML='<option value="">— Choose a presenter —</option>';presenters.forEach(p=>{const opt=document.createElement('option');opt.value=p;opt.textContent=p;if(p===current)opt.selected=true;sel.appendChild(opt);});}
-const typeBgMap={Sing:'var(--sing-bg)',Song:'var(--sing-bg)',Dance:'var(--dance-bg)',Speech:'var(--speech-bg)',Video:'var(--video-bg)',Break:'var(--break-bg)',Main:'var(--gold-bg)'};
-const typeCMap={Sing:'var(--sing-c)',Song:'var(--sing-c)',Dance:'var(--dance-c)',Speech:'var(--speech-c)',Video:'var(--video-c)',Break:'var(--break-c)',Main:'var(--gold)'};
-function presenterMatches(slotPresenter,selected){if(!slotPresenter||!selected)return false;const lc=slotPresenter.toLowerCase();const sel=selected.toLowerCase();return lc===sel||lc.split(/[,\/]/).map(p=>p.trim()).includes(sel);}
-function renderMySchedule(){const selected=document.getElementById('presenterSelect').value;const out=document.getElementById('mySchedOutput');if(!selected){out.innerHTML=`<div class="my-sched-empty"><div class="big">Who's performing?</div><div>Choose your name above to see your personal schedule.</div></div>`;return;}const flat=buildFlatList();const mySlots=flat.filter(item=>!item.isMain&&presenterMatches(item.slot.presenter,selected));if(mySlots.length===0){out.innerHTML=`<div class="my-sched-empty"><div class="big">No items found for "${selected}"</div><div>Check that your name is entered correctly in Manage Program.</div></div>`;return;}let html='';if(mySlots.length>1){html+=`<div style="font-size:12px;color:var(--text3);margin-bottom:.6rem;font-weight:500;">You have ${mySlots.length} appearances in the program:</div>`;html+=`<div class="multi-slot-nav">`;mySlots.forEach((item,i)=>{html+=`<button class="slot-nav-btn${i===0?' active':''}" onclick="scrollToMySlot('myslot-${i}')">${minsToTime12(item.startMins)} · ${item.slot.label}</button>`;});html+=`</div>`;}mySlots.forEach((item,slotIdx)=>{const{slot,startMins,parentBlock}=item;const flatIdx=flat.indexOf(item);const prevItem=flat[flatIdx-1];const nextItem=flat[flatIdx+1];html+=`<div id="myslot-${slotIdx}" style="margin-bottom:2.5rem;">`;if(prevItem){const isMainCtx=prevItem.isMain;const pLabel=prevItem.slot.label;const pPresenter=!isMainCtx&&prevItem.slot.presenter?prevItem.slot.presenter:'';const pType=isMainCtx?'Main':prevItem.slot.type;html+=`<div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:5px;padding-left:4px">Before you</div><div class="ctx-row"><div class="ctx-arrow" style="color:var(--text3)">↑</div><div class="ctx-time">${minsToTime12(prevItem.startMins)}</div><span class="ctx-tag" style="background:${typeBgMap[pType]||'var(--break-bg)'};color:${typeCMap[pType]||'var(--break-c)'}">${pType}</span><div style="flex:1;min-width:0"><div class="ctx-label">${pLabel}</div>${pPresenter?`<div class="ctx-presenter">${pPresenter}</div>`:''}</div><div class="ctx-dur">${fmtDur(prevItem.slot.duration)}</div></div><div class="ctx-connector"><div class="ctx-connector-line"></div></div>`;}else{html+=`<div style="font-size:12px;color:var(--text3);font-style:italic;margin-bottom:10px;padding-left:4px">You open the program</div>`;}const songList=slot.songs?slot.songs.split(',').map(x=>x.trim()).filter(Boolean):[];const hasSongs=songList.length>0&&slot.type!=='Speech';const typeColor=typeCMap[slot.type]||'var(--text2)';const typeBg=typeBgMap[slot.type]||'var(--break-bg)';html+=`<div class="my-slot-card" id="myslot-card-${slotIdx}"><div class="my-slot-header"><div class="my-slot-eyebrow">Your performance${mySlots.length>1?' '+(slotIdx+1)+' of '+mySlots.length:''}</div><div class="my-slot-time">${minsToTime12(startMins)}</div><div class="my-slot-dur">${fmtDur(slot.duration)} · ${parentBlock?parentBlock.label:''}</div><div class="my-slot-title">${slot.label}</div><span class="my-slot-type" style="background:${typeBg};color:${typeColor}">${slot.type}</span></div>`;if(hasSongs||slot.notes||slot.location){html+=`<div class="my-slot-body">`;if(hasSongs){html+=`<div class="my-slot-section">Songs / Performance</div><div class="my-slot-songs">${songList.map(s=>`<div class="my-slot-song-item">${s}</div>`).join('')}</div>`;}const hasMeta=slot.location||slot.status;if(hasMeta){html+=`<div class="my-slot-divider"></div><div class="my-slot-meta">`;if(slot.status)html+=`<div class="my-slot-meta-item"><label>Status</label><span><span class="status-badge s-${slot.status||'TBD'}">${slot.status||'TBD'}</span></span></div>`;if(slot.location)html+=`<div class="my-slot-meta-item"><label>Stage / Location</label><span>${slot.location}</span></div>`;html+=`</div>`;}if(slot.notes){html+=`<div class="my-slot-notes">📋 ${slot.notes}</div>`;}html+=`</div>`;}html+=`</div>`;if(nextItem){html+=`<div class="ctx-connector"><div class="ctx-connector-line"></div></div>`;}if(nextItem){const isMainCtx=nextItem.isMain;const nLabel=nextItem.slot.label;const nPresenter=!isMainCtx&&nextItem.slot.presenter?nextItem.slot.presenter:'';const nType=isMainCtx?'Main':nextItem.slot.type;html+=`<div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-top:0;margin-bottom:5px;padding-left:4px">After you</div><div class="ctx-row"><div class="ctx-arrow" style="color:var(--text3)">↓</div><div class="ctx-time">${minsToTime12(nextItem.startMins)}</div><span class="ctx-tag" style="background:${typeBgMap[nType]||'var(--break-bg)'};color:${typeCMap[nType]||'var(--break-c)'}">${nType}</span><div style="flex:1;min-width:0"><div class="ctx-label">${nLabel}</div>${nPresenter?`<div class="ctx-presenter">${nPresenter}</div>`:''}</div><div class="ctx-dur">${fmtDur(nextItem.slot.duration)}</div></div>`;}else{html+=`<div style="font-size:12px;color:var(--text3);font-style:italic;margin-top:10px;padding-left:4px">You close the performances</div>`;}html+=`</div>`;});out.innerHTML=html;}
-function scrollToMySlot(id){document.querySelectorAll('.slot-nav-btn').forEach(b=>b.classList.remove('active'));const idx=id.split('-').pop();const btns=document.querySelectorAll('.slot-nav-btn');if(btns[idx])btns[idx].classList.add('active');const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
-function switchTab(name,btn){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+name).classList.add('active');if(name==='myschedule')renderMySchedule();}
-function syncHeader(){const name=document.getElementById('eventName')?.value||'Celebration Evening';const date=document.getElementById('eventDate')?.value||'';const venue=document.getElementById('eventVenue')?.value||'';const host=document.getElementById('eventHost')?.value||'';document.getElementById('dispTitle').textContent=name;document.title=name;const parts=[];if(date)parts.push(`<span>📅 ${date}</span>`);if(venue)parts.push(`<span>📍 ${venue}</span>`);if(host)parts.push(`<span>🎤 MC: ${host}</span>`);document.getElementById('dispMeta').innerHTML=parts.join('<span class="dot"></span>');}
+
+// ══════════════════════════════════════════
+//  FLAT SLOT LIST
+// ══════════════════════════════════════════
+function buildFlatList(){
+  const flat=[];const mainTimes=computeMainStartTimes();
+  mainBlocks.forEach((block,bi)=>{
+    if(block.slots.length===0){flat.push({slot:{id:'main-'+block.id,label:block.label,type:'Main',presenter:'',songs:'',duration:block.duration,notes:'',location:''},startMins:mainTimes[bi],parentBlock:null,isMain:true,blockIndex:bi});}
+    else{const subTimes=computeSubStartTimes(block);block.slots.forEach((slot,si)=>{flat.push({slot,startMins:subTimes[si],parentBlock:block,isMain:false,blockIndex:bi,subIndex:si});});}
+  });
+  return flat;
+}
+
+// ══════════════════════════════════════════
+//  PRESENTER LIST (performers + staff)
+// ══════════════════════════════════════════
+function getPresenterList(){
+  const set=new Set();
+  mainBlocks.forEach(b=>b.slots.forEach(s=>{if(s.presenter&&s.type!=='Break'&&s.type!=='Dinner'){s.presenter.split(/[,\/]/).map(p=>p.trim()).filter(Boolean).forEach(p=>set.add(p));set.add(s.presenter.trim());}}));
+  staffResponsibilities.forEach(r=>set.add(r.presenter));
+  return Array.from(set).sort((a,b)=>a.localeCompare(b));
+}
+
+function rebuildPresenterDropdown(){
+  const sel=document.getElementById('presenterSelect');const current=sel.value;
+  const presenters=getPresenterList();
+  sel.innerHTML='<option value="">— Choose a name —</option>';
+  presenters.forEach(p=>{const opt=document.createElement('option');opt.value=p;opt.textContent=p;if(p===current)opt.selected=true;sel.appendChild(opt);});
+}
+
+// ══════════════════════════════════════════
+//  MY SCHEDULE
+// ══════════════════════════════════════════
+const typeBgMap={Sing:'var(--sing-bg)',Song:'var(--sing-bg)',Dance:'var(--dance-bg)',Speech:'var(--speech-bg)',Video:'var(--video-bg)',Break:'var(--break-bg)',Main:'var(--gold-bg)',Dinner:'var(--gold-bg)'};
+const typeCMap={Sing:'var(--sing-c)',Song:'var(--sing-c)',Dance:'var(--dance-c)',Speech:'var(--speech-c)',Video:'var(--video-c)',Break:'var(--break-c)',Main:'var(--gold)',Dinner:'var(--gold-dark)'};
+
+function presenterMatches(slotPresenter,selected){
+  if(!slotPresenter||!selected)return false;
+  const lc=slotPresenter.toLowerCase();const sel=selected.toLowerCase();
+  return lc===sel||lc.split(/[,\/]/).map(p=>p.trim()).includes(sel);
+}
+
+function renderMySchedule(){
+  const selected=document.getElementById('presenterSelect').value;
+  const out=document.getElementById('mySchedOutput');
+  if(!selected){out.innerHTML=`<div class="my-sched-empty"><div class="big">Who's performing?</div><div>Choose your name above to see your personal schedule.</div></div>`;return;}
+
+  // Check if this person is a staff member
+  const myStaffSlots = staffResponsibilities.filter(r=>r.presenter.toLowerCase()===selected.toLowerCase());
+  const flat=buildFlatList();
+  const myPerfSlots=flat.filter(item=>!item.isMain && item.slot.type!=='Dinner' && presenterMatches(item.slot.presenter,selected));
+
+  if(myStaffSlots.length===0 && myPerfSlots.length===0){
+    out.innerHTML=`<div class="my-sched-empty"><div class="big">No items found for "${selected}"</div><div>Check that your name is entered correctly.</div></div>`;return;
+  }
+
+  let html='';
+
+  // ── STAFF RESPONSIBILITIES SECTION ──
+  if(myStaffSlots.length>0){
+    html+=`<div style="margin-bottom:1.5rem;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--staff-c);font-weight:500;margin-bottom:10px;">Your Responsibilities This Evening</div>`;
+    myStaffSlots.forEach((r,i)=>{
+      const startM=timeToMins(r.startTime);const endM=timeToMins(r.endTime);
+      const durM=endM-startM;
+      html+=`<div class="staff-slot-card" style="margin-bottom:8px;">
+        <div class="staff-slot-header">
+          <div class="staff-slot-eyebrow">Event Personnel — Responsibility ${myStaffSlots.length>1?i+1+' of '+myStaffSlots.length:''}</div>
+          <div class="staff-time-range">${minsToTime12(startM)} — ${minsToTime12(endM)}</div>
+          <div class="staff-dur">${fmtDurFromMins(durM)}</div>
+          <div class="staff-desc">${r.description}</div>
+          <span class="staff-badge">Event Personnel</span>
+        </div>
+        ${r.notes?`<div class="my-slot-body"><div style="font-size:13px;color:var(--text2);">${r.notes}</div></div>`:''}
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+
+  // ── PERFORMANCE SLOTS SECTION ──
+  if(myPerfSlots.length>0){
+    html+=`<div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);font-weight:500;margin-bottom:10px;">Your Performance${myPerfSlots.length>1?'s':''}</div>`;
+
+    if(myPerfSlots.length>1){
+      html+=`<div class="multi-slot-nav">`;
+      myPerfSlots.forEach((item,i)=>{html+=`<button class="slot-nav-btn${i===0?' active':''}" onclick="scrollToMySlot('myslot-${i}')">${minsToTime12(item.startMins)} · ${item.slot.label}</button>`;});
+      html+=`</div>`;
+    }
+
+    myPerfSlots.forEach((item,slotIdx)=>{
+      const{slot,startMins,parentBlock}=item;
+      const flatIdx=flat.indexOf(item);
+      const prevItem=flat[flatIdx-1];const nextItem=flat[flatIdx+1];
+      html+=`<div id="myslot-${slotIdx}" style="margin-bottom:2.5rem;">`;
+
+      if(prevItem){
+        const pType=prevItem.isMain?'Main':prevItem.slot.type;
+        html+=`<div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:5px;padding-left:4px">Before you</div>
+        <div class="ctx-row">
+          <div class="ctx-arrow">↑</div>
+          <div class="ctx-time">${minsToTime12(prevItem.startMins)}</div>
+          <span class="ctx-tag" style="background:${typeBgMap[pType]||'var(--break-bg)'};color:${typeCMap[pType]||'var(--break-c)'}">${pType}</span>
+          <div style="flex:1;min-width:0"><div class="ctx-label">${prevItem.slot.label}</div>${!prevItem.isMain&&prevItem.slot.presenter?`<div class="ctx-presenter">${prevItem.slot.presenter}</div>`:''}</div>
+          <div class="ctx-dur">${fmtDur(prevItem.slot.duration)}</div>
+        </div>
+        <div class="ctx-connector"><div class="ctx-connector-line"></div></div>`;
+      }else{html+=`<div style="font-size:12px;color:var(--text3);font-style:italic;margin-bottom:10px;padding-left:4px">You open the program</div>`;}
+
+      const songList=slot.songs?slot.songs.split(',').map(x=>x.trim()).filter(Boolean):[];
+      const hasSongs=songList.length>0&&slot.type!=='Speech';
+      const typeColor=typeCMap[slot.type]||'var(--text2)';const typeBg=typeBgMap[slot.type]||'var(--break-bg)';
+      html+=`<div class="my-slot-card" id="myslot-card-${slotIdx}">
+        <div class="my-slot-header">
+          <div class="my-slot-eyebrow">Your performance${myPerfSlots.length>1?' '+(slotIdx+1)+' of '+myPerfSlots.length:''}</div>
+          <div class="my-slot-time">${minsToTime12(startMins)}</div>
+          <div class="my-slot-dur">${fmtDur(slot.duration)} · ${parentBlock?parentBlock.label:''}</div>
+          <div class="my-slot-title">${slot.label}</div>
+          <span class="my-slot-type" style="background:${typeBg};color:${typeColor}">${slot.type}</span>
+        </div>`;
+      if(hasSongs||slot.notes||slot.location){
+        html+=`<div class="my-slot-body">`;
+        if(hasSongs){html+=`<div class="my-slot-section">Songs / Performance</div><div class="my-slot-songs">${songList.map(s=>`<div class="my-slot-song-item">${s}</div>`).join('')}</div>`;}
+        if(slot.status||slot.location){html+=`<div class="my-slot-divider"></div><div class="my-slot-meta">`;if(slot.status)html+=`<div class="my-slot-meta-item"><label>Status</label><span class="status-badge s-${slot.status||'TBD'}">${slot.status||'TBD'}</span></div>`;if(slot.location)html+=`<div class="my-slot-meta-item"><label>Stage</label><span>${slot.location}</span></div>`;html+=`</div>`;}
+        if(slot.notes){html+=`<div class="my-slot-notes">📋 ${slot.notes}</div>`;}
+        html+=`</div>`;
+      }
+      html+=`</div>`;
+
+      if(nextItem){html+=`<div class="ctx-connector"><div class="ctx-connector-line"></div></div>
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:5px;padding-left:4px">After you</div>
+        <div class="ctx-row">
+          <div class="ctx-arrow">↓</div>
+          <div class="ctx-time">${minsToTime12(nextItem.startMins)}</div>
+          <span class="ctx-tag" style="background:${typeBgMap[nextItem.isMain?'Main':nextItem.slot.type]||'var(--break-bg)'};color:${typeCMap[nextItem.isMain?'Main':nextItem.slot.type]||'var(--break-c)'}">${nextItem.isMain?'Main':nextItem.slot.type}</span>
+          <div style="flex:1;min-width:0"><div class="ctx-label">${nextItem.slot.label}</div>${!nextItem.isMain&&nextItem.slot.presenter?`<div class="ctx-presenter">${nextItem.slot.presenter}</div>`:''}</div>
+          <div class="ctx-dur">${fmtDur(nextItem.slot.duration)}</div>
+        </div>`;}
+      else{html+=`<div style="font-size:12px;color:var(--text3);font-style:italic;margin-top:10px;padding-left:4px">You close the performances</div>`;}
+      html+=`</div>`;
+    });
+  }
+
+  out.innerHTML=html;
+}
+
+function scrollToMySlot(id){
+  document.querySelectorAll('.slot-nav-btn').forEach(b=>b.classList.remove('active'));
+  const idx=id.split('-').pop();const btns=document.querySelectorAll('.slot-nav-btn');
+  if(btns[idx])btns[idx].classList.add('active');
+  const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ══════════════════════════════════════════
+//  TAB SWITCHING
+// ══════════════════════════════════════════
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');document.getElementById('panel-'+name).classList.add('active');
+  if(name==='myschedule')renderMySchedule();
+}
+
+// ══════════════════════════════════════════
+//  SYNC HEADER
+// ══════════════════════════════════════════
+function syncHeader(){
+  const name=document.getElementById('eventName')?.value||"Dipti's 50th Birthday";
+  const date=document.getElementById('eventDate')?.value||'';
+  const venue=document.getElementById('eventVenue')?.value||'';
+  const host=document.getElementById('eventHost')?.value||'';
+  document.getElementById('dispTitle').textContent=name;document.title=name;
+  const parts=[];
+  if(date)parts.push(`<span>📅 ${date}</span>`);
+  if(venue)parts.push(`<span>📍 ${venue}</span>`);
+  if(host)parts.push(`<span>🎤 MC: ${host}</span>`);
+  document.getElementById('dispMeta').innerHTML=parts.join('<span class="dot"></span>');
+}
+
+// ══════════════════════════════════════════
+//  RENDER PROGRAM
+// ══════════════════════════════════════════
 const progExpanded={};
-function toggleProgSubs(blockId){progExpanded[blockId]=!progExpanded[blockId];const el=document.getElementById('prog-subs-'+blockId);const tog=document.getElementById('prog-tog-'+blockId);const open=!!progExpanded[blockId];if(el)el.classList.toggle('open',open);if(tog){tog.textContent=open?'Hide performances':'View performances';tog.classList.toggle('open',open);}}
-function renderProgram(){const mainTimes=computeMainStartTimes();const out=document.getElementById('prog-output');let html='';mainBlocks.forEach((block,bi)=>{const hasSubs=block.slots.length>0;const subTimes=hasSubs?computeSubStartTimes(block):[];const desc=!hasSubs&&block.description?`<div class="prog-event-desc">${block.description}</div>`:'';const subNote=hasSubs?`<div class="prog-event-desc">${block.slots.length} performances · ${fmtDur(subTotalMins(block))}</div>`:'';const isOpen=!!progExpanded[block.id];html+=`<div class="prog-block"><div class="prog-main-row"><div class="prog-time">${minsToTime12(mainTimes[bi])}</div><div><div class="prog-event-name">${block.label}</div>${desc}${subNote}</div><div class="prog-main-right">${hasSubs?`<button class="prog-toggle-btn${isOpen?' open':''}" id="prog-tog-${block.id}" onclick="toggleProgSubs(${block.id})">${isOpen?'Hide performances':'View performances'}</button>`:''}<div class="prog-dur">${fmtDur(block.duration)}</div></div></div>`;if(hasSubs){html+=`<div class="prog-subs${isOpen?' open':''}" id="prog-subs-${block.id}">`;html+=`<div class="prog-sub-hdr"><span>Time</span><span>Performance</span><span>Presenter</span><span>Type</span><span style="text-align:right">Duration</span></div>`;block.slots.forEach((s,si)=>{const cleanLabel=s.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet)\s*[—\-]\s*/i,'').trim();const songList=s.songs?s.songs.split(',').map(x=>x.trim()).filter(Boolean):[];const hasSongs=songList.length>0&&s.type!=='Speech';const hasNotes=!!s.notes;const hasDetails=hasSongs||hasNotes;let tooltipInner='';if(hasSongs){tooltipInner+=`<div class="tt-title">Songs / Performance</div>`;tooltipInner+=songList.map(sg=>`<div class="tt-song">${sg}</div>`).join('');}if(hasNotes){tooltipInner+=`<div class="tt-notes">${s.notes}</div>`;}if(!hasDetails){tooltipInner=`<div style="color:#888;font-style:italic">No additional details</div>`;}html+=`<div class="prog-sub-row"><div class="prog-sub-time">${minsToTime12(subTimes[si])}</div><div class="prog-sub-name">${cleanLabel}<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip">${tooltipInner}</div></div></div><div class="prog-sub-presenter">${s.presenter||'—'}</div><div><span class="prog-type-badge ptb-${s.type}">${s.type}</span></div><div class="prog-sub-dur">${fmtDur(s.duration)}</div></div>`;});html+=`</div>`;}html+=`</div>`;});const endT=minsToTime12(BASE_START()+totalMins());html+=`<div style="padding-top:1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em">End of program</span><span style="font-size:14px;font-weight:700">${endT}</span></div>`;out.innerHTML=html;}
-function renderManage(){const bar=document.getElementById('statsBar');const counts={};mainBlocks.flatMap(b=>b.slots).forEach(s=>{counts[s.type]=(counts[s.type]||0)+1;});const typeHtml=Object.entries(counts).map(([t,c])=>`<div class="stat"><div class="stat-label">${t}</div><div class="stat-val">${c}</div></div>`).join('');bar.innerHTML=`<div class="stat"><div class="stat-label">Main events</div><div class="stat-val">${mainBlocks.length}</div></div>${typeHtml}<div class="stat"><div class="stat-label">Runtime</div><div class="stat-val">${fmtDur(totalMins())}</div></div>`;const tl=document.getElementById('timeline');const mainTimes=computeMainStartTimes();tl.innerHTML='';mainBlocks.forEach((block,bi)=>{const hasSubs=block.slots.length>0;const div=document.createElement('div');div.className='main-block';div.draggable=true;div.dataset.id=block.id;const subNote=hasSubs?`<small>${block.slots.length} items · ${fmtDur(subTotalMins(block))}</small>`:(block.description?`<small>${block.description}</small>`:'');div.innerHTML=`<div class="main-row${hasSubs?'':' no-sub'}" onclick="handleMainClick(event,${block.id})"><div class="col col-handle"><span></span><span></span><span></span></div><div class="col col-toggle">${hasSubs?(block.expanded?'▾':'▸'):''}</div><div class="col col-time">${minsToTime12(mainTimes[bi])}</div><div class="col col-main-label">${block.label}${subNote}</div><div class="col col-dur">${fmtDur(block.duration)}</div><div class="col col-status"><span class="status-badge s-${block.status||'TBD'}">${block.status||'TBD'}</span></div><div class="col col-actions" onclick="event.stopPropagation()"><button class="btn btn-sm btn-ghost" title="Edit" onclick="toggleMainEdit(${block.id})">✎</button><button class="btn btn-sm btn-danger" onclick="removeMainBlock(${block.id})">✕</button></div></div><div class="main-edit-body" id="medit-${block.id}"><div class="form-grid"><div class="field"><label>Label</label><input value="${esc(block.label)}" onchange="updMain(${block.id},'label',this.value);render()" /></div><div class="field"><label>Duration (min)</label><input type="number" min="1" value="${block.duration||60}" onchange="updMain(${block.id},'duration',parseInt(this.value)||0);render()" /></div><div class="field field-full"><label>Description</label><input value="${esc(block.description||'')}" onchange="updMain(${block.id},'description',this.value);render()" /></div></div><div class="status-row"><span style="font-size:11px;color:var(--text3)">Status:</span><span class="status-chip sc-confirmed${block.status==='Confirmed'?' active':''}" onclick="setMainStatus(${block.id},'Confirmed')">Confirmed</span><span class="status-chip sc-tentative${block.status==='Tentative'?' active':''}" onclick="setMainStatus(${block.id},'Tentative')">Tentative</span><span class="status-chip sc-tbd${block.status==='TBD'?' active':''}" onclick="setMainStatus(${block.id},'TBD')">TBD</span></div></div><div class="sub-events${block.expanded?' open':''}" id="sub-events-${block.id}"><div class="sub-col-hdr"><span></span><span>#</span><span>Time</span><span>Type</span><span>Performance / Topic</span><span>Presenter</span><span style="text-align:center">Dur</span><span style="text-align:center">Status</span><span></span></div><div class="sub-timeline" id="sub-tl-${block.id}"></div><div class="add-sub-row"><button class="btn btn-sm" onclick="addSubSlot(${block.id})">+ Add performance</button><button class="btn btn-sm btn-ghost" onclick="addSubBreak(${block.id})">+ Add break</button></div></div>`;div.addEventListener('dragstart',e=>{dragMainSrc=div;div.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.stopPropagation();});div.addEventListener('dragend',()=>{div.classList.remove('dragging');document.querySelectorAll('.main-block.drag-over').forEach(el=>el.classList.remove('drag-over'));});div.addEventListener('dragover',e=>{e.preventDefault();if(!dragSubSrc)div.classList.add('drag-over');});div.addEventListener('dragleave',e=>{if(!div.contains(e.relatedTarget))div.classList.remove('drag-over');});div.addEventListener('drop',e=>{e.preventDefault();div.classList.remove('drag-over');if(!dragMainSrc||dragMainSrc===div||dragSubSrc)return;const fi=mainBlocks.findIndex(b=>b.id===parseInt(dragMainSrc.dataset.id));const ti=mainBlocks.findIndex(b=>b.id===parseInt(div.dataset.id));const[moved]=mainBlocks.splice(fi,1);mainBlocks.splice(ti,0,moved);render();});tl.appendChild(div);const subTl=document.getElementById(`sub-tl-${block.id}`);const subTimes=computeSubStartTimes(block);block.slots.forEach((slot,si)=>{const songList=slot.songs?slot.songs.split(',').map(x=>x.trim()).filter(Boolean):[];const sdiv=document.createElement('div');sdiv.className='sub-slot';sdiv.draggable=true;sdiv.dataset.id=slot.id;sdiv.dataset.parent=block.id;sdiv.innerHTML=`<div class="sub-row" onclick="toggleSubBody(${slot.id})"><div class="sc col-handle"><span></span><span></span><span></span></div><div class="sc sc-num">${si+1}</div><div class="sc sc-time">${minsToTime12(subTimes[si])}</div><div class="sc"><span class="type-badge type-${slot.type}">${slot.type}</span></div><div class="sc sc-event">${esc(slot.label||'(untitled)')}<small>${songList.length>0?songList[0]+(songList.length>1?` +${songList.length-1} more`:''):''}</small></div><div class="sc sc-presenter">${esc(slot.presenter||'—')}</div><div class="sc sc-dur">${fmtDur(slot.duration||0)}</div><div class="sc sc-status"><span class="status-badge s-${slot.status||'TBD'}">${slot.status||'TBD'}</span></div><div class="sc sc-actions" onclick="event.stopPropagation()"><button class="btn btn-sm btn-danger" onclick="removeSubSlot(${block.id},${slot.id})">✕</button></div></div><div class="slot-body" id="body-${slot.id}"><div class="form-grid"><div class="field"><label>Label</label><input value="${esc(slot.label)}" onchange="updSub(${block.id},${slot.id},'label',this.value);render()" /></div><div class="field"><label>Type</label><select onchange="updSub(${block.id},${slot.id},'type',this.value);render()">${['Sing','Song','Dance','Speech','Video','Break'].map(t=>`<option${slot.type===t?' selected':''}>${t}</option>`).join('')}</select></div><div class="field"><label>Presenter / Team</label><input value="${esc(slot.presenter)}" onchange="updSub(${block.id},${slot.id},'presenter',this.value);render()" /></div><div class="field"><label>Duration (min)</label><input type="number" min="1" value="${slot.duration||5}" onchange="updSub(${block.id},${slot.id},'duration',parseInt(this.value)||0);render()" /></div><div class="field"><label>Stage / Location</label><input value="${esc(slot.location||'')}" onchange="updSub(${block.id},${slot.id},'location',this.value)" /></div><div class="field"><label>Contact</label><input value="${esc(slot.contact||'')}" onchange="updSub(${block.id},${slot.id},'contact',this.value)" /></div><div class="field field-full"><label>Songs / Performance details</label><textarea onchange="updSub(${block.id},${slot.id},'songs',this.value)">${esc(slot.songs||'')}</textarea></div><div class="field field-full"><label>Notes / Special requirements</label><textarea onchange="updSub(${block.id},${slot.id},'notes',this.value)">${esc(slot.notes||'')}</textarea></div></div><div class="status-row"><span style="font-size:11px;color:var(--text3)">Status:</span><span class="status-chip sc-confirmed${slot.status==='Confirmed'?' active':''}" onclick="setSubStatus(${block.id},${slot.id},'Confirmed')">Confirmed</span><span class="status-chip sc-tentative${slot.status==='Tentative'?' active':''}" onclick="setSubStatus(${block.id},${slot.id},'Tentative')">Tentative</span><span class="status-chip sc-tbd${slot.status==='TBD'?' active':''}" onclick="setSubStatus(${block.id},${slot.id},'TBD')">TBD</span></div></div>`;sdiv.addEventListener('dragstart',e=>{dragSubSrc=sdiv;dragSubParentId=block.id;sdiv.classList.add('dragging');e.stopPropagation();e.dataTransfer.effectAllowed='move';});sdiv.addEventListener('dragend',()=>{sdiv.classList.remove('dragging');dragSubSrc=null;dragSubParentId=null;document.querySelectorAll('.sub-slot.drag-over').forEach(el=>el.classList.remove('drag-over'));});sdiv.addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation();sdiv.classList.add('drag-over');});sdiv.addEventListener('dragleave',e=>{if(!sdiv.contains(e.relatedTarget))sdiv.classList.remove('drag-over');});sdiv.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();sdiv.classList.remove('drag-over');if(!dragSubSrc||dragSubSrc===sdiv)return;const fp=mainBlocks.find(b=>b.id===parseInt(dragSubSrc.dataset.parent));const tp=mainBlocks.find(b=>b.id===parseInt(sdiv.dataset.parent));if(!fp||!tp)return;const fi=fp.slots.findIndex(s=>s.id===parseInt(dragSubSrc.dataset.id));const ti=tp.slots.findIndex(s=>s.id===parseInt(sdiv.dataset.id));const[moved]=fp.slots.splice(fi,1);tp.slots.splice(ti,0,moved);tp.expanded=true;render();});subTl.appendChild(sdiv);});});}
+function toggleProgSubs(blockId){
+  progExpanded[blockId]=!progExpanded[blockId];
+  const el=document.getElementById('prog-subs-'+blockId);const tog=document.getElementById('prog-tog-'+blockId);
+  const open=!!progExpanded[blockId];
+  if(el)el.classList.toggle('open',open);
+  if(tog){tog.textContent=open?'Hide performances':'View performances';tog.classList.toggle('open',open);}
+}
+
+function renderProgram(){
+  const mainTimes=computeMainStartTimes();const out=document.getElementById('prog-output');let html='';
+  mainBlocks.forEach((block,bi)=>{
+    const hasSubs=block.slots.length>0;
+    const subTimes=hasSubs?computeSubStartTimes(block):[];
+    const desc=!hasSubs&&block.description?`<div class="prog-event-desc">${block.description}</div>`:'';
+    const subNote=hasSubs?`<div class="prog-event-desc">${block.slots.length} items · ${fmtDur(subTotalMins(block))}</div>`:'';
+    const isOpen=!!progExpanded[block.id];
+    html+=`<div class="prog-block"><div class="prog-main-row">
+      <div class="prog-time">${minsToTime12(mainTimes[bi])}</div>
+      <div><div class="prog-event-name">${block.label}</div>${desc}${subNote}</div>
+      <div class="prog-main-right">
+        ${hasSubs?`<button class="prog-toggle-btn${isOpen?' open':''}" id="prog-tog-${block.id}" onclick="toggleProgSubs(${block.id})">${isOpen?'Hide performances':'View performances'}</button>`:''}
+        <div class="prog-dur">${fmtDur(block.duration)}</div>
+      </div></div>`;
+    if(hasSubs){
+      html+=`<div class="prog-subs${isOpen?' open':''}" id="prog-subs-${block.id}">
+        <div class="prog-sub-hdr"><span>Time</span><span>Performance</span><span>Presenter</span><span>Type</span><span style="text-align:right">Duration</span></div>`;
+      block.slots.forEach((s,si)=>{
+        const cleanLabel=s.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner)\s*[—\-]\s*/i,'').trim();
+        const songList=s.songs?s.songs.split(',').map(x=>x.trim()).filter(Boolean):[];
+        const hasSongs=songList.length>0&&s.type!=='Speech'&&s.type!=='Dinner';
+        let tooltipInner='';
+        if(hasSongs){tooltipInner+=`<div class="tt-title">Songs / Performance</div>`;tooltipInner+=songList.map(sg=>`<div class="tt-song">${sg}</div>`).join('');}
+        if(s.notes){tooltipInner+=`<div class="tt-notes">${s.notes}</div>`;}
+        if(!hasSongs&&!s.notes){tooltipInner=`<div style="color:#888;font-style:italic">No additional details</div>`;}
+        html+=`<div class="prog-sub-row">
+          <div class="prog-sub-time">${s.duration>0?minsToTime12(subTimes[si]):''}</div>
+          <div class="prog-sub-name" data-presenter="${s.presenter||''}">${cleanLabel}<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip">${tooltipInner}</div></div></div>
+          <div class="prog-sub-presenter">${s.presenter||'—'}</div>
+          <div><span class="prog-type-badge ptb-${s.type}">${s.type}</span></div>
+          <div class="prog-sub-dur">${s.duration>0?fmtDur(s.duration):'—'}</div>
+        </div>`;
+      });
+      html+=`</div>`;
+    }
+    html+=`</div>`;
+  });
+  const endT=minsToTime12(BASE_START()+totalMins());
+  html+=`<div style="padding-top:1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em">End of program</span><span style="font-size:14px;font-weight:700">${endT}</span></div>`;
+  out.innerHTML=html;
+}
+
+// ══════════════════════════════════════════
+//  RENDER MANAGE
+// ══════════════════════════════════════════
+function renderManage(){
+  const bar=document.getElementById('statsBar');const counts={};
+  mainBlocks.flatMap(b=>b.slots).forEach(s=>{counts[s.type]=(counts[s.type]||0)+1;});
+  const typeHtml=Object.entries(counts).map(([t,c])=>`<div class="stat"><div class="stat-label">${t}</div><div class="stat-val">${c}</div></div>`).join('');
+  bar.innerHTML=`<div class="stat"><div class="stat-label">Main events</div><div class="stat-val">${mainBlocks.length}</div></div>${typeHtml}<div class="stat"><div class="stat-label">Runtime</div><div class="stat-val">${fmtDur(totalMins())}</div></div>`;
+  const tl=document.getElementById('timeline');const mainTimes=computeMainStartTimes();tl.innerHTML='';
+  mainBlocks.forEach((block,bi)=>{
+    const hasSubs=block.slots.length>0;const div=document.createElement('div');
+    div.className='main-block';div.draggable=true;div.dataset.id=block.id;
+    const subNote=hasSubs?`<small>${block.slots.length} items · ${fmtDur(subTotalMins(block))}</small>`:(block.description?`<small>${block.description}</small>`:'');
+    div.innerHTML=`<div class="main-row${hasSubs?'':' no-sub'}" onclick="handleMainClick(event,${block.id})">
+      <div class="col col-handle"><span></span><span></span><span></span></div>
+      <div class="col col-toggle">${hasSubs?(block.expanded?'▾':'▸'):''}</div>
+      <div class="col col-time">${minsToTime12(mainTimes[bi])}</div>
+      <div class="col col-main-label">${block.label}${subNote}</div>
+      <div class="col col-dur">${fmtDur(block.duration)}</div>
+      <div class="col col-status"><span class="status-badge s-${block.status||'TBD'}">${block.status||'TBD'}</span></div>
+      <div class="col col-actions" onclick="event.stopPropagation()">
+        <button class="btn btn-sm btn-ghost" title="Edit" onclick="toggleMainEdit(${block.id})">✎</button>
+        <button class="btn btn-sm btn-danger" onclick="removeMainBlock(${block.id})">✕</button>
+      </div></div>
+      <div class="main-edit-body" id="medit-${block.id}">
+        <div class="form-grid">
+          <div class="field"><label>Label</label><input value="${esc(block.label)}" onchange="updMain(${block.id},'label',this.value);render()" /></div>
+          <div class="field"><label>Duration (min)</label><input type="number" min="1" value="${block.duration||60}" onchange="updMain(${block.id},'duration',parseInt(this.value)||0);render()" /></div>
+          <div class="field field-full"><label>Description</label><input value="${esc(block.description||'')}" onchange="updMain(${block.id},'description',this.value);render()" /></div>
+        </div>
+        <div class="status-row"><span style="font-size:11px;color:var(--text3)">Status:</span>
+          <span class="status-chip sc-confirmed${block.status==='Confirmed'?' active':''}" onclick="setMainStatus(${block.id},'Confirmed')">Confirmed</span>
+          <span class="status-chip sc-tentative${block.status==='Tentative'?' active':''}" onclick="setMainStatus(${block.id},'Tentative')">Tentative</span>
+          <span class="status-chip sc-tbd${block.status==='TBD'?' active':''}" onclick="setMainStatus(${block.id},'TBD')">TBD</span>
+        </div>
+      </div>
+      <div class="sub-events${block.expanded?' open':''}" id="sub-events-${block.id}">
+        <div class="sub-col-hdr"><span></span><span>#</span><span>Time</span><span>Type</span><span>Performance</span><span>Presenter</span><span style="text-align:center">Dur</span><span style="text-align:center">Status</span><span></span></div>
+        <div class="sub-timeline" id="sub-tl-${block.id}"></div>
+        <div class="add-sub-row">
+          <button class="btn btn-sm" onclick="addSubSlot(${block.id})">+ Add item</button>
+          <button class="btn btn-sm btn-ghost" onclick="addSubBreak(${block.id})">+ Add break</button>
+        </div>
+      </div>`;
+    div.addEventListener('dragstart',e=>{dragMainSrc=div;div.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.stopPropagation();});
+    div.addEventListener('dragend',()=>{div.classList.remove('dragging');document.querySelectorAll('.main-block.drag-over').forEach(el=>el.classList.remove('drag-over'));});
+    div.addEventListener('dragover',e=>{e.preventDefault();if(!dragSubSrc)div.classList.add('drag-over');});
+    div.addEventListener('dragleave',e=>{if(!div.contains(e.relatedTarget))div.classList.remove('drag-over');});
+    div.addEventListener('drop',e=>{e.preventDefault();div.classList.remove('drag-over');if(!dragMainSrc||dragMainSrc===div||dragSubSrc)return;const fi=mainBlocks.findIndex(b=>b.id===parseInt(dragMainSrc.dataset.id));const ti=mainBlocks.findIndex(b=>b.id===parseInt(div.dataset.id));const[moved]=mainBlocks.splice(fi,1);mainBlocks.splice(ti,0,moved);render();});
+    tl.appendChild(div);
+    const subTl=document.getElementById(`sub-tl-${block.id}`);const subTimes=computeSubStartTimes(block);
+    block.slots.forEach((slot,si)=>{
+      const songList=slot.songs?slot.songs.split(',').map(x=>x.trim()).filter(Boolean):[];
+      const sdiv=document.createElement('div');sdiv.className='sub-slot';sdiv.draggable=true;sdiv.dataset.id=slot.id;sdiv.dataset.parent=block.id;
+      sdiv.innerHTML=`<div class="sub-row" onclick="toggleSubBody(${slot.id})">
+        <div class="sc col-handle"><span></span><span></span><span></span></div>
+        <div class="sc sc-num">${si+1}</div>
+        <div class="sc sc-time">${slot.duration>0?minsToTime12(subTimes[si]):''}</div>
+        <div class="sc"><span class="type-badge type-${slot.type}">${slot.type}</span></div>
+        <div class="sc sc-event">${esc(slot.label||'(untitled)')}<small>${songList.length>0?songList[0]+(songList.length>1?` +${songList.length-1} more`:''):''}</small></div>
+        <div class="sc sc-presenter">${esc(slot.presenter||'—')}</div>
+        <div class="sc sc-dur">${slot.duration>0?fmtDur(slot.duration||0):'—'}</div>
+        <div class="sc sc-status"><span class="status-badge s-${slot.status||'TBD'}">${slot.status||'TBD'}</span></div>
+        <div class="sc sc-actions" onclick="event.stopPropagation()"><button class="btn btn-sm btn-danger" onclick="removeSubSlot(${block.id},${slot.id})">✕</button></div>
+      </div>
+      <div class="slot-body" id="body-${slot.id}">
+        <div class="form-grid">
+          <div class="field"><label>Label</label><input value="${esc(slot.label)}" onchange="updSub(${block.id},${slot.id},'label',this.value);render()" /></div>
+          <div class="field"><label>Type</label><select onchange="updSub(${block.id},${slot.id},'type',this.value);render()">${['Sing','Song','Dance','Speech','Video','Dinner','Break'].map(t=>`<option${slot.type===t?' selected':''}>${t}</option>`).join('')}</select></div>
+          <div class="field"><label>Presenter / Team</label><input value="${esc(slot.presenter)}" onchange="updSub(${block.id},${slot.id},'presenter',this.value);render()" /></div>
+          <div class="field"><label>Duration (min)</label><input type="number" min="0" value="${slot.duration||0}" onchange="updSub(${block.id},${slot.id},'duration',parseInt(this.value)||0);render()" /></div>
+          <div class="field"><label>Stage / Location</label><input value="${esc(slot.location||'')}" onchange="updSub(${block.id},${slot.id},'location',this.value)" /></div>
+          <div class="field"><label>Contact</label><input value="${esc(slot.contact||'')}" onchange="updSub(${block.id},${slot.id},'contact',this.value)" /></div>
+          <div class="field field-full"><label>Songs / Performance details</label><textarea onchange="updSub(${block.id},${slot.id},'songs',this.value)">${esc(slot.songs||'')}</textarea></div>
+          <div class="field field-full"><label>Notes</label><textarea onchange="updSub(${block.id},${slot.id},'notes',this.value)">${esc(slot.notes||'')}</textarea></div>
+        </div>
+        <div class="status-row"><span style="font-size:11px;color:var(--text3)">Status:</span>
+          <span class="status-chip sc-confirmed${slot.status==='Confirmed'?' active':''}" onclick="setSubStatus(${block.id},${slot.id},'Confirmed')">Confirmed</span>
+          <span class="status-chip sc-tentative${slot.status==='Tentative'?' active':''}" onclick="setSubStatus(${block.id},${slot.id},'Tentative')">Tentative</span>
+          <span class="status-chip sc-tbd${slot.status==='TBD'?' active':''}" onclick="setSubStatus(${block.id},${slot.id},'TBD')">TBD</span>
+        </div>
+      </div>`;
+      sdiv.addEventListener('dragstart',e=>{dragSubSrc=sdiv;dragSubParentId=block.id;sdiv.classList.add('dragging');e.stopPropagation();e.dataTransfer.effectAllowed='move';});
+      sdiv.addEventListener('dragend',()=>{sdiv.classList.remove('dragging');dragSubSrc=null;dragSubParentId=null;document.querySelectorAll('.sub-slot.drag-over').forEach(el=>el.classList.remove('drag-over'));});
+      sdiv.addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation();sdiv.classList.add('drag-over');});
+      sdiv.addEventListener('dragleave',e=>{if(!sdiv.contains(e.relatedTarget))sdiv.classList.remove('drag-over');});
+      sdiv.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();sdiv.classList.remove('drag-over');if(!dragSubSrc||dragSubSrc===sdiv)return;const fp=mainBlocks.find(b=>b.id===parseInt(dragSubSrc.dataset.parent));const tp=mainBlocks.find(b=>b.id===parseInt(sdiv.dataset.parent));if(!fp||!tp)return;const fi=fp.slots.findIndex(s=>s.id===parseInt(dragSubSrc.dataset.id));const ti=tp.slots.findIndex(s=>s.id===parseInt(sdiv.dataset.id));const[moved]=fp.slots.splice(fi,1);tp.slots.splice(ti,0,moved);tp.expanded=true;render();});
+      subTl.appendChild(sdiv);
+    });
+  });
+}
+
+// ══════════════════════════════════════════
+//  MASTER RENDER
+// ══════════════════════════════════════════
 function render(){renderProgram();renderManage();rebuildPresenterDropdown();syncHeader();if(document.getElementById('panel-myschedule').classList.contains('active'))renderMySchedule();}
+
+// ══════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
 function handleMainClick(e,id){const b=mainBlocks.find(b=>b.id===id);if(!b)return;if(b.slots.length){b.expanded=!b.expanded;render();}else{toggleMainEdit(id);}}
 function toggleMainEdit(id){const el=document.getElementById('medit-'+id);if(el)el.style.display=el.style.display==='block'?'none':'block';}
@@ -326,11 +830,28 @@ function removeSubSlot(pid,id){const b=mainBlocks.find(b=>b.id===pid);if(b){b.sl
 function addMainBlock(){mainBlocks.push({id:nextId++,label:'New event',description:'',duration:30,status:'TBD',expanded:false,slots:[]});render();}
 function addSubSlot(pid){const b=mainBlocks.find(b=>b.id===pid);if(!b)return;const ns={id:nextId++,type:'Speech',label:'New item',presenter:'',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''};b.slots.push(ns);b.expanded=true;render();setTimeout(()=>{document.getElementById('body-'+ns.id)?.classList.add('open');},80);}
 function addSubBreak(pid){const b=mainBlocks.find(b=>b.id===pid);if(!b)return;b.slots.push({id:nextId++,type:'Break',label:'Intermission',presenter:'',songs:'',status:'Confirmed',duration:10,location:'',contact:'',notes:''});b.expanded=true;render();}
-function slotsToCSV(){const lines=['order,type,event_label,presenter,songs,status,duration,location,contact,notes'];mainBlocks.forEach((b,bi)=>{const desc=b.slots.length>0?'Sub-program':(b.description||'');lines.push(`${bi+1},Main,"${b.label}","",${desc.includes(',')? '"'+desc+'"':desc},${b.status},${b.duration},"","",""`);b.slots.forEach((s,si)=>{const sg=s.songs&&s.songs.includes(',')? `"${s.songs}"`:s.songs||'';lines.push(`${bi+1}.${si+1},${s.type},"${s.label}","${s.presenter}",${sg},${s.status||'TBD'},${s.duration||5},"${s.location||''}","${s.contact||''}","${s.notes||''}"`);});});return lines.join('\n');}
+
+// ══════════════════════════════════════════
+//  CSV
+// ══════════════════════════════════════════
+function slotsToCSV(){const lines=['order,type,event_label,presenter,songs,status,duration,location,contact,notes'];mainBlocks.forEach((b,bi)=>{const desc=b.slots.length>0?'Sub-program':(b.description||'');lines.push(`${bi+1},Main,"${b.label}","",${desc.includes(',')? '"'+desc+'"':desc},${b.status},${b.duration},"","",""`);b.slots.forEach((s,si)=>{const sg=s.songs&&s.songs.includes(',')? `"${s.songs}"`:s.songs||'';lines.push(`${bi+1}.${si+1},${s.type},"${s.label}","${s.presenter}",${sg},${s.status||'TBD'},${s.duration||0},"${s.location||''}","${s.contact||''}","${s.notes||''}"`);});});return lines.join('\n');}
 function exportCSV(){const blob=new Blob([slotsToCSV()],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='event_program.csv';a.click();toast('CSV exported');}
-function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const rows=parseCSV(ev.target.result);const blocks=[];let cur=null;rows.forEach(r=>{if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}else if(cur){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||5,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}});if(blocks.length){mainBlocks=blocks;render();toast('Loaded — '+blocks.length+' events');}};reader.readAsText(file);}
+function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const rows=parseCSV(ev.target.result);const blocks=[];let cur=null;rows.forEach(r=>{if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}else if(cur){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}});if(blocks.length){mainBlocks=blocks;render();toast('Loaded — '+blocks.length+' events');}};reader.readAsText(file);}
 function parseCSV(text){const lines=text.trim().split('\n');const headers=lines[0].split(',').map(h=>h.trim());return lines.slice(1).map(line=>{const vals=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){vals.push(cur.trim());cur='';}else{cur+=c;}}vals.push(cur.trim());const obj={};headers.forEach((h,i)=>obj[h]=(vals[i]||'').replace(/^"|"$/g,'').trim());return obj;});}
-function exportPrint(){const mainTimes=computeMainStartTimes();const title=document.getElementById('eventName')?.value||'Event Program';const date=document.getElementById('eventDate')?.value||'';const venue=document.getElementById('eventVenue')?.value||'';const host=document.getElementById('eventHost')?.value||'';const typeColor={Sing:'#1a5c3a',Song:'#1a5c3a',Dance:'#7b2fa0',Speech:'#1e4a8a',Video:'#8a3a1e',Break:'#5e5a54'};const typeBgP={Sing:'#e8f5ee',Song:'#e8f5ee',Dance:'#f5ebfc',Speech:'#e8f0fb',Video:'#fbeee8',Break:'#f0ede8'};const mainRows=mainBlocks.map((b,bi)=>{const subTimes=computeSubStartTimes(b);const subRows=b.slots.map((s,si)=>{const songs=s.songs?`<div style="font-size:10px;color:#999;margin-top:2px">${s.songs.split(',').map(x=>x.trim()).join(' · ')}</div>`:'';return `<tr><td style="padding:6px 8px 6px 24px;width:14px;color:#bbb;font-size:10px">${si+1}</td><td style="font-size:11px;color:#999;white-space:nowrap">${minsToTime12(subTimes[si])}</td><td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${typeBgP[s.type]||'#eee'};color:${typeColor[s.type]||'#333'};font-weight:500">${s.type}</span></td><td><strong style="font-size:12px">${s.label}</strong>${songs}</td><td style="font-size:12px;color:#666">${s.presenter||'—'}</td><td style="font-size:11px;color:#bbb;text-align:right">${fmtDur(s.duration)}</td></tr>`;}).join('');const subTable=b.slots.length?`<tr><td colspan="6" style="padding:0"><table style="width:100%;border-collapse:collapse;background:#f9f8f4">${subRows}</table></td></tr>`:'';return `<tr style="background:#fdf8ee"><td style="font-weight:700;font-family:'Cormorant Garamond',serif;font-size:15px;padding:12px 10px;white-space:nowrap;width:110px">${minsToTime12(mainTimes[bi])}</td><td colspan="5" style="padding:12px 10px;border-left:3px solid #c9952a"><span style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600">${b.label}</span>${b.description&&!b.slots.length?`<span style="font-size:12px;color:#999;margin-left:8px">${b.description}</span>`:''}<span style="font-size:12px;color:#bbb;margin-left:8px">${fmtDur(b.duration)}</span></td></tr>${subTable}`;}).join('');const html=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"><title>${title}</title><style>body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1a1714;margin:0;padding:2.5rem}.page{max-width:820px;margin:0 auto}h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;margin-bottom:6px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#c9952a;margin-bottom:.4rem}.meta{font-size:13px;color:#888;display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}table{width:100%;border-collapse:collapse}td{padding:10px;border-bottom:1px solid #edeae2;vertical-align:top}@media print{body{padding:0}}</style></head><body><div class="page"><div class="eyebrow">Evening Program</div><h1>${title}</h1><div class="meta">${date?`<span>📅 ${date}</span>`:''}${venue?`<span>📍 ${venue}</span>`:''}${host?`<span>🎤 MC: ${host}</span>`:''}<span>⏱ ${minsToTime12(BASE_START())} – ${minsToTime12(BASE_START()+totalMins())}</span></div><table>${mainRows}</table></div><script>window.onload=()=>window.print()<\/script></body></html>`;const w=window.open('','_blank');w.document.write(html);w.document.close();}
+
+// ══════════════════════════════════════════
+//  PRINT
+// ══════════════════════════════════════════
+function exportPrint(){
+  const mainTimes=computeMainStartTimes();const title=document.getElementById('eventName')?.value||'Event Program';
+  const date=document.getElementById('eventDate')?.value||'';const venue=document.getElementById('eventVenue')?.value||'';const host=document.getElementById('eventHost')?.value||'';
+  const typeColor={Sing:'#1a5c3a',Song:'#1a5c3a',Dance:'#7b2fa0',Speech:'#1e4a8a',Video:'#8a3a1e',Break:'#5e5a54',Dinner:'#a87820'};
+  const typeBgP={Sing:'#e8f5ee',Song:'#e8f5ee',Dance:'#f5ebfc',Speech:'#e8f0fb',Video:'#fbeee8',Break:'#f0ede8',Dinner:'#fdf8ee'};
+  const mainRows=mainBlocks.map((b,bi)=>{const subTimes=computeSubStartTimes(b);const subRows=b.slots.map((s,si)=>{const songs=s.songs?`<div style="font-size:10px;color:#999;margin-top:2px">${s.songs.split(',').map(x=>x.trim()).join(' · ')}</div>`:'';return `<tr><td style="padding:6px 8px 6px 24px;width:14px;color:#bbb;font-size:10px">${si+1}</td><td style="font-size:11px;color:#999;white-space:nowrap">${s.duration>0?minsToTime12(subTimes[si]):''}</td><td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${typeBgP[s.type]||'#eee'};color:${typeColor[s.type]||'#333'};font-weight:500">${s.type}</span></td><td><strong style="font-size:12px">${s.label}</strong>${songs}</td><td style="font-size:12px;color:#666">${s.presenter||'—'}</td><td style="font-size:11px;color:#bbb;text-align:right">${s.duration>0?fmtDur(s.duration):'—'}</td></tr>`;}).join('');const subTable=b.slots.length?`<tr><td colspan="6" style="padding:0"><table style="width:100%;border-collapse:collapse;background:#f9f8f4">${subRows}</table></td></tr>`:'';return `<tr style="background:#fdf8ee"><td style="font-weight:700;font-family:'Cormorant Garamond',serif;font-size:15px;padding:12px 10px;white-space:nowrap;width:110px">${minsToTime12(mainTimes[bi])}</td><td colspan="5" style="padding:12px 10px;border-left:3px solid #c9952a"><span style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600">${b.label}</span>${b.description&&!b.slots.length?`<span style="font-size:12px;color:#999;margin-left:8px">${b.description}</span>`:''}<span style="font-size:12px;color:#bbb;margin-left:8px">${fmtDur(b.duration)}</span></td></tr>${subTable}`;}).join('');
+  const html=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"><title>${title}</title><style>body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1a1714;margin:0;padding:2.5rem}.page{max-width:820px;margin:0 auto}h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;margin-bottom:6px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#c9952a;margin-bottom:.4rem}.meta{font-size:13px;color:#888;display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}table{width:100%;border-collapse:collapse}td{padding:10px;border-bottom:1px solid #edeae2;vertical-align:top}@media print{body{padding:0}}</style></head><body><div class="page"><div class="eyebrow">Evening Program</div><h1>${title}</h1><div class="meta">${date?`<span>📅 ${date}</span>`:''}${venue?`<span>📍 ${venue}</span>`:''}${host?`<span>🎤 MC: ${host}</span>`:''}<span>⏱ ${minsToTime12(BASE_START())} – ${minsToTime12(BASE_START()+totalMins())}</span></div><table>${mainRows}</table></div><script>window.onload=()=>window.print()<\/script></body></html>`;
+  const w=window.open('','_blank');w.document.write(html);w.document.close();
+}
+
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 mainBlocks=defaultData();
 render();
