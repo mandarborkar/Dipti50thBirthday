@@ -62,13 +62,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .prog-main-row:hover{background:var(--gold-bg);border-radius:6px;}
 .prog-subs{display:none;border-bottom:1px solid var(--border);margin-bottom:.2rem;}
 .prog-subs.open{display:block;}
-.prog-sub-hdr{display:grid;grid-template-columns:110px 1fr 140px 90px 60px;gap:0 14px;align-items:center;padding:6px 0 6px 20px;border-bottom:1px solid var(--border);}
+.prog-sub-hdr{display:grid;grid-template-columns:110px 1fr 200px 60px;gap:0 14px;align-items:center;padding:6px 0 6px 20px;border-bottom:1px solid var(--border);}
 .prog-sub-hdr span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-weight:500;}
-.prog-sub-row{display:grid;grid-template-columns:110px 1fr 140px 90px 60px;gap:0 14px;align-items:center;padding:9px 0 9px 20px;border-bottom:.5px solid var(--border);}
+.prog-sub-row{display:grid;grid-template-columns:110px 1fr 200px 60px;gap:0 14px;align-items:center;padding:9px 0 9px 20px;border-bottom:.5px solid var(--border);}
 .prog-sub-row:last-child{border-bottom:none;}
 .prog-sub-time{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums;}
 .prog-sub-name{font-size:14px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:6px;}
-.prog-sub-presenter{font-size:13px;color:var(--text2);}
+.prog-sub-presenter{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:6px;flex-wrap:nowrap;}
+.prog-sub-presenter .prog-type-badge{flex-shrink:0;}
 .prog-sub-dur{font-size:13px;color:var(--text3);text-align:right;}
 .prog-type-badge{display:inline-block;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px;white-space:nowrap;}
 .ptb-Sing,.ptb-Song{background:var(--sing-bg);color:var(--sing-c);}
@@ -254,25 +255,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
   .prog-sub-hdr{display:none;}
   .prog-subs{padding-left:0;}
-  /* Each sub-event: simple flex column, no grid, no nth-child hacks */
+  /* 2-row layout: row1 = time+name+icon, row2 = presenter+type+dur */
   .prog-sub-row{
-    display:flex;
-    flex-direction:column;
-    gap:2px;
+    display:grid;
+    grid-template-columns:56px 1fr;
+    grid-template-rows:auto auto;
+    column-gap:8px;
+    row-gap:3px;
     padding:9px 8px 9px 10px;
     border-bottom:.5px solid var(--border);
     border-left:2px solid var(--border2);
     margin-left:0;
+    align-items:center;
   }
   .prog-sub-row:last-child{border-bottom:none;}
-  /* Row 1: time + name on same line */
-  .prog-sub-time{font-size:11px;color:var(--text3);font-weight:600;order:1;}
-  .prog-sub-name{font-size:13px;font-weight:500;order:2;flex-wrap:wrap;align-items:flex-start;gap:4px;}
-  /* Row 2: presenter below name */
-  .prog-sub-presenter{font-size:11px;color:var(--text2);order:3;}
-  /* Row 3: type badge + duration on same line */
-  .prog-sub-row>div:nth-child(4){order:4;margin-top:2px;} /* type badge */
-  .prog-sub-dur{font-size:10px;color:var(--text3);order:5;text-align:left;display:inline;}
+  /* Row 1, col 1: time */
+  .prog-sub-time{grid-row:1;grid-column:1;font-size:11px;color:var(--text3);font-weight:600;white-space:nowrap;}
+  /* Row 1, col 2: name + i icon (flex stays) */
+  .prog-sub-name{grid-row:1;grid-column:2;font-size:13px;font-weight:500;display:flex;align-items:center;gap:5px;flex-wrap:nowrap;min-width:0;}
+  .prog-sub-name>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  /* Row 2, col 1: duration */
+  .prog-sub-dur{grid-row:2;grid-column:1;font-size:10px;color:var(--text3);text-align:left;}
+  /* Row 2, col 2: presenter + type badge inline */
+  .prog-sub-presenter{grid-row:2;grid-column:2;font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px;flex-wrap:nowrap;}
+  /* type badge sits inline with presenter in row 2 */
+  /* type badge is inside presenter div, no extra col to hide */
+  .prog-sub-presenter .prog-type-badge{font-size:10px;padding:1px 7px;flex-shrink:0;}
 
   .myschedule-wrap{padding:.9rem .85rem 5rem;}
   .presenter-picker{padding:.9rem 1rem;border-radius:10px;}
@@ -450,7 +458,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 const staffResponsibilities = [
   { presenter:'Melvin', startTime:'17:00', endTime:'22:00', description:'Photographer', notes:'Covering the full evening' },
   { presenter:'Tej',    startTime:'17:30', endTime:'23:00', description:'DJ', notes:'Music throughout the evening' },
-  { presenter:'Tarun',  startTime:'17:00', endTime:'19:30', description:'Appetizers & Tea', notes:'Set up and serve appetizers and tea during Meet & Greet' },
+  { presenter:'Tarun',  startTime:'17:00', endTime:'19:00', description:'Appetizers & Tea', notes:'Set up and serve appetizers and tea during Meet & Greet' },
   { presenter:'Tarun',  startTime:'19:00', endTime:'19:30', description:'Transition — Appetizers out, Dinner in', notes:'Clear appetizers, lay down dinner service' },
   { presenter:'Tarun',  startTime:'19:30', endTime:'21:30', description:'Dinner Service', notes:'Serve dinner to guests' },
   { presenter:'Tarun',  startTime:'21:00', endTime:'22:30', description:'Dessert & Tea', notes:'Set out dessert and tea service' },
@@ -480,7 +488,7 @@ const BASE_START = () => { const v=document.getElementById('eventStart')?.value|
 function defaultData(){
   return [
     {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[]},
-    {id:nextId++,label:'Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[  // 6:30–7:30
+    {id:nextId++,label:'Cake Cutting, Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[  // 6:30–7:30
       {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and team',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'TBD',duration:10,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and team',songs:'Koi Kahe Kehta Rahe*, Shararath, Aaj Kal Tere mere Paay ke charche',status:'TBD',duration:5,location:'',contact:'',notes:''},
@@ -489,8 +497,8 @@ function defaultData(){
       {id:nextId++,type:'Dance',label:'Dance — Belmont group',presenter:'Rajeshwari and team',songs:'Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe*',status:'TBD',duration:8,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Rajendra',presenter:'Rajendra',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Marathi group',presenter:'Dipti and team',songs:'Shaky Shaky, Hawa Hawa, Gulabi Saadi',status:'TBD',duration:8,location:'',contact:'',notes:''},
-      {id:nextId++,type:'Song',label:'Duet — Swati & Mayank',presenter:'Swati / Mayank',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
-      {id:nextId++,type:'Song',label:'Duet — Leena & Nirav',presenter:'Leena / Nirav',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Sing',label:'Duet — Swati & Mayank',presenter:'Swati / Mayank',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Sing',label:'Duet — Leena & Nirav',presenter:'Leena / Nirav',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Chaitali',presenter:'Chaitali',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Rajashree Mausi',presenter:'Rajashree',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
     ]},
@@ -728,7 +736,7 @@ function renderProgram(){
       </div></div>`;
     if(hasSubs){
       html+=`<div class="prog-subs${isOpen?' open':''}" id="prog-subs-${block.id}">
-        <div class="prog-sub-hdr"><span>Time</span><span>Performance</span><span>Presenter</span><span>Type</span><span style="text-align:right">Duration</span></div>`;
+        <div class="prog-sub-hdr"><span>Time</span><span>Performance</span><span>Presenter</span><span style="text-align:right">Duration</span></div>`;
       block.slots.forEach((s,si)=>{
         const cleanLabel=s.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner)\s*[—\-]\s*/i,'').trim();
         const songList=s.songs?s.songs.split(',').map(x=>x.trim()).filter(Boolean):[];
@@ -739,9 +747,8 @@ function renderProgram(){
         if(!hasSongs&&!s.notes){tooltipInner=`<div style="color:#888;font-style:italic">No additional details</div>`;}
         html+=`<div class="prog-sub-row">
           <div class="prog-sub-time">${s.duration>0?minsToTime12(subTimes[si]):''}</div>
-          <div class="prog-sub-name" data-presenter="${s.presenter||''}">${cleanLabel}<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip">${tooltipInner}</div></div></div>
-          <div class="prog-sub-presenter">${s.presenter||'—'}</div>
-          <div><span class="prog-type-badge ptb-${s.type}">${s.type}</span></div>
+          <div class="prog-sub-name" data-presenter="${s.presenter||''}"><span>${cleanLabel}</span><div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip">${tooltipInner}</div></div></div>
+          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${s.presenter||'—'}</div>
           <div class="prog-sub-dur">${s.duration>0?fmtDur(s.duration):'—'}</div>
         </div>`;
       });
@@ -877,8 +884,29 @@ function addSubBreak(pid){const b=mainBlocks.find(b=>b.id===pid);if(!b)return;b.
 //  CSV
 // ══════════════════════════════════════════
 function slotsToCSV(){const lines=['order,type,event_label,presenter,songs,status,duration,location,contact,notes'];mainBlocks.forEach((b,bi)=>{const desc=b.slots.length>0?'Sub-program':(b.description||'');lines.push(`${bi+1},Main,"${b.label}","",${desc.includes(',')? '"'+desc+'"':desc},${b.status},${b.duration},"","",""`);b.slots.forEach((s,si)=>{const sg=s.songs&&s.songs.includes(',')? `"${s.songs}"`:s.songs||'';lines.push(`${bi+1}.${si+1},${s.type},"${s.label}","${s.presenter}",${sg},${s.status||'TBD'},${s.duration||0},"${s.location||''}","${s.contact||''}","${s.notes||''}"`);});});return lines.join('\n');}
-function exportCSV(){const blob=new Blob([slotsToCSV()],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Dipti50thBirthdayProgramSchedule.csv';a.click();isDirty=false;const fab=document.getElementById('fabSave');if(fab)fab.style.display='none';toast('CSV downloaded ✓');}
-function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const rows=parseCSV(ev.target.result);const blocks=[];let cur=null;rows.forEach(r=>{if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}else if(cur){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}});if(blocks.length){mainBlocks=blocks;render();toast('Loaded — '+blocks.length+' events');}};reader.readAsText(file);}
+function exportCSV(){
+  const csv=slotsToCSV();
+  // Save to localStorage so next session loads from this
+  try{localStorage.setItem('dipti_program_csv',csv);}catch(e){}
+  const blob=new Blob([csv],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='Dipti50thBirthdayProgramSchedule.csv';a.click();
+  isDirty=false;const fab=document.getElementById('fabSave');if(fab)fab.style.display='none';
+  toast('CSV saved & downloaded ✓');
+}
+function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{importCSVText(ev.target.result);};reader.readAsText(file);}
+function importCSVText(text){
+  const rows=parseCSV(text);const blocks=[];let cur=null;
+  rows.forEach(r=>{
+    if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}
+    else if(cur){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}
+  });
+  if(blocks.length){
+    mainBlocks=blocks;
+    try{localStorage.setItem('dipti_program_csv',text);}catch(e){}
+    render();toast('Program loaded — '+blocks.length+' events');
+  }
+}
 function parseCSV(text){const lines=text.trim().split('\n');const headers=lines[0].split(',').map(h=>h.trim());return lines.slice(1).map(line=>{const vals=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){vals.push(cur.trim());cur='';}else{cur+=c;}}vals.push(cur.trim());const obj={};headers.forEach((h,i)=>obj[h]=(vals[i]||'').replace(/^"|"$/g,'').trim());return obj;});}
 
 // ══════════════════════════════════════════
@@ -895,9 +923,25 @@ function exportPrint(){
 }
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
-mainBlocks=defaultData();
-render();
-_initialLoad = false;
+
+// ── INIT: load from localStorage if a saved session exists, else use defaults ──
+(function(){
+  let loaded = false;
+  try{
+    const saved = localStorage.getItem('dipti_program_csv');
+    if(saved){
+      const rows=parseCSV(saved);const blocks=[];let cur=null;
+      rows.forEach(r=>{
+        if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}
+        else if(cur){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}
+      });
+      if(blocks.length){mainBlocks=blocks;loaded=true;}
+    }
+  }catch(e){}
+  if(!loaded) mainBlocks=defaultData();
+  render();
+  _initialLoad = false;
+})();
 </script>
 </body>
 </html>
