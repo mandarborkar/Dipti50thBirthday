@@ -295,6 +295,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   /* Right+down tooltip on mobile — cap width to stay in viewport */
   .info-tooltip-right{max-width:80vw;}
 
+  /* Full schedule table on mobile — type column narrower, content wider */
+  .fullsched-row{grid-template-columns:76px 1fr 54px 36px !important;}
+
   .myschedule-wrap{padding:.9rem .85rem 5rem;}
   .presenter-picker{padding:.9rem 1rem;border-radius:10px;}
   .presenter-picker label{font-size:10px;}
@@ -769,8 +772,8 @@ function renderFullSchedule(){
     const badge   = `<span style="display:inline-block;font-size:10px;font-weight:500;padding:1px 7px;border-radius:20px;background:${typeBgP[ev.type]||'var(--break-bg)'};color:${typeCP[ev.type]||'var(--break-c)'};white-space:nowrap">${ev.type}</span>`;
     const sub     = ev.parentLabel ? `<div style="font-size:10px;color:var(--text3);margin-top:1px">${ev.parentLabel}</div>` : '';
 
-    html += `<div style="display:grid;grid-template-columns:100px 1fr 120px 55px;align-items:center;gap:0 12px;padding:9px 14px;background:${bg};border-bottom:0.5px solid var(--border);">
-      <div style="font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums">${timeStr}${endStr.length < 10 ? '' : ''}</div>
+    html += `<div style="display:grid;grid-template-columns:100px 1fr 80px 55px;align-items:center;gap:0 12px;padding:9px 14px;background:${bg};border-bottom:0.5px solid var(--border);" class="fullsched-row">
+      <div style="font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums">${timeStr}</div>
       <div><div style="font-size:13px;font-weight:500;color:var(--text)">${cleanLabel}</div>${sub}${presStr ? `<div style="font-size:11px;color:var(--text2);margin-top:1px">${presStr}</div>` : ''}</div>
       <div>${badge}</div>
       <div style="font-size:11px;color:var(--text3);text-align:right">${durStr}</div>
@@ -1006,15 +1009,87 @@ function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=ne
 function parseCSV(text){const lines=text.trim().split('\n');const headers=lines[0].split(',').map(h=>h.trim());return lines.slice(1).map(line=>{const vals=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){vals.push(cur.trim());cur='';}else{cur+=c;}}vals.push(cur.trim());const obj={};headers.forEach((h,i)=>obj[h]=(vals[i]||'').replace(/^"|"$/g,'').trim());return obj;});}
 
 // ══════════════════════════════════════════
-//  PRINT
+//  PRINT — exports the currently active tab
 // ══════════════════════════════════════════
 function exportPrint(){
-  const mainTimes=computeMainStartTimes();const title=document.getElementById('eventName')?.value||'Event Program';
-  const date=document.getElementById('eventDate')?.value||'';const venue=document.getElementById('eventVenue')?.value||'';const host=document.getElementById('eventHost')?.value||'';
-  const typeColor={Sing:'#1a5c3a',Song:'#1a5c3a',Dance:'#7b2fa0',Speech:'#1e4a8a',Video:'#8a3a1e',Break:'#5e5a54',Dinner:'#a87820'};
-  const typeBgP={Sing:'#e8f5ee',Song:'#e8f5ee',Dance:'#f5ebfc',Speech:'#e8f0fb',Video:'#fbeee8',Break:'#f0ede8',Dinner:'#fdf8ee'};
-  const mainRows=mainBlocks.map((b,bi)=>{const subTimes=computeSubStartTimes(b);const subRows=b.slots.map((s,si)=>{const songs=s.songs?`<div style="font-size:10px;color:#999;margin-top:2px">${s.songs.split(',').map(x=>x.trim()).join(' · ')}</div>`:'';return `<tr><td style="padding:6px 8px 6px 24px;width:14px;color:#bbb;font-size:10px">${si+1}</td><td style="font-size:11px;color:#999;white-space:nowrap">${s.duration>0?minsToTime12(subTimes[si]):''}</td><td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${typeBgP[s.type]||'#eee'};color:${typeColor[s.type]||'#333'};font-weight:500">${s.type}</span></td><td><strong style="font-size:12px">${s.label}</strong>${songs}</td><td style="font-size:12px;color:#666">${s.presenter||'—'}</td><td style="font-size:11px;color:#bbb;text-align:right">${s.duration>0?fmtDur(s.duration):'—'}</td></tr>`;}).join('');const subTable=b.slots.length?`<tr><td colspan="6" style="padding:0"><table style="width:100%;border-collapse:collapse;background:#f9f8f4">${subRows}</table></td></tr>`:'';return `<tr style="background:#fdf8ee"><td style="font-weight:700;font-family:'Cormorant Garamond',serif;font-size:15px;padding:12px 10px;white-space:nowrap;width:110px">${minsToTime12(mainTimes[bi])}</td><td colspan="5" style="padding:12px 10px;border-left:3px solid #c9952a"><span style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600">${b.label}</span>${b.description&&!b.slots.length?`<span style="font-size:12px;color:#999;margin-left:8px">${b.description}</span>`:''}<span style="font-size:12px;color:#bbb;margin-left:8px">${fmtDur(b.duration)}</span></td></tr>${subTable}`;}).join('');
-  const html=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"><title>${title}</title><style>body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1a1714;margin:0;padding:2.5rem}.page{max-width:820px;margin:0 auto}h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;margin-bottom:6px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#c9952a;margin-bottom:.4rem}.meta{font-size:13px;color:#888;display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}table{width:100%;border-collapse:collapse}td{padding:10px;border-bottom:1px solid #edeae2;vertical-align:top}@media print{body{padding:0}}</style></head><body><div class="page"><div class="eyebrow">Evening Program</div><h1>${title}</h1><div class="meta">${date?`<span>📅 ${date}</span>`:''}${venue?`<span>📍 ${venue}</span>`:''}${host?`<span>🎤 MC: ${host}</span>`:''}<span>⏱ ${minsToTime12(BASE_START())} – ${minsToTime12(BASE_START()+totalMins())}</span></div><table>${mainRows}</table></div><script>window.onload=()=>window.print()<\/script></body></html>`;
+  const title=document.getElementById('eventName')?.value||'Event Program';
+  const date=document.getElementById('eventDate')?.value||'';
+  const venue=document.getElementById('eventVenue')?.value||'';
+  const host=document.getElementById('eventHost')?.value||'';
+  const activeTab = document.querySelector('.tab.active')?.textContent?.trim()||'';
+  const baseStyle = `<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"><style>body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1a1714;margin:0;padding:2rem}.page{max-width:820px;margin:0 auto}h1{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;margin-bottom:6px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#c9952a;margin-bottom:.4rem}.meta{font-size:13px;color:#888;display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.5rem}table{width:100%;border-collapse:collapse}td{padding:8px 10px;border-bottom:1px solid #edeae2;vertical-align:top}@media print{body{padding:0}}</style>`;
+  const header = `<div class="eyebrow">Evening Program</div><h1>${title}</h1><div class="meta">${date?`<span>📅 ${date}</span>`:''}${venue?`<span>📍 ${venue}</span>`:''}${host?`<span>🎤 MC: ${host}</span>`:''}</div>`;
+  const typeColor={Sing:'#1a5c3a',Song:'#1a5c3a',Dance:'#7b2fa0',Speech:'#1e4a8a',Video:'#8a3a1e',Break:'#5e5a54',Dinner:'#a87820',Main:'#a87820',Personnel:'#7b2fa0'};
+  const typeBgP  ={Sing:'#e8f5ee',Song:'#e8f5ee',Dance:'#f5ebfc',Speech:'#e8f0fb',Video:'#fbeee8',Break:'#f0ede8',Dinner:'#fdf8ee',Main:'#fdf8ee',Personnel:'#f0e8f8'};
+
+  let body = '';
+
+  // ── PROGRAM tab ──
+  if(activeTab === 'Program'){
+    const mainTimes=computeMainStartTimes();
+    const mainRows=mainBlocks.map((b,bi)=>{
+      const subTimes=computeSubStartTimes(b);
+      const subRows=b.slots.map((s,si)=>{
+        const songs=s.songs?`<div style="font-size:10px;color:#999;margin-top:2px">${s.songs.split(',').map(x=>x.trim()).join(' · ')}</div>`:'';
+        return `<tr><td style="padding:6px 8px 6px 24px;width:14px;color:#bbb;font-size:10px">${si+1}</td><td style="font-size:11px;color:#999;white-space:nowrap">${s.duration>0?minsToTime12(subTimes[si]):''}</td><td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${typeBgP[s.type]||'#eee'};color:${typeColor[s.type]||'#333'};font-weight:500">${s.type}</span></td><td><strong style="font-size:12px">${s.label}</strong>${songs}</td><td style="font-size:12px;color:#666">${s.presenter||'—'}</td><td style="font-size:11px;color:#bbb;text-align:right">${s.duration>0?fmtDur(s.duration):'—'}</td></tr>`;
+      }).join('');
+      const subTable=b.slots.length?`<tr><td colspan="6" style="padding:0"><table style="width:100%;border-collapse:collapse;background:#f9f8f4">${subRows}</table></td></tr>`:'';
+      return `<tr style="background:#fdf8ee"><td style="font-weight:700;font-family:'Cormorant Garamond',serif;font-size:15px;padding:12px 10px;white-space:nowrap;width:110px">${minsToTime12(mainTimes[bi])}</td><td colspan="5" style="padding:12px 10px;border-left:3px solid #c9952a"><span style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600">${b.label}</span>${b.description&&!b.slots.length?`<span style="font-size:12px;color:#999;margin-left:8px">${b.description}</span>`:''}<span style="font-size:12px;color:#bbb;margin-left:8px">${fmtDur(b.duration)}</span></td></tr>${subTable}`;
+    }).join('');
+    body = `${header}<table>${mainRows}</table>`;
+
+  // ── MY SCHEDULE tab ──
+  } else if(activeTab === 'My Schedule'){
+    if(showingFullSchedule){
+      // Print the full schedule view
+      const allEvents=[];
+      const mainTimes=computeMainStartTimes();
+      mainBlocks.forEach((block,bi)=>{
+        if(block.slots.length===0){allEvents.push({startMins:mainTimes[bi],endMins:mainTimes[bi]+block.duration,label:block.label,presenter:'',type:'Main',duration:block.duration,parentLabel:''});}
+        else{const subTimes=computeSubStartTimes(block);block.slots.forEach((slot,si)=>{allEvents.push({startMins:subTimes[si],endMins:subTimes[si]+slot.duration,label:slot.label,presenter:slot.presenter,type:slot.type,duration:slot.duration,parentLabel:block.label});});}
+      });
+      staffResponsibilities.forEach(r=>{const sm=timeToMins(r.startTime),em=timeToMins(r.endTime);allEvents.push({startMins:sm,endMins:em,label:r.description,presenter:r.presenter,type:'Personnel',duration:em-sm,parentLabel:''});});
+      allEvents.sort((a,b)=>a.startMins-b.startMins);
+      const rows=allEvents.map((ev,i)=>{
+        const clean=ev.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner)\s*[—\-]\s*/i,'').trim();
+        const sub=ev.parentLabel?`<div style="font-size:10px;color:#999">${ev.parentLabel}</div>`:'';
+        const pres=ev.presenter?`<div style="font-size:11px;color:#666;margin-top:1px">${ev.presenter}</div>`:'';
+        return `<tr style="background:${i%2===0?'#fff':'#faf8f4'}"><td style="font-size:12px;font-weight:600;white-space:nowrap;width:90px">${minsToTime12(ev.startMins)}</td><td><strong style="font-size:12px">${clean}</strong>${sub}${pres}</td><td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${typeBgP[ev.type]||'#eee'};color:${typeColor[ev.type]||'#333'};font-weight:500">${ev.type}</span></td><td style="font-size:11px;color:#bbb;text-align:right;width:48px">${ev.duration>0?fmtDur(ev.duration):''}</td></tr>`;
+      }).join('');
+      body=`${header}<div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9c9286;margin-bottom:10px">Full Event Schedule — All Events by Start Time</div><table>${rows}</table>`;
+    } else {
+      // Print the selected presenter's schedule
+      const selected=document.getElementById('presenterSelect').value;
+      if(!selected){body=`${header}<p style="color:#888;font-style:italic">No presenter selected.</p>`;}
+      else{
+        const myStaff=staffResponsibilities.filter(r=>r.presenter.toLowerCase()===selected.toLowerCase());
+        const flat=buildFlatList();
+        const myPerf=flat.filter(item=>!item.isMain&&item.slot.type!=='Dinner'&&presenterMatches(item.slot.presenter,selected));
+        let rows='';
+        if(myStaff.length){
+          rows+=`<tr><td colspan="3" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9c9286;padding:10px 10px 4px;font-weight:500">Responsibilities</td></tr>`;
+          myStaff.forEach(r=>{const sm=timeToMins(r.startTime),em=timeToMins(r.endTime);rows+=`<tr style="background:#f5eeff"><td style="font-size:12px;font-weight:600;white-space:nowrap;width:140px">${minsToTime12(sm)} – ${minsToTime12(em)}</td><td><strong style="font-size:13px">${r.description}</strong>${r.notes?`<div style="font-size:11px;color:#888;margin-top:2px">${r.notes}</div>`:''}</td><td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:#ede0f8;color:#7b2fa0;font-weight:500">Personnel</span></td></tr>`;});
+        }
+        if(myPerf.length){
+          rows+=`<tr><td colspan="3" style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#9c9286;padding:10px 10px 4px;font-weight:500">Performances</td></tr>`;
+          myPerf.forEach(item=>{
+            const {slot,startMins,parentBlock}=item;
+            const songs=slot.songs?`<div style="font-size:10px;color:#999;margin-top:2px">${slot.songs.split(',').map(x=>x.trim()).join(' · ')}</div>`:'';
+            rows+=`<tr><td style="font-size:12px;font-weight:600;white-space:nowrap;width:140px">${minsToTime12(startMins)}</td><td><strong style="font-size:13px">${slot.label}</strong>${songs}<div style="font-size:11px;color:#888;margin-top:2px">${parentBlock?parentBlock.label:''}</div></td><td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${typeBgP[slot.type]||'#eee'};color:${typeColor[slot.type]||'#333'};font-weight:500">${slot.type}</span><div style="font-size:11px;color:#bbb;margin-top:2px">${fmtDur(slot.duration)}</div></td></tr>`;
+          });
+        }
+        body=`<div class="eyebrow">My Schedule</div><h1>${selected}</h1><div class="meta">${date?`<span>📅 ${date}</span>`:''}${venue?`<span>📍 ${venue}</span>`:''}${title?`<span>${title}</span>`:''}</div><table>${rows}</table>`;
+      }
+    }
+
+  // ── MANAGE or SETTINGS tabs — fall back to program print ──
+  } else {
+    const mainTimes=computeMainStartTimes();
+    const mainRows=mainBlocks.map((b,bi)=>{const subTimes=computeSubStartTimes(b);const subRows=b.slots.map((s,si)=>{const songs=s.songs?`<div style="font-size:10px;color:#999;margin-top:2px">${s.songs.split(',').map(x=>x.trim()).join(' · ')}</div>`:'';return `<tr><td style="padding:6px 8px 6px 24px;font-size:10px;color:#bbb">${si+1}</td><td style="font-size:11px;color:#999;white-space:nowrap">${s.duration>0?minsToTime12(subTimes[si]):''}</td><td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${typeBgP[s.type]||'#eee'};color:${typeColor[s.type]||'#333'};font-weight:500">${s.type}</span></td><td><strong style="font-size:12px">${s.label}</strong>${songs}</td><td style="font-size:12px;color:#666">${s.presenter||'—'}</td><td style="font-size:11px;color:#bbb;text-align:right">${s.duration>0?fmtDur(s.duration):'—'}</td></tr>`;}).join('');const subTable=b.slots.length?`<tr><td colspan="6" style="padding:0"><table style="width:100%;border-collapse:collapse;background:#f9f8f4">${subRows}</table></td></tr>`:'';return `<tr style="background:#fdf8ee"><td style="font-weight:700;font-family:'Cormorant Garamond',serif;font-size:15px;padding:12px 10px;white-space:nowrap;width:110px">${minsToTime12(mainTimes[bi])}</td><td colspan="5" style="padding:12px 10px;border-left:3px solid #c9952a"><span style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600">${b.label}</span><span style="font-size:12px;color:#bbb;margin-left:8px">${fmtDur(b.duration)}</span></td></tr>${subTable}`;}).join('');
+    body=`${header}<table>${mainRows}</table>`;
+  }
+
+  const html=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">${baseStyle}<title>${title}</title></head><body><div class="page">${body}</div><script>window.onload=()=>window.print()<\/script></body></html>`;
   const w=window.open('','_blank');w.document.write(html);w.document.close();
 }
 
