@@ -221,105 +221,123 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .toast{position:fixed;bottom:2rem;right:2rem;background:var(--text);color:var(--bg);padding:9px 16px;border-radius:8px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:999;}
 .toast.show{opacity:1;}
 
-/* ══════════════════════════════════════
-   MOBILE RESPONSIVE
-══════════════════════════════════════ */
-@media (max-width: 640px) {
-  .program-header{padding:1.6rem 1.1rem 1.4rem;}
-  .ph-title{font-size:2rem;}
-  .ph-meta{gap:.8rem;font-size:12px;margin-top:.6rem;}
+/* Floating save CSV button */
+.fab-save{position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:10px 20px;border-radius:24px;border:none;background:var(--gold);color:#fff;cursor:pointer;box-shadow:0 4px 16px rgba(201,149,42,.35);transition:background .15s,transform .1s;white-space:nowrap;}
+.fab-save:hover{background:var(--gold-dark);transform:scale(1.03);}
+.fab-save:active{transform:scale(0.97);}
 
-  /* Tabs scroll horizontally */
+/* ══════════════════════════════════════
+   MOBILE — iPhone & Android first
+   Primary: 375–430px  Secondary: laptop
+══════════════════════════════════════ */
+@media (max-width: 700px) {
+  .program-header{padding:1.4rem 1rem 1.2rem;}
+  .ph-title{font-size:1.85rem;}
+  .ph-eyebrow{font-size:10px;}
+  .ph-meta{gap:.7rem;font-size:11px;margin-top:.5rem;}
+
   .tab-bar{padding:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   .tab-bar::-webkit-scrollbar{display:none;}
-  .tab-bar-inner{min-width:max-content;padding:0 .5rem;}
-  .tab{font-size:12px;padding:11px 13px;}
-  .tab-spacer{display:none;}
-  .tab-actions{display:none;}
+  .tab-bar-inner{min-width:max-content;width:auto;padding:0 4px;}
+  .tab{font-size:12px;padding:12px 14px;min-height:44px;display:flex;align-items:center;}
+  .tab-spacer,.tab-actions{display:none;}
 
-  /* Program panel */
-  .program-wrap{padding:1rem .9rem 3rem;}
-  .prog-main-row{grid-template-columns:76px 1fr;gap:0 8px;padding:.7rem 0;}
-  .prog-time{font-size:13px;}
-  .prog-event-name{font-size:1.05rem;}
-  .prog-event-desc{font-size:11px;}
-  .prog-main-right{flex-direction:column;align-items:flex-end;gap:5px;}
-  .prog-toggle-btn{font-size:11px;padding:4px 10px;}
+  .program-wrap{padding:.9rem .85rem 5rem;}
+  .prog-block{margin-bottom:1.3rem;}
+  .prog-main-row{grid-template-columns:68px 1fr auto;gap:0 8px;padding:.75rem 0;align-items:start;}
+  .prog-time{font-size:13px;padding-top:2px;}
+  .prog-event-name{font-size:1rem;line-height:1.25;}
+  .prog-event-desc{font-size:10px;}
+  .prog-main-right{flex-direction:column;align-items:flex-end;gap:5px;padding-top:2px;}
+  .prog-toggle-btn{font-size:11px;padding:5px 11px;border-radius:16px;}
   .prog-dur{font-size:11px;}
 
-  /* Sub-events — simplified 2-column layout on mobile */
   .prog-sub-hdr{display:none;}
-  .prog-sub-row{
-    display:flex;flex-direction:column;
-    padding:9px 0 9px 14px;gap:2px;
-    border-left:2px solid var(--border);
-    margin-left:4px;
-  }
-  .prog-sub-time{font-size:11px;color:var(--text3);font-weight:500;}
-  .prog-sub-name{font-size:13px;font-weight:500;flex-wrap:wrap;}
-  .prog-sub-presenter{font-size:11px;color:var(--text2);}
-  .prog-sub-dur{font-size:11px;text-align:left;}
-  /* Show type badge and presenter inline, hide nothing */
   .prog-subs{padding-left:0;}
+  .prog-sub-row{display:grid;grid-template-columns:60px 1fr;grid-template-rows:auto auto;gap:1px 8px;padding:8px 0 8px 14px;border-bottom:.5px solid var(--border);border-left:2px solid var(--border2);margin-left:4px;align-items:start;}
+  .prog-sub-row:last-child{border-bottom:none;}
+  .prog-sub-time{font-size:11px;color:var(--text3);font-weight:600;grid-row:1;grid-column:1;}
+  .prog-sub-name{font-size:13px;font-weight:500;grid-row:1;grid-column:2;flex-wrap:wrap;align-items:flex-start;gap:5px;}
+  .prog-sub-presenter{font-size:11px;color:var(--text2);grid-row:2;grid-column:2;}
+  .prog-sub-dur{font-size:10px;color:var(--text3);grid-row:2;grid-column:1;text-align:left;}
+  .prog-sub-row>div:nth-child(4){grid-row:2;grid-column:2;margin-top:1px;}
 
-  /* My Schedule */
-  .myschedule-wrap{padding:1rem .9rem 3rem;}
-  .presenter-picker{padding:1rem 1.1rem;}
-  .presenter-picker select{font-size:15px;}
-  .my-slot-time{font-size:1.5rem;}
+  .myschedule-wrap{padding:.9rem .85rem 5rem;}
+  .presenter-picker{padding:.9rem 1rem;border-radius:10px;}
+  .presenter-picker label{font-size:10px;}
+  .presenter-picker select{font-size:15px;padding:8px 36px 8px 10px;}
+  .my-sched-empty{padding:2rem .5rem;}
+  .my-sched-empty .big{font-size:1.2rem;}
+  .my-slot-card{border-radius:10px;}
+  .my-slot-header{padding:.9rem 1rem .75rem;}
+  .my-slot-eyebrow{font-size:9px;}
+  .my-slot-time{font-size:1.55rem;}
+  .my-slot-dur{font-size:12px;}
   .my-slot-title{font-size:1.15rem;}
-  .my-slot-header{padding:1rem 1.1rem .8rem;}
-  .my-slot-body{padding:.8rem 1.1rem 1rem;}
-  .staff-time-range{font-size:1.4rem;}
-  .staff-desc{font-size:1.1rem;}
-  .staff-slot-header{padding:1rem 1.1rem .8rem;}
-  .ctx-row{padding:9px 11px;gap:8px;}
-  .ctx-time{min-width:56px;font-size:11px;}
-  .ctx-label{font-size:12px;}
-  .ctx-dur{font-size:11px;}
-  .multi-slot-nav{gap:5px;}
-  .slot-nav-btn{font-size:11px;padding:4px 9px;}
+  .my-slot-type{font-size:10px;padding:2px 8px;}
+  .my-slot-body{padding:.75rem 1rem .9rem;}
   .my-slot-meta{grid-template-columns:1fr;}
   .my-slot-divider{margin:.5rem 0;}
+  .my-slot-notes{font-size:12px;}
+  .my-slot-songs{font-size:12px;}
+  .staff-slot-card{border-radius:10px;}
+  .staff-slot-header{padding:.9rem 1rem .75rem;}
+  .staff-slot-eyebrow{font-size:9px;}
+  .staff-time-range{font-size:1.35rem;}
+  .staff-dur{font-size:12px;}
+  .staff-desc{font-size:1rem;}
+  .staff-badge{font-size:10px;}
+  .ctx-row{padding:9px 11px;gap:8px;border-radius:7px;}
+  .ctx-time{min-width:52px;font-size:11px;}
+  .ctx-label{font-size:12px;}
+  .ctx-presenter{font-size:11px;}
+  .ctx-dur{font-size:10px;}
+  .ctx-tag{font-size:9px;padding:1px 6px;}
+  .ctx-connector{height:12px;}
+  .ctx-connector-line{height:12px;}
+  .multi-slot-nav{gap:5px;}
+  .slot-nav-btn{font-size:11px;padding:5px 10px;min-height:36px;}
 
-  /* Manage panel — simplified on mobile */
-  .manage-wrap{padding:1rem .6rem 3rem;}
-  .main-col-hdr{display:none;}
-  .sub-col-hdr{display:none;}
-  .main-row{grid-template-columns:26px 22px 1fr 80px;gap:0;}
-  .col-time{display:none;}
-  .col-dur{display:none;}
-  .col-status{display:none;}
-  .col-main-label{font-size:14px;}
-  .sub-events{padding:6px 4px 8px 30px;}
-  .sub-row{grid-template-columns:20px 1fr 60px;}
-  .sc-num{display:none;}
-  .sc-time{display:none;}
-  .sc-dur{display:none;}
-  .sc-status{display:none;}
-  .sc-presenter{display:none;}
-  .sc{padding:6px 5px;}
-  .stats{gap:5px;}
-  .stat{padding:6px 10px;}
+  .manage-wrap{padding:.9rem .6rem 5rem;}
+  .stats{gap:5px;margin-bottom:1rem;}
+  .stat{padding:5px 10px;border-radius:6px;}
   .stat-val{font-size:15px;}
   .stat-label{font-size:9px;}
-  .add-sub-row{flex-wrap:wrap;}
+  .main-col-hdr{display:none;}
+  .sub-col-hdr{display:none;}
+  .main-row{grid-template-columns:26px 22px 1fr auto;min-height:46px;}
+  .col-time,.col-dur,.col-status{display:none;}
+  .col-main-label{font-size:14px;}
+  .col-main-label small{font-size:10px;}
+  .col-actions{padding-right:6px;gap:4px;}
+  .col{padding:7px 5px;}
+  .sub-events{padding:5px 4px 8px 28px;}
+  .sub-row{grid-template-columns:20px 1fr auto;min-height:38px;}
+  .sc-num,.sc-time,.sc-dur,.sc-status,.sc-presenter{display:none;}
+  .sc{padding:6px 4px;}
+  .sc-event{font-size:12px;}
+  .sc-event small{font-size:10px;}
+  .sc-actions{padding-right:5px;}
+  .add-sub-row{flex-wrap:wrap;gap:5px;}
+  .add-main-row{margin-top:8px;}
 
-  /* Settings */
-  .settings-wrap{padding:1rem .9rem;}
+  .settings-wrap{padding:.9rem .85rem;}
+  .settings-wrap h2{font-size:1.3rem;margin-bottom:1rem;}
+  .settings-group{padding:1rem;}
   .settings-grid{grid-template-columns:1fr;}
   .form-grid{grid-template-columns:1fr;}
   .field-full{grid-column:1;}
-
-  /* Tooltip repositioned for mobile */
-  .info-tooltip{left:auto;right:-4px;max-width:82vw;}
+  .sfield input{font-size:14px;padding:6px 9px;}
+  .info-tooltip{left:auto;right:-4px;max-width:82vw;font-size:11px;}
   .info-tooltip::before{left:auto;right:9px;}
+  .fab-save{bottom:1rem;right:1rem;font-size:12px;padding:9px 18px;border-radius:22px;}
 }
-
-@media (max-width: 380px) {
-  .ph-title{font-size:1.65rem;}
-  .tab{font-size:11px;padding:10px 10px;}
-  .prog-main-row{grid-template-columns:68px 1fr;}
+@media (max-width: 375px) {
+  .ph-title{font-size:1.55rem;}
+  .tab{font-size:11px;padding:11px 11px;}
+  .prog-main-row{grid-template-columns:60px 1fr auto;}
+  .prog-time{font-size:12px;}
+  .prog-sub-row{padding-left:10px;}
 }
 </style>
 </head>
@@ -401,14 +419,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
         <label class="file-label" for="csvInput">📂 Load CSV</label>
         <input type="file" id="csvInput" accept=".csv" onchange="loadCSV(event)" />
-        <button class="btn" onclick="exportCSV()">Export CSV</button>
+        <button class="btn btn-gold" onclick="exportCSV()" id="saveCSVBtn">⬇ Download CSV</button>
       </div>
-      <p class="csv-note">Load a CSV to replace the current program. Export saves all current data back to a CSV file.</p>
+      <p class="csv-note">Any changes you make in Manage Program are reflected in the CSV when you click Download CSV. Load a saved CSV to restore a previous version.</p>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
+<!-- Floating save CSV button — visible when changes made in Manage panel -->
+<button class="fab-save" id="fabSave" onclick="exportCSV()" title="Download updated CSV" style="display:none">⬇ Save CSV</button>
 
 <script>
 // ══════════════════════════════════════════
@@ -419,8 +439,8 @@ const staffResponsibilities = [
   { presenter:'Melvin', startTime:'17:00', endTime:'22:00', description:'Photographer', notes:'Covering the full evening' },
   { presenter:'Tej',    startTime:'17:30', endTime:'23:00', description:'DJ', notes:'Music throughout the evening' },
   { presenter:'Tarun',  startTime:'17:00', endTime:'19:30', description:'Appetizers & Tea', notes:'Set up and serve appetizers and tea during Meet & Greet' },
-  { presenter:'Tarun',  startTime:'19:30', endTime:'20:00', description:'Transition — Appetizers out, Dinner in', notes:'Clear appetizers, lay down dinner service' },
-  { presenter:'Tarun',  startTime:'20:00', endTime:'21:30', description:'Dinner Service', notes:'Serve dinner to guests' },
+  { presenter:'Tarun',  startTime:'19:00', endTime:'19:30', description:'Transition — Appetizers out, Dinner in', notes:'Clear appetizers, lay down dinner service' },
+  { presenter:'Tarun',  startTime:'19:30', endTime:'21:30', description:'Dinner Service', notes:'Serve dinner to guests' },
   { presenter:'Tarun',  startTime:'21:00', endTime:'22:30', description:'Dessert & Tea', notes:'Set out dessert and tea service' },
 ];
 
@@ -464,7 +484,7 @@ function defaultData(){
     ]},
     {id:nextId++,label:'Cake Cutting',description:'',duration:30,status:'Confirmed',expanded:false,slots:[]},      // 7:30–8:00
     {id:nextId++,label:'Dinner and Thank You Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[  // 8:00–9:00
-      {id:nextId++,type:'Dinner',label:'Dinner',presenter:'',songs:'',status:'Confirmed',duration:0,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dinner',label:'Dinner',presenter:'',songs:'',status:'Confirmed',duration:45,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Mihir',presenter:'Mihir',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Maya',presenter:'Maya',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Video',label:'Video — Mandar',presenter:'Mandar',songs:'Ek Ladki ko Dekha to Aaisa Laga, Yaar bina chain kha ree',status:'TBD',duration:10,location:'',contact:'',notes:''},
@@ -639,10 +659,15 @@ function scrollToMySlot(id){
 // ══════════════════════════════════════════
 //  TAB SWITCHING
 // ══════════════════════════════════════════
+let isDirty = false;
+function markDirty(){ isDirty = true; const fab=document.getElementById('fabSave'); if(fab&&document.getElementById('panel-manage').classList.contains('active'))fab.style.display='block'; }
+
 function switchTab(name,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');document.getElementById('panel-'+name).classList.add('active');
+  const fab=document.getElementById('fabSave');
+  if(fab) fab.style.display=(name==='manage'&&isDirty)?'block':'none';
   if(name==='myschedule')renderMySchedule();
 }
 
@@ -812,7 +837,12 @@ function renderManage(){
 // ══════════════════════════════════════════
 //  MASTER RENDER
 // ══════════════════════════════════════════
-function render(){renderProgram();renderManage();rebuildPresenterDropdown();syncHeader();if(document.getElementById('panel-myschedule').classList.contains('active'))renderMySchedule();}
+let _initialLoad = true;
+function render(){
+  renderProgram();renderManage();rebuildPresenterDropdown();syncHeader();
+  if(!_initialLoad) markDirty();
+  if(document.getElementById('panel-myschedule').classList.contains('active'))renderMySchedule();
+}
 
 // ══════════════════════════════════════════
 //  HELPERS
@@ -835,7 +865,7 @@ function addSubBreak(pid){const b=mainBlocks.find(b=>b.id===pid);if(!b)return;b.
 //  CSV
 // ══════════════════════════════════════════
 function slotsToCSV(){const lines=['order,type,event_label,presenter,songs,status,duration,location,contact,notes'];mainBlocks.forEach((b,bi)=>{const desc=b.slots.length>0?'Sub-program':(b.description||'');lines.push(`${bi+1},Main,"${b.label}","",${desc.includes(',')? '"'+desc+'"':desc},${b.status},${b.duration},"","",""`);b.slots.forEach((s,si)=>{const sg=s.songs&&s.songs.includes(',')? `"${s.songs}"`:s.songs||'';lines.push(`${bi+1}.${si+1},${s.type},"${s.label}","${s.presenter}",${sg},${s.status||'TBD'},${s.duration||0},"${s.location||''}","${s.contact||''}","${s.notes||''}"`);});});return lines.join('\n');}
-function exportCSV(){const blob=new Blob([slotsToCSV()],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='event_program.csv';a.click();toast('CSV exported');}
+function exportCSV(){const blob=new Blob([slotsToCSV()],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Dipti50thBirthdayProgramSchedule.csv';a.click();isDirty=false;const fab=document.getElementById('fabSave');if(fab)fab.style.display='none';toast('CSV downloaded ✓');}
 function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const rows=parseCSV(ev.target.result);const blocks=[];let cur=null;rows.forEach(r=>{if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}else if(cur){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}});if(blocks.length){mainBlocks=blocks;render();toast('Loaded — '+blocks.length+' events');}};reader.readAsText(file);}
 function parseCSV(text){const lines=text.trim().split('\n');const headers=lines[0].split(',').map(h=>h.trim());return lines.slice(1).map(line=>{const vals=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){vals.push(cur.trim());cur='';}else{cur+=c;}}vals.push(cur.trim());const obj={};headers.forEach((h,i)=>obj[h]=(vals[i]||'').replace(/^"|"$/g,'').trim());return obj;});}
 
@@ -855,6 +885,7 @@ function exportPrint(){
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 mainBlocks=defaultData();
 render();
+_initialLoad = false;
 </script>
 </body>
 </html>
