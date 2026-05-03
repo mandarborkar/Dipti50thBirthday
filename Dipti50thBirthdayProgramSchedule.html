@@ -755,7 +755,7 @@ function renderProgram(){
         html+=`<div class="prog-sub-row">
           <div class="prog-sub-time">${s.duration>0?minsToTime12(subTimes[si]):''}</div>
           <div class="prog-sub-name" data-presenter="${s.presenter||''}"><span>${cleanLabel}</span></div>
-          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${s.presenter||'—'}<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip info-tooltip-right">${tooltipInner}</div></div></div>
+          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${s.presenter||'—'}${hasDetails?`<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip info-tooltip-right">${tooltipInner}</div></div>`:''}</div>
           <div class="prog-sub-dur">${s.duration>0?fmtDur(s.duration):'—'}</div>
         </div>`;
       });
