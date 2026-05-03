@@ -877,9 +877,27 @@ function addSubBreak(pid){const b=mainBlocks.find(b=>b.id===pid);if(!b)return;b.
 // ══════════════════════════════════════════
 //  CSV
 // ══════════════════════════════════════════
-function slotsToCSV(){const lines=['order,type,event_label,presenter,songs,status,duration,location,contact,notes'];mainBlocks.forEach((b,bi)=>{const desc=b.slots.length>0?'Sub-program':(b.description||'');lines.push(`${bi+1},Main,"${b.label}","",${desc.includes(',')? '"'+desc+'"':desc},${b.status},${b.duration},"","",""`);b.slots.forEach((s,si)=>{const sg=s.songs&&s.songs.includes(',')? `"${s.songs}"`:s.songs||'';lines.push(`${bi+1}.${si+1},${s.type},"${s.label}","${s.presenter}",${sg},${s.status||'TBD'},${s.duration||0},"${s.location||''}","${s.contact||''}","${s.notes||''}"`);});});return lines.join('\n');}
+function slotsToCSV(){
+  const lines=['order,type,event_label,presenter,songs,status,duration,location,contact,notes'];
+  mainBlocks.forEach((b,bi)=>{
+    const desc=b.slots.length>0?'Sub-program':(b.description||'');
+    lines.push(`${bi+1},Main,"${b.label}","",${desc.includes(',')? '"'+desc+'"':desc},${b.status},${b.duration},"","",""`);
+    b.slots.forEach((s,si)=>{
+      const sg=s.songs&&s.songs.includes(',')? `"${s.songs}"`:s.songs||'';
+      lines.push(`${bi+1}.${si+1},${s.type},"${s.label}","${s.presenter}",${sg},${s.status||'TBD'},${s.duration||0},"${s.location||''}","${s.contact||''}","${s.notes||''}"`);
+    });
+  });
+  // Append event personnel section
+  lines.push('');
+  lines.push('# Event Personnel');
+  staffResponsibilities.forEach((r,i)=>{
+    const notes=r.notes&&r.notes.includes(',')? `"${r.notes}"`:r.notes||'';
+    lines.push(`P${i+1},Personnel,"${r.description}","${r.presenter}","","",,"${r.startTime}","${r.endTime}",${notes}`);
+  });
+  return lines.join('\n');
+}
 function exportCSV(){const blob=new Blob([slotsToCSV()],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Dipti50thBirthdayProgramSchedule.csv';a.click();toast('CSV downloaded ✓');}
-function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const rows=parseCSV(ev.target.result);const blocks=[];let cur=null;rows.forEach(r=>{if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}else if(cur&&r.type&&r.event_label){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}});if(blocks.length){mainBlocks=blocks;render();toast('Loaded — '+blocks.length+' events');}};reader.readAsText(file);}
+function loadCSV(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{const rows=parseCSV(ev.target.result);const blocks=[];let cur=null;rows.forEach(r=>{if(r.type==='Main'){cur={id:nextId++,label:r.event_label||'',description:r.songs&&r.songs!=='Sub-program'?r.songs:'',duration:parseInt(r.duration)||60,status:r.status||'TBD',expanded:false,slots:[]};blocks.push(cur);}else if(r.type==='Personnel'){staffResponsibilities.push({presenter:r.presenter||'',startTime:r.location||'',endTime:r.contact||'',description:r.event_label||'',notes:r.notes||''});}else if(cur&&r.type&&r.event_label){cur.slots.push({id:nextId++,type:r.type||'Speech',label:r.event_label||'',presenter:r.presenter||'',songs:r.songs||'',status:r.status||'TBD',duration:parseInt(r.duration)||0,location:r.location||'',contact:r.contact||'',notes:r.notes||''});}});if(blocks.length){mainBlocks=blocks;render();toast('Loaded — '+blocks.length+' events');}};reader.readAsText(file);}
 function parseCSV(text){const lines=text.trim().split('\n');const headers=lines[0].split(',').map(h=>h.trim());return lines.slice(1).map(line=>{const vals=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){inQ=!inQ;}else if(c===','&&!inQ){vals.push(cur.trim());cur='';}else{cur+=c;}}vals.push(cur.trim());const obj={};headers.forEach((h,i)=>obj[h]=(vals[i]||'').replace(/^"|"$/g,'').trim());return obj;});}
 
 // ══════════════════════════════════════════
