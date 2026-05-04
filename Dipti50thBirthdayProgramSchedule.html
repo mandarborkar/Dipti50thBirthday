@@ -253,8 +253,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .tab-bar-inner{min-width:max-content;width:auto;padding:0 4px;}
   .tab{font-size:12px;padding:12px 14px;min-height:44px;display:flex;align-items:center;}
   .tab-spacer{display:none;}
-  .tab-actions{display:flex;align-items:center;padding:6px 4px;}
-  .print-btn{display:none;}
+  .tab-actions{display:none;}
   .tour-guide-btn{font-size:11px;padding:7px 10px;white-space:nowrap;}
 
   .program-wrap{padding:.9rem .85rem 5rem;}
@@ -398,11 +397,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <div class="tab-bar-inner">
     <button class="tab active" data-tab="program" onclick="switchTab('program',this)">Program</button>
     <button class="tab" data-tab="myschedule" onclick="switchTab('myschedule',this)">My Schedule</button>
+    <button class="btn btn-sm btn-ghost tour-guide-btn" onclick="startTour()" style="font-size:12px;border-color:var(--border2);margin:0 4px;flex-shrink:0;" title="Guided tour">? Guide</button>
     <button class="tab" data-tab="manage" onclick="switchTab('manage',this)">Manage Program</button>
     <button class="tab" data-tab="settings" onclick="switchTab('settings',this)">Event Details</button>
     <div class="tab-spacer"></div>
     <div class="tab-actions">
-      <button class="btn btn-sm btn-ghost tour-guide-btn" onclick="startTour()" style="font-size:12px;border-color:var(--border2)" title="Guided tour">? Guide</button>
       <button class="btn btn-gold print-btn" onclick="exportPrint()">Print / Export PDF</button>
     </div>
   </div>
