@@ -364,6 +364,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .prog-time{font-size:12px;}
   .prog-sub-row{padding-left:8px;}
 }
+
+/* ── GUIDED TOUR ── */
+.tour-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);pointer-events:all;cursor:pointer;}
+#tourOverlay{pointer-events:none;}
+#tourOverlay .tour-backdrop{pointer-events:all;}
+.tour-card{pointer-events:all;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:3px solid var(--gold);border-radius:14px 14px 0 0;padding:1.4rem 1.4rem 1.8rem;box-shadow:0 -8px 32px rgba(0,0,0,.18);z-index:501;}
+.tour-progress{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-weight:500;margin-bottom:.4rem;}
+.tour-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:.6rem;}
+.tour-body{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:1.1rem;}
+.tour-body strong{color:var(--text);font-weight:500;}
+.tour-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+@media(min-width:600px){.tour-card{bottom:2rem;left:50%;right:auto;transform:translateX(-50%);width:520px;border-radius:14px;border:1px solid var(--border);border-top:3px solid var(--gold);}}
+/* ── SHARE LINK BUTTON ── */
+#shareSchedBtn{color:var(--speech-c);border-color:var(--speech-bg);background:var(--speech-bg);}
+#shareSchedBtn:hover{background:#d4e8fc;border-color:#a8c8f0;}
 </style>
 </head>
 <body>
@@ -378,12 +393,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <div class="tab-bar">
   <div class="tab-bar-inner">
-    <button class="tab active" onclick="switchTab('program',this)">Program</button>
-    <button class="tab" onclick="switchTab('myschedule',this)">My Schedule</button>
-    <button class="tab" onclick="switchTab('manage',this)">Manage Program</button>
-    <button class="tab" onclick="switchTab('settings',this)">Event Details</button>
+    <button class="tab active" data-tab="program" onclick="switchTab('program',this)">Program</button>
+    <button class="tab" data-tab="myschedule" onclick="switchTab('myschedule',this)">My Schedule</button>
+    <button class="tab" data-tab="manage" onclick="switchTab('manage',this)">Manage Program</button>
+    <button class="tab" data-tab="settings" onclick="switchTab('settings',this)">Event Details</button>
     <div class="tab-spacer"></div>
     <div class="tab-actions">
+      <button class="btn btn-sm btn-ghost" onclick="startTour()" style="font-size:12px;border-color:var(--border2)" title="Guided tour">? Guide</button>
       <button class="btn btn-gold" onclick="exportPrint()">Print / Export PDF</button>
     </div>
   </div>
@@ -399,10 +415,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <div class="myschedule-wrap">
     <div class="presenter-picker">
       <label>Select your name to see your schedule</label>
-      <select id="presenterSelect" onchange="renderMySchedule()">
+      <select id="presenterSelect" onchange="onPresenterChange()">
         <option value="">— Choose a name —</option>
       </select>
-      <div style="margin-top:10px;text-align:right">
+      <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-sm" id="shareSchedBtn" onclick="shareMySchedule()" style="font-size:11px;display:none">🔗 Copy link to my schedule</button>
         <button class="fullsched-toggle-btn" id="fullSchedBtn" onclick="toggleFullSchedule()">📋 View full event schedule</button>
       </div>
     </div>
@@ -458,6 +475,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 </div>
 
 <div class="toast" id="toast"></div>
+<div id="tourOverlay" style="display:none;position:fixed;inset:0;z-index:500;pointer-events:none;"></div>
 
 <script>
 // ══════════════════════════════════════════
@@ -518,6 +536,7 @@ function defaultData(){
       {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and team',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'TBD',duration:10,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and team',songs:'Koi Kahe Kehta Rahe*, Shararath, Aaj Kal Tere mere Paay ke charche',status:'TBD',duration:5,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — Anamika and Family',presenter:'Anamika',songs:'Family Dance Song',status:'TBD',duration:8,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Navneet',presenter:'Navneet',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Shipi',presenter:'Shilpi',songs:'Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi',status:'TBD',duration:10,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Belmont group',presenter:'Rajeshwari and team',songs:'Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe*',status:'TBD',duration:8,location:'',contact:'',notes:''},
@@ -535,7 +554,6 @@ function defaultData(){
       {id:nextId++,type:'Speech',label:'Speech — Maya',presenter:'Maya',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Video',label:'Video — Mandar',presenter:'Mandar',songs:'Ek Ladki ko Dekha to Aaisa Laga, Yaar bina chain kha ree',status:'TBD',duration:10,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Dipti',presenter:'Dipti',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
-      {id:nextId++,type:'Dance',label:'Dance — Anamika and Family',presenter:'Anamika',songs:'Family Dance Song',status:'TBD',duration:8,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Anamika & Dipti',presenter:'Anamika / Dipti',songs:'Desi Girl',status:'TBD',duration:5,location:'',contact:'',notes:''},
     ]},
     {id:nextId++,label:'Dancing',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},
@@ -593,14 +611,17 @@ function presenterMatches(slotPresenter,selected){
   return lc===sel||lc.split(/[,\/]/).map(p=>p.trim()).includes(sel);
 }
 
+// Show share button when a presenter is selected
 function renderMySchedule(){
-  // If full schedule is showing, switching presenter should exit full schedule mode
   if(showingFullSchedule){
-    showingFullSchedule = false;
-    const btn = document.getElementById('fullSchedBtn');
-    if(btn){ btn.textContent='📋 View full event schedule'; btn.classList.remove('active'); }
+    showingFullSchedule=false;
+    const btn=document.getElementById('fullSchedBtn');
+    if(btn){btn.textContent='📋 View full event schedule';btn.classList.remove('active');}
   }
-  const selected=document.getElementById('presenterSelect').value;
+  const shareBtn=document.getElementById('shareSchedBtn');
+  const sel=document.getElementById('presenterSelect');
+  if(shareBtn) shareBtn.style.display=(sel&&sel.value)?'inline-block':'none';
+  const selected=sel?sel.value:'';
   const out=document.getElementById('mySchedOutput');
   if(!selected){out.innerHTML=`<div class="my-sched-empty"><div class="big">Who's performing?</div><div>Choose your name above to see your personal schedule.</div></div>`;return;}
 
@@ -787,14 +808,51 @@ function renderFullSchedule(){
 }
 
 // ══════════════════════════════════════════
-//  TAB SWITCHING
+//  TAB SWITCHING + URL HASH
 // ══════════════════════════════════════════
-function switchTab(name,btn){
+function switchTab(name, btn, presenterName){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('panel-'+name).classList.add('active');
-  if(name==='myschedule')renderMySchedule();
+  // Update URL hash for bookmarking
+  const sel = document.getElementById('presenterSelect');
+  const person = presenterName || (name==='myschedule' && sel ? sel.value : '');
+  const hash = person ? `#${name}/${encodeURIComponent(person)}` : `#${name}`;
+  history.replaceState(null,'',hash);
+  if(name==='myschedule') renderMySchedule();
+}
+
+// Update hash when presenter changes
+function onPresenterChange(){
+  const sel = document.getElementById('presenterSelect');
+  if(sel && sel.value){
+    history.replaceState(null,'',`#myschedule/${encodeURIComponent(sel.value)}`);
+  }
+  renderMySchedule();
+}
+
+// Parse URL hash and navigate on load
+function handleHashOnLoad(){
+  const hash = window.location.hash.replace('#','');
+  if(!hash) return;
+  const parts = hash.split('/');
+  const tabName = parts[0];
+  const person  = parts[1] ? decodeURIComponent(parts[1]) : '';
+  const tabBtn  = document.querySelector(`.tab[data-tab="${tabName}"]`);
+  if(tabBtn){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tabBtn.classList.add('active');
+    document.getElementById('panel-'+tabName)?.classList.add('active');
+    if(tabName==='myschedule' && person){
+      const sel = document.getElementById('presenterSelect');
+      // Wait for rebuildPresenterDropdown to populate options, then select
+      setTimeout(()=>{
+        if(sel){ sel.value=person; renderMySchedule(); }
+      }, 50);
+    }
+  }
 }
 
 // ══════════════════════════════════════════
@@ -1095,10 +1153,113 @@ function exportPrint(){
   const w=window.open('','_blank');w.document.write(html);w.document.close();
 }
 
+function shareMySchedule(){
+  const sel=document.getElementById('presenterSelect');
+  if(!sel||!sel.value) return;
+  const url=window.location.href.split('#')[0]+`#myschedule/${encodeURIComponent(sel.value)}`;
+  if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>toast('Link copied ✓'));}
+  else{const ta=document.createElement('textarea');ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Link copied ✓');}
+}
+
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+// ══════════════════════════════════════════
+//  GUIDED TOUR
+// ══════════════════════════════════════════
+const tourSteps = [
+  {
+    tab:'program', highlight:'.prog-block:first-child .prog-main-row', scroll:'.prog-block:first-child',
+    title:'Program Tab — Main Events',
+    body:'The <strong>Program</strong> tab shows the full evening at a glance. Each row shows the <strong>start time</strong> on the left, the <strong>event name</strong> in the middle, and the <strong>duration</strong> on the right. Events with performances show a gold <em>View performances</em> button.'
+  },
+  {
+    tab:'program', highlight:'.prog-toggle-btn', scroll:'.prog-block:nth-child(2)',
+    title:'View Performances',
+    body:'Tap <strong>View performances</strong> on the "Cake Cutting, Performances and Speeches" block to expand the sub-program. Each row shows the <strong>start time</strong>, <strong>event label</strong>, <strong>type badge</strong> (Sing, Dance, Speech…), <strong>presenter</strong>, and <strong>duration</strong>. Tap the <strong>ⓘ icon</strong> to see songs or notes.'
+  },
+  {
+    tab:'myschedule', highlight:'.presenter-picker', scroll:'.presenter-picker',
+    title:'My Schedule Tab',
+    body:'The <strong>My Schedule</strong> tab is your personal view. Select your name from the dropdown — the page immediately shows everything you need to know about your role in the evening.'
+  },
+  {
+    tab:'myschedule', highlight:'#mySchedOutput', scroll:'#mySchedOutput',
+    title:'Your Personal Schedule',
+    body:'After selecting a name you see three sections:<br><br><strong>↑ Before you</strong> — what\'s happening immediately before your slot (type, time, who)<br><strong>Your performance</strong> — your start time, event name, type, duration, and songs if applicable<br><strong>↓ After you</strong> — what follows you so you know when to be ready to exit'
+  },
+  {
+    tab:'myschedule', highlight:'#shareSchedBtn,#fullSchedBtn', scroll:'.presenter-picker',
+    title:'Share & Full Schedule',
+    body:'Tap <strong>🔗 Copy link to my schedule</strong> to get a bookmarkable URL that opens directly to your schedule — perfect to save on your phone or share via WhatsApp.<br><br>Tap <strong>📋 View full event schedule</strong> to see every event and responsibility for the entire evening, sorted by time.'
+  },
+];
+let tourIdx = 0;
+let tourActive = false;
+let tourOrigTab = 'program';
+
+function startTour(){
+  tourActive=true; tourIdx=0;
+  tourOrigTab = document.querySelector('.tab.active')?.dataset?.tab||'program';
+  showTourStep();
+}
+
+function showTourStep(){
+  const step = tourSteps[tourIdx];
+  // Switch to the right tab silently (no hash update)
+  const tabBtn = document.querySelector(`.tab[data-tab="${step.tab}"]`);
+  if(tabBtn){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tabBtn.classList.add('active');
+    document.getElementById('panel-'+step.tab)?.classList.add('active');
+    if(step.tab==='myschedule'){
+      // Pre-select Ruchi as the example
+      const sel=document.getElementById('presenterSelect');
+      if(sel&&!sel.value){ sel.value='Ruchi'; renderMySchedule(); }
+      else if(sel&&sel.value){ renderMySchedule(); }
+    }
+  }
+  // Expand performances for the program steps that need it
+  if(step.tab==='program'&&tourIdx===1){
+    const btn=document.querySelector('.prog-toggle-btn');
+    if(btn&&!btn.classList.contains('open')) btn.click();
+  }
+  // Scroll highlight into view
+  setTimeout(()=>{
+    const el=document.querySelector(step.scroll);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+  },100);
+  // Render the tour overlay
+  const overlay=document.getElementById('tourOverlay');
+  const progress=`${tourIdx+1} / ${tourSteps.length}`;
+  overlay.innerHTML=`
+    <div class="tour-backdrop" onclick="endTour()"></div>
+    <div class="tour-card">
+      <div class="tour-progress">${progress}</div>
+      <div class="tour-title">${step.title}</div>
+      <div class="tour-body">${step.body}</div>
+      <div class="tour-actions">
+        <button class="btn btn-sm btn-ghost" onclick="endTour()">✕ Exit</button>
+        <div style="display:flex;gap:8px">
+          ${tourIdx>0?`<button class="btn btn-sm" onclick="tourNav(-1)">← Back</button>`:''}
+          ${tourIdx<tourSteps.length-1
+            ?`<button class="btn btn-gold btn-sm" onclick="tourNav(1)">Next →</button>`
+            :`<button class="btn btn-gold btn-sm" onclick="endTour()">Done ✓</button>`}
+        </div>
+      </div>
+    </div>`;
+  overlay.style.display='block';
+}
+
+function tourNav(dir){ tourIdx+=dir; showTourStep(); }
+function endTour(){
+  tourActive=false;
+  document.getElementById('tourOverlay').style.display='none';
+}
 
 mainBlocks=defaultData();
 render();
+handleHashOnLoad();
 </script>
 </body>
 </html>
