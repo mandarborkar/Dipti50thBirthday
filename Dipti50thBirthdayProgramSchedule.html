@@ -485,29 +485,33 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 //  These appear only in My Schedule, not in the main program
 // ══════════════════════════════════════════
 const staffResponsibilities = [
-  { presenter:'Melvin',           startTime:'17:00', endTime:'22:00', description:'Photographer',                            notes:'Covering the full evening' },
-  { presenter:'Tej',              startTime:'17:30', endTime:'23:00', description:'DJ',                                      notes:'Music throughout the evening' },
-  { presenter:'Tarun',            startTime:'17:00', endTime:'19:00', description:'Appetizers & Tea',                        notes:'Set up and serve appetizers and tea during Meet & Greet' },
-  { presenter:'Tarun',            startTime:'19:00', endTime:'19:30', description:'Transition — Appetizers out, Dinner in',  notes:'Clear appetizers, lay down dinner service' },
-  { presenter:'Tarun',            startTime:'19:30', endTime:'21:30', description:'Dinner Service',                          notes:'Serve dinner to guests' },
-  { presenter:'Tarun',            startTime:'21:00', endTime:'22:30', description:'Dessert & Tea',                           notes:'Set out dessert and tea service' },
-  { presenter:'Poonam / Dipti / Maya', startTime:'13:00', endTime:'16:00', description:'Hair and Saree Preparation / Make up', notes:'Hair and Saree Preparation / Make up' },
-  { presenter:'Mandar',           startTime:'14:00', endTime:'16:00', description:'Hall Setup',                              notes:'Hall Setup' },
-  { presenter:'Cal',              startTime:'16:15', endTime:'16:30', description:'Cal Breakroom',                           notes:'Cal Breakroom 1' },
-  { presenter:'Dipti',            startTime:'16:30', endTime:'16:30', description:'Leave Home',                              notes:'Leave Home' },
-  { presenter:'Dipti',            startTime:'17:00', endTime:'17:00', description:'Arrive Crowne Plaza',                     notes:'Arrive Crowne Plaza' },
-  { presenter:'Dipti',            startTime:'17:00', endTime:'17:20', description:'Settle In/Appetizer/Family Photos',       notes:'Settle In/Appetizer/Family Photos' },
-  { presenter:'Dipti',            startTime:'17:20', endTime:'17:30', description:'Dipti Breakroom',                         notes:'Dipti Breakroom' },
-  { presenter:'Dipti',            startTime:'17:30', endTime:'18:20', description:'Dipti Welcome and Photos',                notes:'Dipti Welcome and Photos' },
-  { presenter:'Dipti',            startTime:'18:20', endTime:'18:30', description:'Dipti Breakroom 2',                       notes:'Dipti Breakroom 2' },
-  { presenter:'Dipti',            startTime:'18:30', endTime:'20:30', description:'Dipti Program Start/Cake Cutting',        notes:'Dipti Program Start/Cake Cutting' },
-  { presenter:'Dipti',            startTime:'20:30', endTime:'20:45', description:'Dipti Breakroom 3',                       notes:'Dipti Breakroom 3' },
-  { presenter:'Dipti',            startTime:'20:45', endTime:'23:00', description:'Dipti Thank you/Dancing',                 notes:'Dipti Thank you/Dancing' },
-  { presenter:'Cal',              startTime:'20:00', endTime:'20:30', description:'Cal Breakroom',                           notes:'Cal Breakroom 2' },
-  { presenter:'Cal',              startTime:'20:30', endTime:'21:00', description:'Cal Dinner',                              notes:'Cal Dinner' },
-  { presenter:'Mandar',           startTime:'22:00', endTime:'22:45', description:'Hall Cleanup',                            notes:'Hall Cleanup' },
-  { presenter:'Mandar',           startTime:'22:45', endTime:'23:00', description:'Leave for Home',                          notes:'Leave for Home' },
-  { presenter:'Cal',              startTime:'23:00', endTime:'23:59', description:'Cal Breakroom',                           notes:'Cal Breakroom 3 / Sleep' },
+  { presenter:'Melvin',                startTime:'17:00', endTime:'22:00', description:'Photographer',                            notes:'Covering the full evening' },
+  { presenter:'Tej',                   startTime:'17:30', endTime:'23:00', description:'DJ',                                      notes:'Music throughout the evening' },
+  { presenter:'Tarun',                 startTime:'17:00', endTime:'19:00', description:'Appetizers & Tea',                        notes:'Set up and serve appetizers and tea during Meet & Greet' },
+  { presenter:'Melissa',               startTime:'17:00', endTime:'19:00', description:'Coffee',                                  notes:'Set up and serve Coffee' },
+  { presenter:'Tarun',                 startTime:'19:00', endTime:'19:30', description:'Transition — Appetizers out, Dinner in',  notes:'Clear appetizers, lay down dinner service' },
+  { presenter:'Melissa',               startTime:'19:15', endTime:'19:30', description:'Cake Cutting Setup',                      notes:'Cake Cutting Setup' },
+  { presenter:'Tarun',                 startTime:'19:30', endTime:'21:30', description:'Dinner Service',                          notes:'Serve dinner to guests' },
+  { presenter:'Melissa',               startTime:'20:45', endTime:'21:15', description:'Cake Serving / Coffee',                   notes:'Cake Serving / Coffee' },
+  { presenter:'Tarun',                 startTime:'21:00', endTime:'22:30', description:'Dessert & Tea',                           notes:'Set out dessert and tea service' },
+  { presenter:'Poonam / Dipti / Maya', startTime:'13:00', endTime:'16:00', description:'Hair and Saree Preparation / Make up',    notes:'Hair and Saree Preparation / Make up' },
+  { presenter:'Mandar',                startTime:'14:00', endTime:'16:00', description:'Hall Setup',                              notes:'Hall Setup (Projector/Speaker/Laptop/Photo backdrop/Easel)' },
+  { presenter:'Mandar',                startTime:'14:00', endTime:'16:00', description:'Room Setup',                              notes:'Room Setup (Mihir setup)' },
+  { presenter:'Cal',                   startTime:'16:15', endTime:'16:30', description:'Cal Breakroom',                           notes:'Cal Breakroom 1' },
+  { presenter:'Dipti',                 startTime:'16:30', endTime:'16:30', description:'Leave Home',                              notes:'Leave Home' },
+  { presenter:'Dipti',                 startTime:'17:00', endTime:'17:00', description:'Arrive Crowne Plaza',                     notes:'Arrive Crowne Plaza' },
+  { presenter:'Dipti',                 startTime:'17:00', endTime:'17:20', description:'Settle In/Appetizer/Family Photos',       notes:'Settle In/Appetizer/Family Photos' },
+  { presenter:'Dipti',                 startTime:'17:20', endTime:'17:30', description:'Dipti Breakroom',                         notes:'Dipti Breakroom' },
+  { presenter:'Dipti',                 startTime:'17:30', endTime:'18:20', description:'Dipti Welcome and Photos',                notes:'Dipti Welcome and Photos' },
+  { presenter:'Dipti',                 startTime:'18:20', endTime:'18:30', description:'Dipti Breakroom 2',                       notes:'Dipti Breakroom 2' },
+  { presenter:'Dipti',                 startTime:'18:30', endTime:'20:30', description:'Dipti Program Start',                     notes:'Dipti Program Start/Cake Cutting' },
+  { presenter:'Dipti',                 startTime:'20:30', endTime:'20:45', description:'Dipti Breakroom 3',                       notes:'Dipti Breakroom 3' },
+  { presenter:'Dipti',                 startTime:'20:45', endTime:'23:00', description:'Dipti Thank you/Dancing',                 notes:'Dipti Thank you/Dancing' },
+  { presenter:'Cal',                   startTime:'20:00', endTime:'20:30', description:'Cal Breakroom',                           notes:'Cal Breakroom 2' },
+  { presenter:'Cal',                   startTime:'20:30', endTime:'21:00', description:'Cal Dinner',                              notes:'Cal Dinner' },
+  { presenter:'Mandar',                startTime:'22:00', endTime:'22:45', description:'Hall Cleanup',                            notes:'Hall Cleanup' },
+  { presenter:'Mandar',                startTime:'22:45', endTime:'23:00', description:'Leave for Home',                          notes:'Leave for Home' },
+  { presenter:'Cal',                   startTime:'23:00', endTime:'23:59', description:'Cal Breakroom',                           notes:'Cal Breakroom 3 / Sleep' },
 ];
 
 function timeToMins(t){
@@ -647,11 +651,11 @@ function renderMySchedule(){
       const durM=endM-startM;
       html+=`<div class="staff-slot-card" style="margin-bottom:8px;">
         <div class="staff-slot-header">
-          <div class="staff-slot-eyebrow">Event Personnel — Responsibility ${myStaffSlots.length>1?i+1+' of '+myStaffSlots.length:''}</div>
+          <div class="staff-slot-eyebrow">Event Organizer — Responsibility ${myStaffSlots.length>1?i+1+' of '+myStaffSlots.length:''}</div>
           <div class="staff-time-range">${minsToTime12(startM)} — ${minsToTime12(endM)}</div>
           <div class="staff-dur">${fmtDurFromMins(durM)}</div>
           <div class="staff-desc">${r.description}</div>
-          <span class="staff-badge">Event Personnel</span>
+          <span class="staff-badge">Event Organizer</span>
         </div>
         ${r.notes?`<div class="my-slot-body"><div style="font-size:13px;color:var(--text2);">${r.notes}</div></div>`:''}
       </div>`;
@@ -1059,7 +1063,7 @@ function slotsToCSV(){
   });
   // Append event personnel section
   lines.push('');
-  lines.push('# Event Personnel');
+  lines.push('# Event Organizer');
   staffResponsibilities.forEach((r,i)=>{
     const notes=r.notes&&r.notes.includes(',')? `"${r.notes}"`:r.notes||'';
     lines.push(`P${i+1},Personnel,"${r.description}","${r.presenter}","","",,"${r.startTime}","${r.endTime}",${notes}`);
