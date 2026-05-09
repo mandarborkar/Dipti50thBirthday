@@ -694,6 +694,15 @@ function renderMySchedule(){
 
       const songList=slot.songs?slot.songs.split(',').map(x=>x.trim()).filter(Boolean):[];
       const hasSongs=songList.length>0&&slot.type!=='Speech';
+      // Build duplicate song set (same logic as renderProgram)
+      const songCount={};
+      mainBlocks.flatMap(b=>b.slots).forEach(sl=>{
+        if(!sl.songs||sl.type==='Speech'||sl.type==='Dinner') return;
+        sl.songs.split(',').map(x=>x.trim().toLowerCase()).filter(Boolean).forEach(sg=>{
+          songCount[sg]=(songCount[sg]||0)+1;
+        });
+      });
+      const dupeSongs=new Set(Object.keys(songCount).filter(k=>songCount[k]>1));
       const typeColor=typeCMap[slot.type]||'var(--text2)';const typeBg=typeBgMap[slot.type]||'var(--break-bg)';
       html+=`<div class="my-slot-card" id="myslot-card-${slotIdx}">
         <div class="my-slot-header">
@@ -705,7 +714,15 @@ function renderMySchedule(){
         </div>`;
       if(hasSongs||slot.notes||slot.location){
         html+=`<div class="my-slot-body">`;
-        if(hasSongs){html+=`<div class="my-slot-section">Songs / Performance</div><div class="my-slot-songs">${songList.map(s=>`<div class="my-slot-song-item">${s}</div>`).join('')}</div>`;}
+        if(hasSongs){
+          const hasDupes=songList.some(sg=>dupeSongs.has(sg.toLowerCase()));
+          html+=`<div class="my-slot-section">Songs / Performance</div>
+            <div class="my-slot-songs">${songList.map(sg=>{
+              const isDupe=dupeSongs.has(sg.toLowerCase());
+              return `<div class="my-slot-song-item">${sg}${isDupe?' <span style="opacity:.6;font-size:10px;color:var(--gold)">*</span>':''}</div>`;
+            }).join('')}</div>`;
+          if(hasDupes) html+=`<div style="font-size:11px;color:var(--text3);margin-top:6px;font-style:italic">* also performed by another act</div>`;
+        }
         if(slot.status||slot.location){html+=`<div class="my-slot-divider"></div><div class="my-slot-meta">`;if(slot.status)html+=`<div class="my-slot-meta-item"><label>Status</label><span class="status-badge s-${slot.status||'TBD'}">${slot.status||'TBD'}</span></div>`;if(slot.location)html+=`<div class="my-slot-meta-item"><label>Stage</label><span>${slot.location}</span></div>`;html+=`</div>`;}
         if(slot.notes){html+=`<div class="my-slot-notes">📋 ${slot.notes}</div>`;}
         html+=`</div>`;
