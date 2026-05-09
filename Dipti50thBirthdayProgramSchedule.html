@@ -610,6 +610,7 @@ function rebuildPresenterDropdown(){
 // ══════════════════════════════════════════
 const typeBgMap={Sing:'var(--sing-bg)',Song:'var(--sing-bg)',Dance:'var(--dance-bg)',Speech:'var(--speech-bg)',Video:'var(--video-bg)',Break:'var(--break-bg)',Main:'var(--gold-bg)',Dinner:'var(--gold-bg)'};
 const typeCMap={Sing:'var(--sing-c)',Song:'var(--sing-c)',Dance:'var(--dance-c)',Speech:'var(--speech-c)',Video:'var(--video-c)',Break:'var(--break-c)',Main:'var(--gold)',Dinner:'var(--gold-dark)'};
+let showingFullSchedule = false;
 
 function presenterMatches(slotPresenter,selected){
   if(!slotPresenter||!selected)return false;
@@ -754,7 +755,6 @@ function scrollToMySlot(id){
 }
 
 // ── FULL SCHEDULE VIEW ────────────────────────────────────
-let showingFullSchedule = false;
 
 function toggleFullSchedule(){
   showingFullSchedule = !showingFullSchedule;
