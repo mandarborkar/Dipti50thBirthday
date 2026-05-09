@@ -541,11 +541,11 @@ function defaultData(){
     {id:nextId++,label:'Cake Cutting, Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
       {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and team',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'TBD',duration:10,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'TBD',duration:3,location:'',contact:'',notes:''},
-      {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and team',songs:'Aajkal, Shararath, Koi Kahe Kehta Rahe*',status:'TBD',duration:5,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and team',songs:'Aajkal, Shararath, Koi Kahe Kehta Rahe',status:'TBD',duration:5,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Anamika and Family',presenter:'Anamika',songs:'Family Dance Song',status:'TBD',duration:8,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Navneet',presenter:'Navneet',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Shipi',presenter:'Shilpi',songs:'Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi',status:'TBD',duration:10,location:'',contact:'',notes:''},
-      {id:nextId++,type:'Dance',label:'Dance — Belmont group',presenter:'Rajeshwari and team',songs:'Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe*',status:'TBD',duration:8,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — Belmont group',presenter:'Rajeshwari and team',songs:'Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe, Shararath',status:'TBD',duration:8,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Rajendra',presenter:'Rajendra',songs:'',status:'TBD',duration:5,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Marathi group',presenter:'Dipti and team',songs:'Shaky Shaky, Hawa Hawa, Gulabi Saadi',status:'TBD',duration:8,location:'',contact:'',notes:''},
       {id:nextId++,type:'Sing',label:'Duet — Swati & Mayank',presenter:'Swati / Mayank',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
@@ -891,6 +891,17 @@ function toggleProgSubs(blockId){
 
 function renderProgram(){
   const mainTimes=computeMainStartTimes();const out=document.getElementById('prog-output');let html='';
+
+  // Build set of song names that appear in more than one performer's list
+  const songCount={};
+  mainBlocks.flatMap(b=>b.slots).forEach(s=>{
+    if(!s.songs||s.type==='Speech'||s.type==='Dinner') return;
+    s.songs.split(',').map(x=>x.trim().toLowerCase()).filter(Boolean).forEach(sg=>{
+      songCount[sg]=(songCount[sg]||0)+1;
+    });
+  });
+  const dupeSongs=new Set(Object.keys(songCount).filter(k=>songCount[k]>1));
+
   mainBlocks.forEach((block,bi)=>{
     const hasSubs=block.slots.length>0;
     const subTimes=hasSubs?computeSubStartTimes(block):[];
@@ -913,7 +924,16 @@ function renderProgram(){
         const hasSongs=songList.length>0&&s.type!=='Speech'&&s.type!=='Dinner';
         const hasDetails=hasSongs||!!s.notes;
         let tooltipInner='';
-        if(hasSongs){tooltipInner+=`<div class="tt-title">Songs / Performance</div>`;tooltipInner+=songList.map(sg=>`<div class="tt-song">${sg}</div>`).join('');}
+        if(hasSongs){
+          tooltipInner+=`<div class="tt-title">Songs / Performance</div>`;
+          tooltipInner+=songList.map(sg=>{
+            const isDupe=dupeSongs.has(sg.toLowerCase());
+            return `<div class="tt-song">${sg}${isDupe?' <span style="opacity:.7;font-size:10px">*</span>':''}</div>`;
+          }).join('');
+          if(songList.some(sg=>dupeSongs.has(sg.toLowerCase()))){
+            tooltipInner+=`<div style="font-size:10px;color:#a09080;margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,.1)">* also performed by another act</div>`;
+          }
+        }
         if(s.notes){tooltipInner+=`<div class="tt-notes">${s.notes}</div>`;}
         html+=`<div class="prog-sub-row">
           <div class="prog-sub-time">${s.duration>0?minsToTime12(subTimes[si]):''}</div>
