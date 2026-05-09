@@ -838,44 +838,49 @@ function switchTab(name, btn, presenterName){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('panel-'+name).classList.add('active');
-  // Update URL hash for bookmarking
-  const sel = document.getElementById('presenterSelect');
-  const person = presenterName || (name==='myschedule' && sel ? sel.value : '');
-  const hash = person ? `#${name}/${encodeURIComponent(person)}` : `#${name}`;
-  history.replaceState(null,'',hash);
+  // Update URL hash for bookmarking (may fail in proxy environments — safe to ignore)
+  try{
+    const sel = document.getElementById('presenterSelect');
+    const person = presenterName || (name==='myschedule' && sel ? sel.value : '');
+    const hash = person ? `#${name}/${encodeURIComponent(person)}` : `#${name}`;
+    history.replaceState(null,'',hash);
+  }catch(e){}
   if(name==='myschedule') renderMySchedule();
 }
 
 // Update hash when presenter changes
 function onPresenterChange(){
   const sel = document.getElementById('presenterSelect');
-  if(sel && sel.value){
-    history.replaceState(null,'',`#myschedule/${encodeURIComponent(sel.value)}`);
-  }
+  try{
+    if(sel && sel.value){
+      history.replaceState(null,'',`#myschedule/${encodeURIComponent(sel.value)}`);
+    }
+  }catch(e){}
   renderMySchedule();
 }
 
 // Parse URL hash and navigate on load
 function handleHashOnLoad(){
-  const hash = window.location.hash.replace('#','');
-  if(!hash) return;
-  const parts = hash.split('/');
-  const tabName = parts[0];
-  const person  = parts[1] ? decodeURIComponent(parts[1]) : '';
-  const tabBtn  = document.querySelector(`.tab[data-tab="${tabName}"]`);
-  if(tabBtn){
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-    tabBtn.classList.add('active');
-    document.getElementById('panel-'+tabName)?.classList.add('active');
-    if(tabName==='myschedule' && person){
-      const sel = document.getElementById('presenterSelect');
-      // Wait for rebuildPresenterDropdown to populate options, then select
-      setTimeout(()=>{
-        if(sel){ sel.value=person; renderMySchedule(); }
-      }, 50);
+  try{
+    const hash = window.location.hash.replace('#','');
+    if(!hash) return;
+    const parts = hash.split('/');
+    const tabName = parts[0];
+    const person  = parts[1] ? decodeURIComponent(parts[1]) : '';
+    const tabBtn  = document.querySelector(`.tab[data-tab="${tabName}"]`);
+    if(tabBtn){
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      tabBtn.classList.add('active');
+      document.getElementById('panel-'+tabName)?.classList.add('active');
+      if(tabName==='myschedule' && person){
+        const sel = document.getElementById('presenterSelect');
+        setTimeout(()=>{
+          if(sel){ sel.value=person; renderMySchedule(); }
+        }, 50);
+      }
     }
-  }
+  }catch(e){}
 }
 
 // ══════════════════════════════════════════
