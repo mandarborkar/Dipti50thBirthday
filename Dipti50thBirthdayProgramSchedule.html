@@ -11,14 +11,14 @@
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 
 /* HEADER */
-.program-header{background:var(--text);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
-.program-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);}
+.program-header{background:linear-gradient(135deg,#f9c4b0 0%,#f4a7b9 50%,#e8879c 100%);padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
+.program-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,rgba(255,255,255,.6) 0%,transparent 100%);}
 .ph-inner{max-width:860px;margin:0 auto;}
-.ph-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:var(--gold);margin-bottom:0.6rem;font-weight:500;}
-.ph-title{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:700;color:#faf8f4;line-height:1.05;letter-spacing:-0.01em;}
-.ph-meta{display:flex;gap:1.8rem;flex-wrap:wrap;margin-top:1rem;font-size:13px;color:#a09080;}
+.ph-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,.85);margin-bottom:0.6rem;font-weight:500;}
+.ph-title{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:700;color:#fff;line-height:1.05;letter-spacing:-0.01em;text-shadow:0 1px 4px rgba(180,60,80,.2);}
+.ph-meta{display:flex;gap:1.8rem;flex-wrap:wrap;margin-top:1rem;font-size:13px;color:rgba(255,255,255,.8);}
 .ph-meta span{display:flex;align-items:center;gap:5px;}
-.ph-meta .dot{width:3px;height:3px;border-radius:50%;background:#555;}
+.ph-meta .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.5);}
 
 /* TAB BAR */
 .tab-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;}
@@ -378,6 +378,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .tour-body strong{color:var(--text);font-weight:500;}
 .tour-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;}
 @media(min-width:600px){.tour-card{bottom:2rem;left:50%;right:auto;transform:translateX(-50%);width:520px;border-radius:14px;border:1px solid var(--border);border-top:3px solid var(--gold);}}
+/* ── HEADER QR CODE ── */
+.ph-inner{position:relative;}
+.header-qr{position:absolute;top:0;right:0;cursor:pointer;}
+.header-qr canvas,.header-qr img{display:block;border-radius:4px;border:2px solid rgba(255,255,255,.5);}
+.header-qr-label{font-size:9px;text-align:center;color:rgba(255,255,255,.85);margin-top:3px;letter-spacing:.05em;}
 /* ── SHARE LINK BUTTON ── */
 #shareSchedBtn{color:var(--speech-c);border-color:var(--speech-bg);background:var(--speech-bg);}
 #shareSchedBtn:hover{background:#d4e8fc;border-color:#a8c8f0;}
@@ -390,6 +395,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="ph-eyebrow">Evening Program</div>
     <div class="ph-title" id="dispTitle">Dipti's 50th Birthday</div>
     <div class="ph-meta" id="dispMeta"></div>
+    <div class="header-qr" id="headerQR" title="Scan to open on your phone" onclick="window.open('https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html','_blank')">
+      <div id="headerQRCode"></div>
+      <div class="header-qr-label">SCAN ME</div>
+    </div>
   </div>
 </header>
 
@@ -487,11 +496,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         </div>
       </div>
     </div>
+    <div class="settings-group">
+      <h3>Scan to Open Program</h3>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;">Share this QR code so guests can open the program on their phone.</p>
+      <div style="display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap;">
+        <div id="qrcode" style="background:#fff;padding:10px;border-radius:8px;border:1px solid var(--border);display:inline-block;"></div>
+        <div style="flex:1;min-width:160px;">
+          <p style="font-size:12px;color:var(--text3);line-height:1.6;margin-bottom:.8rem;">Points to:<br><a href="https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html" target="_blank" rel="noopener" style="font-size:11px;color:var(--speech-c);word-break:break-all;">htmlpreview.github.io/…Dipti50thBirthdayProgramSchedule.html</a></p>
+          <button class="btn btn-sm" onclick="downloadQR()">⬇ Download QR Code</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 <div id="tourOverlay" style="display:none;position:fixed;inset:0;z-index:500;pointer-events:none;"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
 // ══════════════════════════════════════════
@@ -862,6 +883,7 @@ function switchTab(name, btn, presenterName){
     history.replaceState(null,'',hash);
   }catch(e){}
   if(name==='myschedule') renderMySchedule();
+  if(name==='settings') setTimeout(generateQR, 100);
 }
 
 // Update hash when presenter changes
@@ -1234,6 +1256,33 @@ function shareMySchedule(){
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
+// ── QR CODE ───────────────────────────────────────────────
+const QR_URL = 'https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html';
+function generateQR(){
+  // Header QR (small, always visible)
+  const hEl = document.getElementById('headerQRCode');
+  if(hEl && !hEl.querySelector('canvas,img')){
+    try{
+      new QRCode(hEl,{text:QR_URL,width:72,height:72,colorDark:'#1a1714',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+    }catch(e){}
+  }
+  // Settings QR (larger, with download)
+  const sEl = document.getElementById('qrcode');
+  if(sEl && !sEl.querySelector('canvas,img')){
+    try{
+      new QRCode(sEl,{text:QR_URL,width:180,height:180,colorDark:'#1a1714',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+    }catch(e){ sEl.innerHTML=`<p style="font-size:11px;color:var(--text3)">QR unavailable offline</p>`; }
+  }
+}
+function downloadQR(){
+  const canvas=document.querySelector('#qrcode canvas');
+  if(!canvas){toast('QR code not yet loaded');return;}
+  const a=document.createElement('a');
+  a.download='Dipti50thBirthday-QR.png';
+  a.href=canvas.toDataURL('image/png');
+  a.click();
+}
+
 // ══════════════════════════════════════════
 //  GUIDED TOUR
 // ══════════════════════════════════════════
@@ -1331,6 +1380,8 @@ function endTour(){
 mainBlocks=defaultData();
 render();
 handleHashOnLoad();
+// Generate header QR on load (after qrcode.js is available)
+setTimeout(generateQR, 200);
 </script>
 </body>
 </html>
