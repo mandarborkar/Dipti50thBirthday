@@ -537,7 +537,7 @@ const BASE_START = () => { const v=document.getElementById('eventStart')?.value|
 
 function defaultData(){
   return [
-    {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[]},
+    {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[],notes:'https://drive.google.com/file/d/1CDhqnH1QfFeC3R3mo_sjhJt7cdli9YWV/view?usp=sharing'},
     {id:nextId++,label:'Cake Cutting, Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
       {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and friends',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'Link',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/11sYGtnih7binHlO5e556CQW9gvZOSh0P/view?usp=sharing'},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
@@ -932,9 +932,12 @@ function renderProgram(){
     const desc=!hasSubs&&block.description?`<div class="prog-event-desc">${block.description}</div>`:'';
     const subNote=hasSubs?`<div class="prog-event-desc">${block.slots.length} items · ${fmtDur(subTotalMins(block))}</div>`:'';
     const isOpen=!!progExpanded[block.id];
+    const mainLabelHtml = block.notes && block.notes.startsWith('http')
+      ? `<a href="${block.notes}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:2px;">${block.label}</a>`
+      : block.label;
     html+=`<div class="prog-block"><div class="prog-main-row">
       <div class="prog-time">${minsToTime12(mainTimes[bi])}</div>
-      <div><div class="prog-event-name">${block.label}</div>${desc}${subNote}</div>
+      <div><div class="prog-event-name">${mainLabelHtml}</div>${desc}${subNote}</div>
       <div class="prog-main-right">
         ${hasSubs?`<button class="prog-toggle-btn${isOpen?' open':''}" id="prog-tog-${block.id}" onclick="toggleProgSubs(${block.id})">${isOpen?'Hide performances':'View performances'}</button>`:''}
         <div class="prog-dur">${fmtDur(block.duration)}</div>
