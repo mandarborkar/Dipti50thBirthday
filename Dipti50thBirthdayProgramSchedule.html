@@ -387,7 +387,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 #shareSchedBtn{color:var(--speech-c);border-color:var(--speech-bg);background:var(--speech-bg);}
 #shareSchedBtn:hover{background:#d4e8fc;border-color:#a8c8f0;}
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -397,7 +396,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="ph-title" id="dispTitle">Dipti's 50th Birthday</div>
     <div class="ph-meta" id="dispMeta"></div>
     <div class="header-qr" id="headerQR" title="Scan to open on your phone" onclick="window.open('https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html','_blank')">
-      <div id="headerQRCode"></div>
+      <img id="headerQRCode" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAAAklEQVR4AewaftIAAArcSURBVO3BUWpk25JEwVVCUwgIiPkPzcHBB6FWQG04HDKzdF/2p8z+fH3j1//sg19v+eSv6eKn5HBMF0sOr0wXcribLg453E0XcnhlujjksKYLOazp4pDD3XQhhzVd/JQcPvj1lk9u5PDMdPHKdLHk8Mh0cchhyeFuupDDksN0seQwXSw5rOnikMMhh0MOa7o4potX5PDMdHF88sB0cSeHu+nimC7ksKYLOVzJ4Znp4koO08UhhzVdyGFNF0sOx3RxyOEVOUwXr0wXd3K4+uDXWz55kxzWdHE1XSw53E0XV3JY08UhhzVdTBdLDocc1nRxyOGYLh6ZLpYcDjn8rz75fyKH6eKQw9V0IYclh1emi0emi1emCzksORzTxZLDdHHI4V0f/HrLJw/I4b+aLg45TBdLDksO08UhhzVdyGHJYU0XcribLg45rOlCDmu6OKaLR+Swpgs5vCKHf/nkZrr4X8lhTRdyWNPFksMhh+liyWG6WHK4my7kcMhhTRdLDtPFksN0seQwXSw5rOlCDnfThRyupouf+ODXWz75Sw7vkMMhh+niarqQwyNyeEYO/yKHR+RwJYfp4k4Ohxz+iw9+veXP1ze+TRdLDtPFK3K4my6u5PDMdCGHY7pYcljTxTNyuJou5LCmCzms6UIOa7r4Fzms6eIVOVx9cjNdyGFNF1dyWNPFIYdDDnfTxSvThRzWdPGKHB6ZLpYcposlh0MOx3Sx5HA1XVzJ4Zgunvng11s+uZHDI3KYLq7kMF38hBwekcN0seRwN13IYU0Xd3K4ksOaLu7kIIc1XTwihzVdyOGQw5ouDjn8+frGE9PFlRyemS5ekcPVdLHk8Mh0seRwNV1cyWG6WHKYLpYcjuliyWG6OOSwpgs53E0XSw7HdCGH44Nfb/nz9Y1v08WSw3Sx5DBd3MlhTReHHK6miyWHNV3I4aemi0MOr0wXhxzWdCGHNV38ixyupgs5rOniSg7HJw/IYU0Xhxz+ZbpYcnhlunhEDmu6uJoulhymi1emiyWHV+QwXSw5HNPFMV0ccljTxdUHv97y5+sbF9OFHNZ0cchhuriSwzPTxZUcpos7OUwXd3JY08WVHNZ0cchhTRdyWNPFI3JY08WVHK6mi0MO08WdHD749ZY/X9/4Nl0ccviJ6eIRObwyXTwihzVdHHKYLpYcposlhzVdyOGR6WLJYU0XcljTxSGH6eIZOVxNF0sOf76+8cR08Ygc1nRxyGG6WHI4poslh+liyWG6eEYOx3Qhh7vpYsnhmC5ekcPVdPGKHNZ0ccjh6oNfb/nz9Y1v08WSw3Sx5DBdHHJY08UhhzVdXMlhTRdLDtPFIYc1Xcjhbrq4k8N0cSeHY7pYcpgulhyO6WLJ4Wq6uJLDI9PFIYdPHpDDmi7kcEwXSw7HdLHk8IgcDjms6WK6OKaLKzlcyWFNF3JY08WSw3RxN13IYU0XSw7HdCGHNV3I4W66OOTwyAe/3vLJX3JY04Uc7qYLOfzEdCGHq+lCDo/I4U4Ox3TxzHTxzHSx5PDIdLHkcEwXd3J45s/XN56YLh6Rw79MF6/IYU0XhxzWdHElhzVdyOFuulhyeGW6OORwTBdyeGW6OORwfPDrLZ/8NV0cclhymC4OOTwzXRxyeEQOa7q4ksOVHKaLJYfp4pnp4pgu5PCMHKaLOzlMF8/IQQ6PfPDrLZ/cyGG6WHK4mi5+Sg5rulhymC6WHKaLu+nibrq4mi6u5HA1XTwjBzms6eK/mC7u5PDJD8nhbrq4ksN/JYfp4k4Od9PFI9PFI3K4my4ekcPddHHI4Zgujg9+veWTm+lCDo9MF0sOr0wXclhyOOSwpgs5rOnilelCDoccrqaLKzncTRd3cpgu7qaLJYdjunjmk7/kcEwXj8jhTg7HdLHkcEwXhxyO6WLJ4W66OORwNV0sOTwyXSw5PCKHQw5rujjkcCeHZz749ZZP/poulhzkcEwXa7p413RxyGFNF4ccjuniETncyWFNF1fTxZLDmi6O6eJqunhmupDDMV0sOXzywHRxyOEnpour6WLJ4ZHpYsnhmC6WHKaLJYer6eJuulhymC7WdHEnh+nikMN/NV3I4fjg11s+eUEOx3RxJ4fp4m66eGS6WHI4pgs53MlhTRePyOGYLtZ0IYe76eJODtPFM3KYLv7lg19v+eRmupDDmi6u5HA1XcjhbrqQw9V0IYc1XRxyeGS6WHKYLu6mizs5TBdLDoccjuniJ6YLOazpQg6PfPLAdLHkMF0sOUwXV3I4pour6WLJ4RE5rOlCDksOa7qQwyGHY7pYcribLq6miyWHNV3IYU0Xhxymi2fkMF3cyeGDX2/58/WNb9PFK3I4potH5LCmi0MOx3RxJ4djuriTwzFdyOFuujjksKYLOVxNF4ccjulCDlfThRwemS6WHD75Sw5rupDDMV0c08WVHI7pYrpYcpgurqYLOTwyXVzJ4Wq6WHKYLpYc1nRxyOGQwyNyOKaLY7pYclhymC7u5HD1wa+3/Pn6xrfp4pDDT0wXV3JY04Uc1nTxiBzWdCGHNV08IodXpotDDmu6kMPVdHHI4ZguDjn8F3++vnExXRxyuJoulhyO6eKQwzFd3MnhmC6ekcMxXRxymC6WHNZ0ccjhkeliyeGYLuRwN10ccljThRzWdHHI4YNfb/nz9Y0Xposlh7vp4koOd9PFksMj08W/yGFNF3dyuJoulhwemS4OOazpQg5308WSwzFdHHL44NdbPrmZLg45XE0XSw5LDsd0cUwXclhyWNOFHNZ0cchhunhGDldyuJsuDjncTReHHI7pYsnhmC6WHK6miyWH6eL48/WNm+nikMPddLHkcEwXhxymiyWHNV08I4c1XSw5HNOFHI7p4hk5PDJd3MnhmC7kcDVdyGFNF1dyOD749ZY/X9+4mC7kcDddHHK4my7ksKaLQw7HdLHkMF0sOUwXSw5runhEDtPFksOaLuSwpgs5HNPFksMxXRxyuJsulhwemS4OOfz5+sbFdHElh7vpYsnhX6aLJYdjujjkcDddyOFuujjkcEwXSw7TxSGHu+nikMOaLuRwNV3I4V8++PWWP1/f+DZd3Mnharq4ksMxXchhTRd3cjimCzms6eK/kMMz04Uc1nTx/0UO08WSw3Sx5PDJX3L4FzlcTRdyOKaLJYe76eIZOazp4pDD3XRxTBdLDtPFksN0seRwTBd3cjimCzncTRdrupDDIYfjg19v+eSv6eKn5LDkMF0sOUwXPyGH6WLJ4ZXpQg6vyOGQw5ou7uRwTBdyuJsulhwOOVxNF0sOH/x6yyc3cnhmuriaLo7p4mq6uJLDdHHI4SfkcDVdvDJdHHJY08WdHB6Rw7/I4fjkgeniTg6vyOGYLuSwpotDDq/IYU0X08UjcribLpYc5LCmi7vp4pDD1XTxynSx5HD1wa+3fPL/ZLqQw5LDdHE3XfyEHKaLJYdXpotjujjkcMhhTRdX08WdHNZ0cUwXV9PFksMnb5LDMV3cyWFNF3JY04UcjuniTg5rujjkcCeH6eKQwzFdLDkccljThRzupotDDmu6kMMhh+ODX2/55AE5/IQcjuniSg6vTBfPTBeHHK6miyWHNV3I4SfkMF0c08WSw3RxJYdDDlfTxZLDJzfTxU9NF1dyWNPFdLHkcEwXd3KYLpYcjunimC6WHOSwposlh2O6eGS6uJPDMV3I4Znp4pkPfr3lz9c3fv3P/g+ApMlr2KZlaAAAAABJRU5ErkJggg==" width="72" height="72" alt="QR Code" style="display:block;border-radius:3px;">
       <div class="header-qr-label">SCAN ME</div>
     </div>
   </div>
@@ -501,7 +500,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <h3>Scan to Open Program</h3>
       <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;">Share this QR code so guests can open the program on their phone.</p>
       <div style="display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap;">
-        <div id="qrcode" style="background:#fff;padding:10px;border-radius:8px;border:1px solid var(--border);display:inline-block;"></div>
+        <div id="qrcode" style="background:#fff;padding:10px;border-radius:8px;border:1px solid var(--border);display:inline-block;"><img src="data:image/png;base64,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" width="180" height="180" alt="QR Code" style="display:block;border-radius:3px;"></div>
         <div style="flex:1;min-width:160px;">
           <p style="font-size:12px;color:var(--text3);line-height:1.6;margin-bottom:.8rem;">Points to:<br><a href="https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html" target="_blank" rel="noopener" style="font-size:11px;color:var(--speech-c);word-break:break-all;">htmlpreview.github.io/…Dipti50thBirthdayProgramSchedule.html</a></p>
           <button class="btn btn-sm" onclick="downloadQR()">⬇ Download QR Code</button>
@@ -883,7 +882,6 @@ function switchTab(name, btn, presenterName){
     history.replaceState(null,'',hash);
   }catch(e){}
   if(name==='myschedule') renderMySchedule();
-  if(name==='settings') setTimeout(generateQR, 100);
 }
 
 // Update hash when presenter changes
@@ -1258,28 +1256,13 @@ function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t
 
 // ── QR CODE ───────────────────────────────────────────────
 const QR_URL = 'https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html';
-function generateQR(){
-  // Header QR (small, always visible)
-  const hEl = document.getElementById('headerQRCode');
-  if(hEl && !hEl.querySelector('canvas,img')){
-    try{
-      new QRCode(hEl,{text:QR_URL,width:72,height:72,colorDark:'#1a1714',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
-    }catch(e){}
-  }
-  // Settings QR (larger, with download)
-  const sEl = document.getElementById('qrcode');
-  if(sEl && !sEl.querySelector('canvas,img')){
-    try{
-      new QRCode(sEl,{text:QR_URL,width:180,height:180,colorDark:'#1a1714',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
-    }catch(e){ sEl.innerHTML=`<p style="font-size:11px;color:var(--text3)">QR unavailable offline</p>`; }
-  }
-}
+// QR codes are static img tags — no JS generation needed
 function downloadQR(){
-  const canvas=document.querySelector('#qrcode canvas');
-  if(!canvas){toast('QR code not yet loaded');return;}
+  const img=document.querySelector('#qrcode img');
+  if(!img){toast('QR not available');return;}
   const a=document.createElement('a');
   a.download='Dipti50thBirthday-QR.png';
-  a.href=canvas.toDataURL('image/png');
+  a.href=img.src;
   a.click();
 }
 
@@ -1380,7 +1363,6 @@ function endTour(){
 mainBlocks=defaultData();
 render();
 handleHashOnLoad();
-generateQR();
 </script>
 </body>
 </html>
