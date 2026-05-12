@@ -712,7 +712,7 @@ function renderMySchedule(){
           <div class="my-slot-eyebrow">Your performance${myPerfSlots.length>1?' '+(slotIdx+1)+' of '+myPerfSlots.length:''}</div>
           <div class="my-slot-time">${minsToTime12(startMins)}</div>
           <div class="my-slot-dur">${fmtDur(slot.duration)} · ${parentBlock?parentBlock.label:''}</div>
-          <div class="my-slot-title">${slot.label}</div>
+          <div class="my-slot-title">${slot.status==='Link'&&slot.notes&&slot.notes.startsWith('http')?`<a href="${slot.notes}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;">${slot.label}</a>`:slot.label}</div>
           <span class="my-slot-type" style="background:${typeBg};color:${typeColor}">${slot.type}</span>
         </div>`;
       if(hasSongs||slot.notes||slot.location){
