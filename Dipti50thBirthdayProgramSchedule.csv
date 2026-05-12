@@ -1,5 +1,5 @@
 order,type,event_label,presenter,songs,status,duration,location,contact,notes
-1,Main,Meet & Greet,,"Photos with Dipti, Tea and Appetizers",Confirmed,60,,,https://drive.google.com/file/d/1CDhqnH1QfFeC3R3mo_sjhJt7cdli9YWV/view?usp=sharing
+1,Main,Meet & Greet,,"Photos with Dipti, Tea and Appetizers",Confirmed,60,,,https://photos.app.goo.gl/VYY1CTcykPSuSn899
 2,Main,"Cake Cutting, Performances and Speeches",,Sub-program,Confirmed,60,,,
 2.1,Sing,Sing — NSNT,Samina and friends,"Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye",Link,10,,,https://drive.google.com/file/d/11sYGtnih7binHlO5e556CQW9gvZOSh0P/view?usp=sharing
 2.2,Speech,Speech — Ruchi,Ruchi,,Confirmed,3,,,
@@ -10,7 +10,7 @@ order,type,event_label,presenter,songs,status,duration,location,contact,notes
 2.7,Dance,Dance — Shipi,Shilpi,"Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi",Link,10,,,https://drive.google.com/file/d/1hmzW4uWspg5_tMKs5B-u3uEIvORwlqKa/view?usp=sharing
 2.8,Dance,Dance — Belmont group,Rajeshwari and friends,"Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe, Shararath",Link,8,,,https://drive.google.com/file/d/1yWzMbOUJCKVj1KvqTc2qc7U3LjQqYjc2/view?usp=sharing
 2.9,Speech,Speech — Rajendra,Rajendra,,Confirmed,5,,,
-2.10,Dance,Dance — Marathi group,Dipti and friends,"Shaky Shaky, Hawa Hawa, Gulabi Saadi",Link,8,,,https://drive.google.com/file/d/1ibTqsXoDy8LsQ70EDSskzhNiautrsMdV/view?usp=sharing
+2.1,Dance,Dance — Marathi group,Dipti and friends,"Shaky Shaky, Hawa Hawa, Gulabi Saadi",Link,8,,,https://drive.google.com/file/d/1ibTqsXoDy8LsQ70EDSskzhNiautrsMdV/view?usp=sharing
 2.11,Sing,Duet — Swati & Mayank,Swati / Mayank,Duet Song,TBD,3,,,
 2.12,Sing,Duet — Leena & Nirav,Leena / Nirav,Duet Song,TBD,3,,,
 2.13,Speech,Speech — Chaitali,Chaitali,,Confirmed,3,,,
@@ -55,3 +55,7 @@ P24,Organizer,Cal Dinner,Cal,Cal Dinner,,,20:30,21:00,
 P25,Organizer,Hall Cleanup,Mandar,Hall Cleanup,,,22:00,22:45,
 P26,Organizer,Leave for Home,Mandar,Leave for Home,,,22:45,23:00,
 P27,Organizer,Cal Breakroom,Cal,Cal Breakroom 3 / Sleep,,,23:00,23:59,
+,,,,,,,,,
+# Event Details,,,,,,,,,
+Photos,https://photos.app.goo.gl/VYY1CTcykPSuSn899,,,,,,,,
+Layout,https://drive.google.com/file/d/1CDhqnH1QfFeC3R3mo_sjhJt7cdli9YWV/view?usp=sharing,,,,,,,,

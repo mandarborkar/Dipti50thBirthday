@@ -400,6 +400,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <button class="btn btn-sm btn-ghost tour-guide-btn" onclick="startTour()" style="font-size:12px;border-color:var(--border2);margin:0 4px;flex-shrink:0;" title="Guided tour">? Guide</button>
     <button class="tab" data-tab="manage" onclick="switchTab('manage',this)">Manage Program</button>
     <button class="tab" data-tab="settings" onclick="switchTab('settings',this)">Event Details</button>
+    <button class="tab" onclick="window.open('https://photos.app.goo.gl/VYY1CTcykPSuSn899','_blank')" style="white-space:nowrap">📷 Photos</button>
     <div class="tab-spacer"></div>
     <div class="tab-actions">
       <button class="btn btn-gold print-btn" onclick="exportPrint()">Print / Export PDF</button>
@@ -473,6 +474,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
       <p class="csv-note">Any changes you make in Manage Program are reflected in the CSV when you click Download CSV. Load a saved CSV to restore a previous version.</p>
     </div>
+    <div class="settings-group">
+      <h3>Event Links</h3>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:13px;color:var(--text2);min-width:60px;">📷 Photos</span>
+          <a href="https://photos.app.goo.gl/VYY1CTcykPSuSn899" target="_blank" rel="noopener" style="font-size:13px;color:var(--speech-c);word-break:break-all;">photos.app.goo.gl/VYY1CTcykPSuSn899</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:13px;color:var(--text2);min-width:60px;">📐 Layout</span>
+          <a href="https://drive.google.com/file/d/1CDhqnH1QfFeC3R3mo_sjhJt7cdli9YWV/view?usp=sharing" target="_blank" rel="noopener" style="font-size:13px;color:var(--speech-c);word-break:break-all;">View hall layout on Google Drive</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -537,7 +551,7 @@ const BASE_START = () => { const v=document.getElementById('eventStart')?.value|
 
 function defaultData(){
   return [
-    {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[],notes:'https://drive.google.com/file/d/1CDhqnH1QfFeC3R3mo_sjhJt7cdli9YWV/view?usp=sharing'},
+    {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[],notes:'https://photos.app.goo.gl/VYY1CTcykPSuSn899'},
     {id:nextId++,label:'Cake Cutting, Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
       {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and friends',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'Link',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/11sYGtnih7binHlO5e556CQW9gvZOSh0P/view?usp=sharing'},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
