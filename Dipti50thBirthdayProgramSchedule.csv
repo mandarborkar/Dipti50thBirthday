@@ -21,7 +21,7 @@ order,type,event_label,presenter,songs,status,duration,location,contact,notes
 4.1,Dinner,Dinner,,,Confirmed,45,,,
 4.2,Speech,Speech — Mihir,Mihir,,Confirmed,3,,,
 4.3,Speech,Speech — Maya,Maya,,Confirmed,3,,,
-4.4,Video,Video — Mandar,Mandar,"Ek Ladki ko Dekha to Aaisa Laga, Yaar bina chain kha ree",TBD,10,,,
+4.4,Video,Video — Mandar,Mandar,"Ek Ladki ko Dekha to Aaisa Laga, Yaar bina chain kha ree",Link,10,,,https://youtu.be/qp9MQBkp6f8?si=LqvnhNaGFVrXJeiC
 4.5,Speech,Speech — Dipti,Dipti,,Confirmed,3,,,
 4.6,Dance,Dance — Anamika & Dipti,Anamika / Dipti,Desi Girl,Link,2,,,https://drive.google.com/file/d/1RyGb-n4YgaO8u_j4h7i1jfh3VkJYtubE/view?usp=sharing
 5,Main,Dancing,,,Confirmed,60,,,
@@ -59,3 +59,4 @@ P27,Organizer,Cal Breakroom,Cal,Cal Breakroom 3 / Sleep,,,23:00,23:59,
 # Event Details,,,,,,,,,
 Photos,https://photos.app.goo.gl/VYY1CTcykPSuSn899,,,,,,,,
 Layout,https://drive.google.com/file/d/1CDhqnH1QfFeC3R3mo_sjhJt7cdli9YWV/view?usp=sharing,,,,,,,,
+QR Code,https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html,,,,,,,,
