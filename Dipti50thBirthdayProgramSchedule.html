@@ -294,9 +294,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   /* type badge sits inline with presenter in row 2 */
   /* type badge is inside presenter div, no extra col to hide */
   .prog-sub-presenter .prog-type-badge{font-size:10px;padding:1px 7px;flex-shrink:0;}
-  /* Right+down tooltip on mobile — cap width to stay in viewport */
-  .info-tooltip-right{max-width:80vw;}
-
+  /* Tooltips on mobile — always right-anchored to never overflow left edge */
+  .info-tooltip,
+  .info-tooltip-right,
+  .info-tooltip-up{
+    position:fixed;
+    left:8px !important;
+    right:8px !important;
+    top:auto !important;
+    bottom:80px !important;
+    max-width:calc(100vw - 16px) !important;
+    width:calc(100vw - 16px) !important;
+    font-size:12px;
+    border-radius:10px;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);
+  }
+  .info-tooltip::before,
+  .info-tooltip-right::before,
+  .info-tooltip-up::before{display:none;}
+  /* Backdrop tap-to-dismiss handled by existing focus/hover */
   /* Full schedule table on mobile — type column narrower, content wider */
   .fullsched-row{grid-template-columns:76px 1fr 54px 36px !important;}
 
@@ -356,8 +372,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .form-grid{grid-template-columns:1fr;}
   .field-full{grid-column:1;}
   .sfield input{font-size:14px;padding:6px 9px;}
-  .info-tooltip{left:auto;right:-4px;max-width:82vw;font-size:11px;}
-  .info-tooltip::before{left:auto;right:9px;}
 }
 @media (max-width: 375px) {
   .ph-title{font-size:1.55rem;}
