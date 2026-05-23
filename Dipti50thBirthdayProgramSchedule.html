@@ -506,7 +506,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         </div>
         <div style="display:flex;align-items:center;gap:12px;">
           <span style="font-size:13px;color:var(--text2);min-width:60px;">📐 Layout</span>
-          <a href="https://drive.google.com/file/d/1CDhqnH1QfFeC3R3mo_sjhJt7cdli9YWV/view?usp=sharing" target="_blank" rel="noopener" style="font-size:13px;color:var(--speech-c);word-break:break-all;">View hall layout on Google Drive</a>
+          <a href="https://drive.google.com/file/d/1QI37AS04gG_1If0d2RBSwlfSfXMyK8Kn/view?usp=sharing" target="_blank" rel="noopener" style="font-size:13px;color:var(--speech-c);word-break:break-all;">View hall layout on Google Drive</a>
         </div>
       </div>
     </div>
@@ -552,6 +552,7 @@ const staffResponsibilities = [
   { presenter:'Dipti',                 startTime:'17:20', endTime:'17:30', description:'Dipti Breakroom',                         notes:'Dipti Breakroom' },
   { presenter:'Dipti',                 startTime:'17:30', endTime:'18:20', description:'Dipti Welcome and Photos',                notes:'Dipti Welcome and Photos' },
   { presenter:'Dipti',                 startTime:'18:20', endTime:'18:30', description:'Dipti Breakroom 2',                       notes:'Dipti Breakroom 2' },
+  { presenter:'Melissa',               startTime:'18:15', endTime:'18:30', description:'Dipti Program Start - Warning',         notes:'Lights Dim' },
   { presenter:'Dipti',                 startTime:'18:30', endTime:'20:30', description:'Dipti Program Start',                     notes:'Dipti Program Start/Cake Cutting' },
   { presenter:'Dipti',                 startTime:'20:30', endTime:'20:45', description:'Dipti Breakroom 3',                       notes:'Dipti Breakroom 3' },
   { presenter:'Dipti',                 startTime:'20:45', endTime:'23:00', description:'Dipti Thank you/Dancing',                 notes:'Dipti Thank you/Dancing' },
@@ -587,32 +588,32 @@ function defaultData(){
   return [
     {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[],notes:'https://photos.app.goo.gl/VYY1CTcykPSuSn899'},
     {id:nextId++,label:'Cake Cutting, Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
-      {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and friends',songs:'Hawa ke sath sath, Ek Ladki ko, Aaye ho zhindagi me Tum, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'Link',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/1nFFeG9SGQAcdfk2T7HgMtnFtQB_jU5bn/view?usp=sharing'},
+      {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and friends',songs:'Ek Ladki ko, Aaye ho zhindagi me Tum, Hawa ke sath sath, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'Link',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/17pKnI9Bq0Fl02gGUik1HOsrO8TCSjWYl/view?usp=sharing'},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and friends',songs:'Aajkal, Shararath, Koi Kahe Kehta Rahe',status:'Link',duration:5,location:'',contact:'',notes:'https://drive.google.com/file/d/1HN0g46WpCiFHPwFbgKdJMX0DYtP0TJz2/view?usp=sharing'},
       {id:nextId++,type:'Dance',label:'Dance — Anamika and Mahima',presenter:'Anamika',songs:'Hello Hello, Bijuria Bijuria',status:'Link',duration:4,location:'',contact:'',notes:'https://drive.google.com/file/d/186RyhOKIgCahgOBr7hQMWAT8AOXaZ2Ud/view?usp=sharing'},
-      {id:nextId++,type:'Sing',label:'Sing — Swati & Mayank',presenter:'Swati / Mayank',songs:'Tumsa Koi Pyara, Ladki Badi Anjani Hai',status:'Confirmed',duration:10,location:'',contact:'',notes:'https://youtu.be/3AlIkaC-6Dk?si=59Lacn33pR89aI6x'},
+      {id:nextId++,type:'Sing',label:'Sing — Swati & Mayank',presenter:'Swati / Mayank',songs:'Tumsa Koi Pyara, Ladki Badi Anjani Hai',status:'Confirmed',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/1tjtGd3sLBxfs9bK-vi8lHD9jcrvdaSxh/view?usp=sharing'},
       {id:nextId++,type:'Dance',label:'Dance — Anamika and Shrish',presenter:'Anamika',songs:'Kali Teri Choti',status:'Link',duration:5,location:'',contact:'',notes:'https://drive.google.com/file/d/1PBlBIJZ15QLmFbMss--Ep9C1MPjR6aJP/view?usp=sharing'},
       {id:nextId++,type:'Speech',label:'Speech — Navneet',presenter:'Navneet',songs:'',status:'Confirmed',duration:5,location:'',contact:'',notes:''},
       {id:nextId++,type:'Dance',label:'Dance — Shilpi',presenter:'Shilpi',songs:'Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi',status:'Link',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/1hmzW4uWspg5_tMKs5B-u3uEIvORwlqKa/view?usp=sharing'},
-      {id:nextId++,type:'Sing',label:'Sing — Leena & Nirav',presenter:'Leena / Nirav',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
-      {id:nextId++,type:'Dance',label:'Dance — Belmont group',presenter:'Rajeshwari and friends',songs:'Aati Kya Khandala, Zoobi Doobi - 3 Idiots, Koi Kahe Kehta Rahe, Shararath',status:'Link',duration:8,location:'',contact:'',notes:'https://drive.google.com/file/d/1yWzMbOUJCKVj1KvqTc2qc7U3LjQqYjc2/view?usp=sharing'},
       {id:nextId++,type:'Speech',label:'Speech — Rajendra',presenter:'Rajendra',songs:'',status:'Confirmed',duration:5,location:'',contact:'',notes:''},
-      {id:nextId++,type:'Dance',label:'Dance — Marathi group',presenter:'Dipti and friends',songs:'Shaky Shaky, Hawa Hawa, Gulabi Saadi',status:'Link',duration:8,location:'',contact:'',notes:'https://drive.google.com/file/d/1ibTqsXoDy8LsQ70EDSskzhNiautrsMdV/view?usp=sharing'},
+      {id:nextId++,type:'Dance',label:'Dance — Marathi group',presenter:'Dipti and friends',songs:'Shaky Shaky, Hawa Hawa, Gulabi Saadi',status:'Link',duration:8,location:'',contact:'',notes:'https://drive.google.com/file/d/1kmTcV9Q9YmqC2AmTh3OR4WvawPJdm4L8/view?usp=sharing'},
+      {id:nextId++,type:'Sing',label:'Sing — Leena & Nirav',presenter:'Leena / Nirav',songs:'Duet Song',status:'TBD',duration:3,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Dance',label:'Dance — Belmont group',presenter:'Rajeshwari and friends',songs:'Rasputin, Shararath, Zoobi Doobi - 3 Idiots',status:'Link',duration:8,location:'',contact:'',notes:'https://drive.google.com/file/d/127Mtp2pDwdAgi-Cr94g1cmRzUM3FxGfq/view?usp=sharing'},
+      {id:nextId++,type:'Dance',label:'Dance — Anamika & Dipti',presenter:'Anamika / Dipti',songs:'Desi Girl',status:'Link',duration:2,location:'',contact:'',notes:'https://drive.google.com/file/d/1PAJ0E2outmmPMtBcezL29vQglXa-p6Fu/view?usp=sharing'},
       {id:nextId++,type:'Speech',label:'Speech — Chaitali',presenter:'Chaitali',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Neelesh',presenter:'Neelesh',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Rajashree',presenter:'Rajashree',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
     ]},
     {id:nextId++,label:'Sing  , Cake Cutting',description:'',duration:30,status:'Confirmed',expanded:true,slots:[
-      {id:nextId++,type:'Sing',label:'Sing — Happy Birthday',presenter:'Jaya',songs:'Happy Birthday to you',status:'Confirmed',duration:5,location:'',contact:'',notes:''},
+      {id:nextId++,type:'Sing',label:'Sing — Happy Birthday',presenter:'Jaya and friends',songs:'Happy Birthday to you',status:'Confirmed',duration:5,location:'',contact:'',notes:'https://drive.google.com/file/d/1pYgDtxYMOAXjPromHEcxNCFXrtoHnAcQ/view?usp=sharing'},
     ]},
     {id:nextId++,label:'Dinner and Thank You Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
       {id:nextId++,type:'Dinner',label:'Dinner',presenter:'',songs:'',status:'Confirmed',duration:45,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Mihir',presenter:'Mihir',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Maya',presenter:'Maya',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
       {id:nextId++,type:'Speech',label:'Speech — Dipti',presenter:'Dipti',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:''},
-      {id:nextId++,type:'Video',label:'Video — Mandar',presenter:'Mandar',songs:'Ek Ladki ko Dekha to Aaisa Laga, Dil Dhadakne Do, Yaar bina chain kha ree',status:'Link',duration:10,location:'',contact:'',notes:'https://youtu.be/frp9qKOQMTA'},
-      {id:nextId++,type:'Dance',label:'Dance — Anamika & Dipti',presenter:'Anamika / Dipti',songs:'Desi Girl',status:'Link',duration:2,location:'',contact:'',notes:'https://drive.google.com/file/d/1PAJ0E2outmmPMtBcezL29vQglXa-p6Fu/view?usp=sharing'},
+      {id:nextId++,type:'Video',label:'Video — Mandar',presenter:'Mandar',songs:'Ek Ladki ko Dekha to Aaisa Laga, Dil Dhadakne Do, Yaar bina chain kha ree',status:'Link',duration:10,location:'',contact:'',notes:'https://youtu.be/WDMr6LFmCds'},
     ]},
     {id:nextId++,label:'Dancing',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},
     {id:nextId++,label:'Gaapa Gosti / Chat / Tea',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},
