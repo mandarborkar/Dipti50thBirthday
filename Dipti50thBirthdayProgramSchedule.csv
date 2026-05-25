@@ -10,7 +10,7 @@ order,type,event_label,presenter,songs,status,duration,location,contact,notes
 2.7,Speech,Speech — Navneet,Navneet,,Confirmed,5,,,
 2.8,Dance,Dance — Shilpi,Shilpi,"Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi",Link,10,,,https://drive.google.com/file/d/1hmzW4uWspg5_tMKs5B-u3uEIvORwlqKa/view?usp=sharing
 2.9,Speech,Speech — Rajendra,Rajendra,,Confirmed,5,,,
-2.10,Dance,Dance — Marathi group,Dipti and friends,"Shaky Shaky, Hawa Hawa, Gulabi Saadi",Link,8,,,https://drive.google.com/file/d/1kmTcV9Q9YmqC2AmTh3OR4WvawPJdm4L8/view?usp=sharing
+2.1,Dance,Dance — Marathi group,Dipti and friends,"Shaky Shaky, Hawa Hawa, Gulabi Saadi",Link,8,,,https://drive.google.com/file/d/1kmTcV9Q9YmqC2AmTh3OR4WvawPJdm4L8/view?usp=sharing
 2.11,Dance,Dance — Anamika and Shrish,Anamika,Kali Teri Choti,Link,5,,,https://drive.google.com/file/d/1PBlBIJZ15QLmFbMss--Ep9C1MPjR6aJP/view?usp=sharing
 2.12,Sing,Sing — Leena & Nirav,Leena / Nirav,Duet Song,TBD,3,,,
 2.13,Dance,Dance — Belmont group,Rajeshwari and friends,"Rasputin, Shararath, Zoobi Doobi - 3 Idiots",Link,8,,,https://drive.google.com/file/d/127Mtp2pDwdAgi-Cr94g1cmRzUM3FxGfq/view?usp=sharing
@@ -53,9 +53,12 @@ P22,Organizer,Dipti Breakroom 3,Dipti,Dipti Breakroom 3,,,20:30,20:45,
 P23,Organizer,Dipti Thank you/Dancing,Dipti,Dipti Thank you/Dancing,,,20:45,23:00,
 P24,Organizer,Cal Breakroom,Cal,Cal Breakroom 2,,,20:00,20:30,
 P25,Organizer,Cal Dinner,Cal,Cal Dinner,,,20:30,21:00,
-P26,Organizer,Hall Cleanup,Mandar,Hall Cleanup,,,22:00,22:45,
-P27,Organizer,Leave for Home,Mandar,Leave for Home,,,22:45,23:00,
-P28,Organizer,Cal Breakroom,Cal,Cal Breakroom 3 / Sleep,,,23:00,23:59,
+P26,Organizer,Serve gluten free cake for Khurshid,Mandar,Serve gluten free cake,,,20:45,21:00,
+P27,Organizer,Hall Cleanup,Mandar,Hall Cleanup,,,22:00,22:45,
+P28,Organizer,Pay Melvin,Mandar,Pay Melvin,,,21:00,21:15,
+P29,Organizer,Gratitude to Serving staff,Mandar,Pay additional gratuity to serving staff,,,22:00,22:15,
+P30,Organizer,Leave for Home,Mandar,Leave for Home,,,22:45,23:00,
+P31,Organizer,Cal Breakroom,Cal,Cal Breakroom 3 / Sleep,,,23:00,23:59,
 ,,,,,,,,,
 # Event Details,,,,,,,,,
 Photos,https://photos.app.goo.gl/VYY1CTcykPSuSn899,,,,,,,,
