@@ -594,7 +594,7 @@ const BASE_START = () => { const v=document.getElementById('eventStart')?.value|
 function defaultData(){
   return [
     {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[],notes:'https://photos.app.goo.gl/VYY1CTcykPSuSn899'},
-    {id:nextId++,label:'Cake Cutting, Performances and Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
+    {id:nextId++,label:'Celebrations and Speeches',description:'',duration:120,status:'Confirmed',expanded:true,slots:[
       {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and friends',songs:'Ek Ladki ko, Aaye ho zhindagi me Tum, Hawa ke sath sath, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'Link',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/17pKnI9Bq0Fl02gGUik1HOsrO8TCSjWYl/view?usp=sharing',videoLink:'https://youtu.be/RdmpWhhs850?si=x1rx0CJa1zKZY1NZ&t=573'},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:'',videoLink:'https://youtu.be/RdmpWhhs850?si=IxnujgUWBQEsEM9p&t=1102'},
       {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and friends',songs:'Aajkal, Shararath, Koi Kahe Kehta Rahe',status:'Link',duration:5,location:'',contact:'',notes:'https://drive.google.com/file/d/1HN0g46WpCiFHPwFbgKdJMX0DYtP0TJz2/view?usp=sharing',videoLink:'https://youtu.be/RdmpWhhs850?si=NHJCRBnYrc93HDaJ&t=1268'},
@@ -612,11 +612,12 @@ function defaultData(){
       {id:nextId++,type:'Speech',label:'Speech — Neelesh',presenter:'Neelesh',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:'',videoLink:'https://youtu.be/RdmpWhhs850?si=YXuDARCPqrdSCSQ6&t=5033'},
       {id:nextId++,type:'Speech',label:'Speech — Rajashree',presenter:'Rajashree',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:'',videoLink:'https://youtu.be/RdmpWhhs850?si=KIgyx8W_3cO01W3L&t=5374'},
     ]},
-    {id:nextId++,label:'Sing  , Cake Cutting',description:'',duration:30,status:'Confirmed',expanded:true,slots:[
-      {id:nextId++,type:'Sing',label:'Sing — Happy Birthday',presenter:'Jaya and friends',songs:'Happy Birthday to you',status:'Confirmed',duration:5,location:'',contact:'',notes:'https://drive.google.com/file/d/1pYgDtxYMOAXjPromHEcxNCFXrtoHnAcQ/view?usp=sharing'},
+    {id:nextId++,label:'Dinner & Photos',description:'',duration:45,status:'Confirmed',expanded:true,slots:[
+      {id:nextId++,type:'Dinner',label:'Dinner',presenter:'',songs:'',status:'Confirmed',duration:30,location:'',contact:'',notes:'',videoLink:''},
+      {id:nextId++,type:'Photos',label:'Photos',presenter:'',songs:'',status:'Confirmed',duration:15,location:'',contact:'',notes:'',videoLink:''},
     ]},
-    {id:nextId++,label:'Dinner and Thank You Speeches',description:'',duration:60,status:'Confirmed',expanded:true,slots:[
-      {id:nextId++,type:'Dinner',label:'Dinner',presenter:'',songs:'',status:'Confirmed',duration:45,location:'',contact:'',notes:''},
+    {id:nextId++,label:'Cake Cutting and Thank You Speeches',description:'',duration:30,status:'Confirmed',expanded:true,slots:[
+      {id:nextId++,type:'Cake Cutting',label:'Sing  , Cake Cutting',presenter:'Jaya and friends',songs:'Happy Birthday to you',status:'Confirmed',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/1pYgDtxYMOAXjPromHEcxNCFXrtoHnAcQ/view?usp=sharing',videoLink:''},
       {id:nextId++,type:'Speech',label:'Speech — Mihir',presenter:'Mihir',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:'',videoLink:'https://youtu.be/RdmpWhhs850?si=AgHvEP7iwKIBzX04&t=5665'},
       {id:nextId++,type:'Speech',label:'Speech — Maya',presenter:'Maya',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:'',videoLink:'https://youtu.be/RdmpWhhs850?si=Y9CZwHSw7UbcLKnd&t=5841'},
       {id:nextId++,type:'Speech',label:'Speech — Dipti',presenter:'Dipti',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:'',videoLink:'https://youtu.be/RdmpWhhs850?si=f_9DTkGVUQ0YLhG_&t=6027'},
