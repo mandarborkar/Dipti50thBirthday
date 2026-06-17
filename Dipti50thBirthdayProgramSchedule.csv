@@ -1,66 +1,67 @@
-order,type,event_label,presenter,songs,status,duration,location,contact,notes
-1,Main,Meet & Greet,,"Photos with Dipti, Tea and Appetizers",Confirmed,60,,,https://photos.app.goo.gl/VYY1CTcykPSuSn899
-2,Main,"Cake Cutting, Performances and Speeches",,Sub-program,Confirmed,60,,,
-2.1,Sing,Sing — NSNT,Samina and friends,"Ek Ladki ko, Aaye ho zhindagi me Tum, Hawa ke sath sath, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye",Link,10,,,https://drive.google.com/file/d/17pKnI9Bq0Fl02gGUik1HOsrO8TCSjWYl/view?usp=sharing
-2.2,Speech,Speech — Ruchi,Ruchi,,Confirmed,3,,,
-2.3,Dance,Dance — ZNMD,Ruchi and friends,"Aajkal, Shararath, Koi Kahe Kehta Rahe",Link,5,,,https://drive.google.com/file/d/1HN0g46WpCiFHPwFbgKdJMX0DYtP0TJz2/view?usp=sharing
-2.4,Dance,Dance — Anamika and Mahima,Anamika,"Hello Hello, Bijuria Bijuria ",Link,4,,,https://drive.google.com/file/d/186RyhOKIgCahgOBr7hQMWAT8AOXaZ2Ud/view?usp=sharing
-2.5,Sing,Sing — Swati & Mayank,Swati / Mayank,"Tumsa Koi Pyara, Ladki Badi Anjani Hai",Confirmed,10,,,https://drive.google.com/file/d/1tjtGd3sLBxfs9bK-vi8lHD9jcrvdaSxh/view?usp=sharing
-2.6,Dance,Dance — Anamika & Dipti,Anamika / Dipti,Desi Girl,Link,2,,,https://drive.google.com/file/d/1PAJ0E2outmmPMtBcezL29vQglXa-p6Fu/view?usp=sharing
-2.7,Speech,Speech — Navneet,Navneet,,Confirmed,5,,,
-2.8,Dance,Dance — Shilpi,Shilpi,"Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi",Link,10,,,https://drive.google.com/file/d/1hmzW4uWspg5_tMKs5B-u3uEIvORwlqKa/view?usp=sharing
-2.9,Speech,Speech — Rajendra,Rajendra,,Confirmed,5,,,
-2.1,Dance,Dance — Marathi group,Dipti and friends,"Shaky Shaky, Hawa Hawa, Gulabi Saadi",Link,8,,,https://drive.google.com/file/d/1kmTcV9Q9YmqC2AmTh3OR4WvawPJdm4L8/view?usp=sharing
-2.11,Dance,Dance — Anamika and Shrish,Anamika,Kali Teri Choti,Link,5,,,https://drive.google.com/file/d/1PBlBIJZ15QLmFbMss--Ep9C1MPjR6aJP/view?usp=sharing
-2.12,Sing,Sing — Leena & Nirav,Leena / Nirav,Duet Song,TBD,3,,,
-2.13,Dance,Dance — Belmont group,Rajeshwari and friends,"Rasputin, Shararath, Zoobi Doobi - 3 Idiots",Link,8,,,https://drive.google.com/file/d/127Mtp2pDwdAgi-Cr94g1cmRzUM3FxGfq/view?usp=sharing
-2.14,Speech,Speech — Chaitali,Chaitali,,Confirmed,3,,,
-2.15,Speech,Speech — Neelesh,Neelesh,,Confirmed,3,,,
-2.16,Speech,Speech — Rajashree,Rajashree,,Confirmed,3,,,
-3,Main,"Sing  , Cake Cutting",Jaya and friends,Happy Birthday to you,Confirmed,30,,,https://drive.google.com/file/d/1pYgDtxYMOAXjPromHEcxNCFXrtoHnAcQ/view?usp=sharing
-4,Main,Dinner and Thank You Speeches,,Sub-program,Confirmed,60,,,
-4.1,Dinner,Dinner,,,Confirmed,45,,,
-4.2,Speech,Speech — Mihir,Mihir,,Confirmed,3,,,
-4.3,Speech,Speech — Maya,Maya,,Confirmed,3,,,
-4.4,Speech,Speech — Dipti,Dipti,,Confirmed,3,,,
-4.5,Video,Video — Mandar,Mandar,"Ek Ladki ko Dekha to Aaisa Laga, Dil Dhadakne Do, Yaar bina chain kha ree",Link,10,,,https://youtu.be/WDMr6LFmCds
-5,Main,Dancing,,,Confirmed,60,,,
-6,Main,Gaapa Gosti / Chat / Tea,,,Confirmed,60,,,
-,,,,,,,,,
-# Event Organizer,,,,,,,,,
-P1,Organizer,Photographer,Melvin,Covering the full evening,,,17:00,22:00,
-P2,Organizer,DJ,Tej,Music throughout the evening,,,17:30,23:00,
-P3,Organizer,Appetizers & Tea,Tarun,Set up and serve appetizers and tea during Meet & Greet,,,17:00,19:00,
-P4,Organizer,Coffee,Melissa,Set up and serve Coffee,,,17:00,19:00,
-P5,Organizer,"Transition — Appetizers out, Dinner in",Tarun,"Clear appetizers, lay down dinner service",,,19:00,19:30,
-P6,Organizer,Cake Cutting Setup,Melissa,Cake Cutting Setup,,,19:15,19:30,
-P7,Organizer,Dinner Service,Tarun,Serve dinner to guests,,,19:30,21:30,
-P8,Organizer,Cake Serving / Coffee,Melissa,Cake Serving / Coffee,,,20:45,21:15,
-P9,Organizer,Dessert & Tea,Tarun,Set out dessert and tea service,,,21:00,22:30,
-P10,Organizer,Hair and Saree Preparation / Make up,Poonam / Dipti / Maya,Hair and Saree Preparation / Make up,,,13:00,16:00,
-P11,Organizer,Hall Setup,Mandar,Hall Setup (Projector/Speaker/Laptop/Photo backdrop/Easel),,,14:00,16:00,
-P12,Organizer,Room Setup,Mandar,Room Setup (Mihir setup),,,14:00,16:00,
-P13,Organizer,Cal Breakroom,Cal,Cal Breakroom 1,,,16:15,16:30,
-P14,Organizer,Leave Home,Dipti,Leave Home,,,16:30,16:30,
-P15,Organizer,Arrive Crowne Plaza,Dipti,Arrive Crowne Plaza,,,17:00,17:00,
-P16,Organizer,Settle In/Appetizer/Family Photos,Dipti,Settle In/Appetizer/Family Photos,,,17:00,17:20,
-P17,Organizer,Dipti Breakroom,Dipti,Dipti Breakroom,,,17:20,17:30,
-P18,Organizer,Dipti Welcome and Photos,Dipti,Dipti Welcome and Photos,,,17:30,18:20,
-P19,Organizer,Dipti Breakroom 2,Dipti,Dipti Breakroom 2,,,18:20,18:30,
-P20,Organizer,Dipti Program Start - Warning,Melissa,Lights Dim,,,18:15,18:30,
-P21,Organizer,Dipti Program Start,Dipti,Dipti Program Start/Cake Cutting,,,18:30,20:30,
-P22,Organizer,Dipti Breakroom 3,Dipti,Dipti Breakroom 3,,,20:30,20:45,
-P23,Organizer,Dipti Thank you/Dancing,Dipti,Dipti Thank you/Dancing,,,20:45,23:00,
-P24,Organizer,Cal Breakroom,Cal,Cal Breakroom 2,,,20:00,20:30,
-P25,Organizer,Cal Dinner,Cal,Cal Dinner,,,20:30,21:00,
-P26,Organizer,Serve gluten free cake for Khurshid,Mandar,Serve gluten free cake,,,20:45,21:00,
-P27,Organizer,Hall Cleanup,Mandar,Hall Cleanup,,,22:00,22:45,
-P28,Organizer,Pay Melvin,Mandar,Pay Melvin,,,21:00,21:15,
-P29,Organizer,Gratitude to Serving staff,Mandar,Pay additional gratuity to serving staff,,,22:00,22:15,
-P30,Organizer,Leave for Home,Mandar,Leave for Home,,,22:45,23:00,
-P31,Organizer,Cal Breakroom,Cal,Cal Breakroom 3 / Sleep,,,23:00,23:59,
-,,,,,,,,,
-# Event Details,,,,,,,,,
-Photos,https://photos.app.goo.gl/VYY1CTcykPSuSn899,,,,,,,,
-Layout,https://drive.google.com/file/d/1QI37AS04gG_1If0d2RBSwlfSfXMyK8Kn/view?usp=sharing,,,,,,,,
-QR Code,https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html,,,,,,,,
+order,type,event_label,presenter,songs,status,duration,location,contact,notes,Video Link
+1,Main,Meet & Greet,,"Photos with Dipti, Tea and Appetizers",Confirmed,60,,,https://photos.app.goo.gl/VYY1CTcykPSuSn899,
+2,Main,"Cake Cutting, Performances and Speeches",,Sub-program,Confirmed,60,,,,
+2.1,Sing,Sing — NSNT,Samina and friends,"Ek Ladki ko, Aaye ho zhindagi me Tum, Hawa ke sath sath, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye",Link,10,,,https://drive.google.com/file/d/17pKnI9Bq0Fl02gGUik1HOsrO8TCSjWYl/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=x1rx0CJa1zKZY1NZ&t=573
+2.2,Speech,Speech — Ruchi,Ruchi,,Confirmed,3,,,,https://youtu.be/RdmpWhhs850?si=IxnujgUWBQEsEM9p&t=1102
+2.3,Dance,Dance — ZNMD,Ruchi and friends,"Aajkal, Shararath, Koi Kahe Kehta Rahe",Link,5,,,https://drive.google.com/file/d/1HN0g46WpCiFHPwFbgKdJMX0DYtP0TJz2/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=NHJCRBnYrc93HDaJ&t=1268
+2.4,Dance,Dance — Anamika and Mahima,Anamika,"Hello Hello, Bijuria Bijuria ",Link,4,,,https://drive.google.com/file/d/186RyhOKIgCahgOBr7hQMWAT8AOXaZ2Ud/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=xIYXDYhFpKaHwoLZ&t=1559
+2.5,Sing,Sing — Swati & Mayank,Swati / Mayank,"Tumsa Koi Pyara, Ladki Badi Anjani Hai",Confirmed,10,,,https://drive.google.com/file/d/1tjtGd3sLBxfs9bK-vi8lHD9jcrvdaSxh/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=gsHwQZ0J2LPk-5wX&t=1821
+2.6,Dance,Dance — Anamika & Dipti,Anamika / Dipti,Desi Girl,Link,2,,,https://drive.google.com/file/d/1PAJ0E2outmmPMtBcezL29vQglXa-p6Fu/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=9zzegRnyHvZpVmjR&t=2381
+2.7,Speech,Speech — Navneet,Navneet,,Confirmed,5,,,,https://youtu.be/RdmpWhhs850?si=_cT7hLm8cSRzzM9X&t=2565
+2.8,Dance,Dance — Shilpi,Shilpi,"Hooto Pai Aasi Baat, Chumka Gira re Barle ki bazaar mae, Salame Isshka Meeri jaa, Bade mushkil goore goore gallo pe, Aachiya Melao Khabhi, Aatara baaras ki kawari kaali thi",Link,10,,,https://drive.google.com/file/d/1hmzW4uWspg5_tMKs5B-u3uEIvORwlqKa/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=IT_ZP8SjeXzgtmGt&t=2715
+2.9,Speech,Speech — Rajendra,Rajendra,,Confirmed,5,,,,https://youtu.be/RdmpWhhs850?si=TTfw3jGD97pGW2VZ&t=3021
+2.1,Dance,Dance — Marathi group,Dipti and friends,"Shaky Shaky, Hawa Hawa, Gulabi Saadi",Link,8,,,https://drive.google.com/file/d/1kmTcV9Q9YmqC2AmTh3OR4WvawPJdm4L8/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=Qpq2m7l6Nc4LtvkL&t=3202
+2.11,Dance,Dance — Anamika and Shrish,Anamika,Kali Teri Choti,Link,5,,,https://drive.google.com/file/d/1PBlBIJZ15QLmFbMss--Ep9C1MPjR6aJP/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=O_LIq7K9ce7O7T0V&t=3490
+2.12,Dance,Dance — Belmont group,Rajeshwari and friends,"Rasputin, Shararath, Zoobi Doobi - 3 Idiots",Link,8,,,https://drive.google.com/file/d/127Mtp2pDwdAgi-Cr94g1cmRzUM3FxGfq/view?usp=sharing,https://youtu.be/RdmpWhhs850?si=DSqX03UCCeaRYyuh&t=3659
+2.13,Sing,Sing — Leena & Nirav,Leena / Nirav,Duet Song,TBD,3,,,,https://youtu.be/RdmpWhhs850?si=0IJE8gqrhkd-A3wL&t=4092
+2.14,Speech,Speech — Chaitali,Chaitali,,Confirmed,3,,,,https://youtu.be/RdmpWhhs850?si=IHzp3IPGq_naAatf&t=4769
+2.15,Speech,Speech — Neelesh,Neelesh,,Confirmed,3,,,,https://youtu.be/RdmpWhhs850?si=YXuDARCPqrdSCSQ6&t=5033
+2.16,Speech,Speech — Rajashree,Rajashree,,Confirmed,3,,,,https://youtu.be/RdmpWhhs850?si=KIgyx8W_3cO01W3L&t=5374
+3,Main,"Sing  , Cake Cutting",Jaya and friends,Happy Birthday to you,Confirmed,30,,,https://drive.google.com/file/d/1pYgDtxYMOAXjPromHEcxNCFXrtoHnAcQ/view?usp=sharing,
+4,Main,Dinner and Thank You Speeches,,Sub-program,Confirmed,60,,,,
+4.1,Dinner,Dinner,,,Confirmed,45,,,,
+4.2,Speech,Speech — Mihir,Mihir,,Confirmed,3,,,,https://youtu.be/RdmpWhhs850?si=AgHvEP7iwKIBzX04&t=5665
+4.3,Speech,Speech — Maya,Maya,,Confirmed,3,,,,https://youtu.be/RdmpWhhs850?si=Y9CZwHSw7UbcLKnd&t=5841
+4.4,Speech,Speech — Dipti,Dipti,,Confirmed,3,,,,https://youtu.be/RdmpWhhs850?si=f_9DTkGVUQ0YLhG_&t=6027
+4.5,Video,Video — Mandar,Mandar,"Ek Ladki ko Dekha to Aaisa Laga, Dil Dhadakne Do, Yaar bina chain kha ree",Link,10,,,https://youtu.be/WDMr6LFmCds,https://youtu.be/RdmpWhhs850?si=OpUvOYmslNqmOT1W&t=6123
+5,Main,Dancing,,,Confirmed,60,,,,
+6,Main,Gaapa Gosti / Chat / Tea,,,Confirmed,60,,,,
+,,,,,,,,,,
+# Event Organizer,,,,,,,,,,
+P1,Organizer,Photographer,Melvin,Covering the full evening,,,17:00,22:00,,
+P2,Organizer,DJ,Tej,Music throughout the evening,,,17:30,23:00,,
+P3,Organizer,Appetizers & Tea,Tarun,Set up and serve appetizers and tea during Meet & Greet,,,17:00,19:00,,
+P4,Organizer,Coffee,Melissa,Set up and serve Coffee,,,17:00,19:00,,
+P5,Organizer,"Transition — Appetizers out, Dinner in",Tarun,"Clear appetizers, lay down dinner service",,,19:00,19:30,,
+P6,Organizer,Cake Cutting Setup,Melissa,Cake Cutting Setup,,,19:15,19:30,,
+P7,Organizer,Dinner Service,Tarun,Serve dinner to guests,,,19:30,21:30,,
+P8,Organizer,Cake Serving / Coffee,Melissa,Cake Serving / Coffee,,,20:45,21:15,,
+P9,Organizer,Dessert & Tea,Tarun,Set out dessert and tea service,,,21:00,22:30,,
+P10,Organizer,Hair and Saree Preparation / Make up,Poonam / Dipti / Maya,Hair and Saree Preparation / Make up,,,13:00,16:00,,
+P11,Organizer,Hall Setup,Mandar,Hall Setup (Projector/Speaker/Laptop/Photo backdrop/Easel),,,14:00,16:00,,
+P12,Organizer,Room Setup,Mandar,Room Setup (Mihir setup),,,14:00,16:00,,
+P13,Organizer,Cal Breakroom,Cal,Cal Breakroom 1,,,16:15,16:30,,
+P14,Organizer,Leave Home,Dipti,Leave Home,,,16:30,16:30,,
+P15,Organizer,Arrive Crowne Plaza,Dipti,Arrive Crowne Plaza,,,17:00,17:00,,
+P16,Organizer,Settle In/Appetizer/Family Photos,Dipti,Settle In/Appetizer/Family Photos,,,17:00,17:20,,
+P17,Organizer,Dipti Breakroom,Dipti,Dipti Breakroom,,,17:20,17:30,,
+P18,Organizer,Dipti Welcome and Photos,Dipti,Dipti Welcome and Photos,,,17:30,18:20,,
+P19,Organizer,Dipti Breakroom 2,Dipti,Dipti Breakroom 2,,,18:20,18:30,,
+P20,Organizer,Dipti Program Start - Warning,Melissa,Lights Dim,,,18:15,18:30,,
+P21,Organizer,Dipti Program Start,Dipti,Dipti Program Start/Cake Cutting,,,18:30,20:30,,
+P22,Organizer,Dipti Breakroom 3,Dipti,Dipti Breakroom 3,,,20:30,20:45,,
+P23,Organizer,Dipti Thank you/Dancing,Dipti,Dipti Thank you/Dancing,,,20:45,23:00,,
+P24,Organizer,Cal Breakroom,Cal,Cal Breakroom 2,,,20:00,20:30,,
+P25,Organizer,Cal Dinner,Cal,Cal Dinner,,,20:30,21:00,,
+P26,Organizer,Serve gluten free cake for Khurshid,Mandar,Serve gluten free cake,,,20:45,21:00,,
+P27,Organizer,Hall Cleanup,Mandar,Hall Cleanup,,,22:00,22:45,,
+P28,Organizer,Pay Melvin,Mandar,Pay Melvin,,,21:00,21:15,,
+P29,Organizer,Gratitude to Serving staff,Mandar,Pay additional gratuity to serving staff,,,22:00,22:15,,
+P30,Organizer,Leave for Home,Mandar,Leave for Home,,,22:45,23:00,,
+P31,Organizer,Cal Breakroom,Cal,Cal Breakroom 3 / Sleep,,,23:00,23:59,,
+,,,,,,,,,,
+# Event Details,,,,,,,,,,
+Photos,https://photos.app.goo.gl/VYY1CTcykPSuSn899,,,,,,,,,
+Layout,https://drive.google.com/file/d/1QI37AS04gG_1If0d2RBSwlfSfXMyK8Kn/view?usp=sharing,,,,,,,,,
+QR Code,https://htmlpreview.github.io/?https://github.com/mandarborkar/Dipti50thBirthday/blob/main/Dipti50thBirthdayProgramSchedule.html,,,,,,,,,
+Main Event Video,https://youtu.be/RdmpWhhs850?si=JivDD2_CawAhFen1,,,,,,,,,
