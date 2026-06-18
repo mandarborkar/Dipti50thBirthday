@@ -395,6 +395,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .mem-link-icon{font-size:1.4rem;flex-shrink:0;width:2rem;text-align:center;}
 .mem-link-label{font-size:14px;font-weight:500;color:var(--text);}
 .mem-link-sub{font-size:12px;color:var(--text3);margin-top:1px;}
+.mem-upload-callout{font-size:13px;font-weight:700;color:#fff;background:linear-gradient(135deg,#e8879c,#c9952a);padding:4px 10px;border-radius:6px;margin-top:4px;display:inline-block;letter-spacing:.01em;}
 .mem-photo-wrap{border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12);}
 .mem-photo{width:100%;height:auto;display:block;}
 
@@ -425,6 +426,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .mem-message{font-size:1.1rem;}
   .mem-link{padding:.6rem .85rem;}
   .mem-link-label{font-size:13px;}
+  .mem-upload-callout{font-size:12px;padding:3px 8px;}
   .mem-perf-table th,.mem-perf-table td{padding:7px 8px;font-size:12px;}
 }
 .tour-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);pointer-events:all;cursor:pointer;}
@@ -486,7 +488,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         <div class="mem-links">
           <a href="https://photos.app.goo.gl/VYY1CTcykPSuSn899" target="_blank" rel="noopener" class="mem-link">
             <span class="mem-link-icon">📸</span>
-            <div><div class="mem-link-label">Our Photos</div><div class="mem-link-sub">Please upload your photos &amp; videos here</div></div>
+            <div><div class="mem-link-label">Our Photos</div><div class="mem-upload-callout">📤 Please upload your photos &amp; videos here</div></div>
           </a>
           <a href="https://youtu.be/RdmpWhhs850?si=JivDD2_CawAhFen1" target="_blank" rel="noopener" class="mem-link">
             <span class="mem-link-icon">🎥</span>
@@ -692,7 +694,8 @@ function defaultData(){
   return [
     {id:nextId++,label:'Meet & Greet',description:'Photos with Dipti, Tea and Appetizers',duration:60,status:'Confirmed',expanded:false,slots:[],notes:'https://photos.app.goo.gl/VYY1CTcykPSuSn899'},
     {id:nextId++,label:'Celebrations and Speeches',description:'',duration:120,status:'Confirmed',expanded:true,slots:[
-      {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and friends',songs:'Ek Ladki ko, Aaye ho zhindagi me Tum, Hawa ke sath sath, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'Link',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/17pKnI9Bq0Fl02gGUik1HOsrO8TCSjWYl/view?usp=sharing',videoLink:'https://youtu.be/RdmpWhhs850?si=x1rx0CJa1zKZY1NZ&t=573'},
+      {id:nextId++,type:'Speech',label:'Opening',presenter:'Rajendra Badadare',songs:'',status:'Confirmed',duration:10,location:'',contact:'',notes:'Rajendra, Mihir, Maya & Mandar',videoLink:'https://youtu.be/RdmpWhhs850?si=Z4C9i-TQHLaSLIA9&t=1'},
+      {id:nextId++,type:'Sing',label:'Sing — NSNT',presenter:'Samina and friends',songs:'Ek Ladki ko, Aaye ho zhindagi me Tum, Hawa ke sath sath, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye',status:'Link',duration:10,location:'',contact:'',notes:'https://drive.google.com/file/d/17pKnI9Bq0Fl02gGUik1HOsrO8TCSjWYl/view?usp=sharing',videoLink:'https://youtu.be/RdmpWhhs850?si=cB_bjFgICi3PqvyX&t=371'},
       {id:nextId++,type:'Speech',label:'Speech — Ruchi',presenter:'Ruchi',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:'',videoLink:'https://youtu.be/RdmpWhhs850?si=IxnujgUWBQEsEM9p&t=1102'},
       {id:nextId++,type:'Dance',label:'Dance — ZNMD',presenter:'Ruchi and friends',songs:'Aajkal, Shararath, Koi Kahe Kehta Rahe',status:'Link',duration:5,location:'',contact:'',notes:'https://drive.google.com/file/d/1HN0g46WpCiFHPwFbgKdJMX0DYtP0TJz2/view?usp=sharing',videoLink:'https://youtu.be/RdmpWhhs850?si=NHJCRBnYrc93HDaJ&t=1268'},
       {id:nextId++,type:'Dance',label:'Dance — Anamika and Mahima',presenter:'Anamika',songs:'Hello Hello, Bijuria Bijuria',status:'Link',duration:4,location:'',contact:'',notes:'https://drive.google.com/file/d/186RyhOKIgCahgOBr7hQMWAT8AOXaZ2Ud/view?usp=sharing',videoLink:'https://youtu.be/RdmpWhhs850?si=xIYXDYhFpKaHwoLZ&t=1559'},
@@ -720,8 +723,8 @@ function defaultData(){
       {id:nextId++,type:'Speech',label:'Speech — Dipti',presenter:'Dipti',songs:'',status:'Confirmed',duration:3,location:'',contact:'',notes:'',videoLink:'https://youtu.be/RdmpWhhs850?si=f_9DTkGVUQ0YLhG_&t=6027'},
       {id:nextId++,type:'Video',label:'Video — Mandar',presenter:'Mandar',songs:'Ek Ladki ko Dekha to Aaisa Laga, Dil Dhadakne Do, Yaar bina chain kha ree',status:'Link',duration:10,location:'',contact:'',notes:'https://youtu.be/WDMr6LFmCds',videoLink:'https://youtu.be/RdmpWhhs850?si=OpUvOYmslNqmOT1W&t=6123'},
     ]},
-    {id:nextId++,label:'Dancing',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},
-    {id:nextId++,label:'Gaapa Gosti / Chat / Tea',description:'',duration:60,status:'Confirmed',expanded:false,slots:[]},
+    {id:nextId++,label:'Dancing/DJ',description:'',duration:45,status:'Confirmed',expanded:false,slots:[]},
+    {id:nextId++,label:'Gaapa Gosti / Chat / Tea',description:'',duration:30,status:'Confirmed',expanded:false,slots:[]},
   ];
 }
 
