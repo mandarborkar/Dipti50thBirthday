@@ -270,6 +270,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .tab-spacer{display:none;}
   .tab-actions{display:none;}
   .tour-guide-btn{font-size:11px;padding:7px 10px;white-space:nowrap;}
+  .lang-toggle-select{font-size:11px;padding:5px 7px;min-width:64px;}
 
   .program-wrap{padding:.9rem .85rem 5rem;}
   .prog-block{margin-bottom:1.3rem;}
@@ -463,14 +464,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .header-qr-label{font-size:9px;text-align:center;color:#a09080;margin-top:3px;letter-spacing:.05em;}
 /* ── SHARE LINK BUTTON ── */
 #shareSchedBtn{color:var(--speech-c);border-color:var(--speech-bg);background:var(--speech-bg);}
-#shareSchedBtn:hover{background:#d4e8fc;border-color:#a8c8f0;}
+#shareSchedBtn:hover{background:#d4e8fc;border-color:#a8c8f0;}/* ── CONFETTI ── */
+#confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;}
 </style>
 </head>
 <body>
 
 <header class="program-header">
   <div class="ph-inner">
-    <div class="ph-eyebrow">Evening Program</div>
+    <div class="ph-eyebrow" data-i18n="eyebrow">Evening Program</div>
     <div class="ph-title" id="dispTitle">Dipti's 50th Birthday</div>
     <div class="ph-meta" id="dispMeta"></div>
   </div>
@@ -482,15 +484,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <div class="tab-bar">
   <div class="tab-bar-inner">
-    <button class="tab active" data-tab="memories" onclick="switchTab('memories',this)">Memories</button>
-    <button class="tab" data-tab="program" onclick="switchTab('program',this)">Program</button>
-    <button class="tab" data-tab="myschedule" onclick="switchTab('myschedule',this)">My Schedule</button>
-    <button class="btn btn-sm btn-ghost tour-guide-btn" onclick="startTour()" style="font-size:12px;border-color:var(--border2);margin:0 4px;flex-shrink:0;" title="Guided tour">? Guide</button>
-    <button class="tab" data-tab="manage" onclick="switchTab('manage',this)">Manage Program</button>
-    <button class="tab" data-tab="settings" onclick="switchTab('settings',this)">Event Details</button>
+    <button class="tab active" data-tab="memories" data-i18n="tab_memories" onclick="switchTab('memories',this)">Memories</button>
+    <button class="tab" data-tab="program" data-i18n="tab_program" onclick="switchTab('program',this)">Program</button>
+    <button class="tab" data-tab="myschedule" data-i18n="tab_myschedule" onclick="switchTab('myschedule',this)">My Schedule</button>
+    <button class="btn btn-sm btn-ghost tour-guide-btn" onclick="startTour()" style="font-size:12px;border-color:var(--border2);margin:0 4px;flex-shrink:0;" title="Guided tour" data-i18n="tab_guide">? Guide</button>
+    <button class="tab" data-tab="manage" data-i18n="tab_manage" onclick="switchTab('manage',this)">Manage Program</button>
+    <button class="tab" data-tab="settings" data-i18n="tab_settings" onclick="switchTab('settings',this)">Event Details</button>
+    <select id="langToggle" onchange="setLanguage(this.value)" class="lang-toggle-select" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px;cursor:pointer;min-width:84px;flex-shrink:0;">
+      <option value="en">English</option>
+      <option value="mr">मराठी</option>
+      <option value="hi">हिन्दी</option>
+    </select>
     <div class="tab-spacer"></div>
     <div class="tab-actions">
-      <button class="btn btn-gold print-btn" onclick="exportPrint()">Print / Export PDF</button>
+      <button class="btn btn-gold print-btn" onclick="exportPrint()" data-i18n="btn_print">Print / Export PDF</button>
     </div>
   </div>
 </div>
@@ -502,19 +509,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <!-- Hero: photo right, info left -->
     <div class="mem-hero">
       <div class="mem-info">
-        <div class="mem-message">Thank you for attending and showering us with all your love &amp; blessings!!</div>
+        <div class="mem-message" data-i18n="mem_message">Thank you for attending and showering us with all your love &amp; blessings!!</div>
         <div class="mem-links">
           <a href="https://photos.app.goo.gl/6oppsWptka6Ddr1L6" target="_blank" rel="noopener" class="mem-link">
             <span class="mem-link-icon">📷</span>
-            <div><div class="mem-link-label">Main Event Professional Photos</div><div class="mem-link-sub">Professional photos from the evening</div></div>
+            <div><div class="mem-link-label" data-i18n="mem_photos_label">Main Event Professional Photos</div><div class="mem-link-sub" data-i18n="mem_photos_sub">Professional photos from the evening</div></div>
           </a>
           <a href="https://youtu.be/kukjN9FmgsQ?si=qQsFgpTME3RcvqFM&t=1" target="_blank" rel="noopener" class="mem-link">
             <span class="mem-link-icon">🎥</span>
-            <div><div class="mem-link-label">Main Event Video</div><div class="mem-link-sub">Watch the full evening on YouTube</div></div>
+            <div><div class="mem-link-label" data-i18n="mem_video_label">Main Event Video</div><div class="mem-link-sub" data-i18n="mem_video_sub">Watch the full evening on YouTube</div></div>
           </a>
           <a href="https://photos.app.goo.gl/VYY1CTcykPSuSn899" target="_blank" rel="noopener" class="mem-link">
             <span class="mem-link-icon">📸</span>
-            <div><div class="mem-link-label">Upload your photos here</div><div class="mem-upload-callout">📤 Please upload your photos &amp; videos from this event here</div></div>
+            <div><div class="mem-link-label" data-i18n="mem_upload_label">Upload your photos here</div><div class="mem-upload-callout" data-i18n="mem_upload_callout">📤 Please upload your photos &amp; videos from this event here</div></div>
           </a>
         </div>
       </div>
@@ -525,13 +532,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
     <!-- Performances table -->
     <div class="mem-perf-section">
-      <div class="mem-section-title">Performances</div>
+      <div class="mem-section-title" data-i18n="sec_performances">Performances</div>
       <div id="mem-perf-output"></div>
     </div>
 
     <!-- Main Event Video -->
     <div class="mem-video-section">
-      <div class="mem-section-title">Main Event Video</div>
+      <div class="mem-section-title" data-i18n="sec_mainvideo">Main Event Video</div>
       <a href="https://youtu.be/kukjN9FmgsQ?si=qQsFgpTME3RcvqFM&t=1" target="_blank" rel="noopener" class="mem-yt-thumb" title="Watch on YouTube">
         <img src="https://img.youtube.com/vi/kukjN9FmgsQ/maxresdefault.jpg" 
              onerror="this.src='https://img.youtube.com/vi/kukjN9FmgsQ/hqdefault.jpg'"
@@ -650,6 +657,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <footer class="site-footer">© 2026 Borkar Family. All rights reserved.</footer>
 
+<canvas id="confettiCanvas"></canvas>
 <div class="toast" id="toast"></div>
 <div id="tourOverlay" style="display:none;position:fixed;inset:0;z-index:500;pointer-events:none;"></div>
 
@@ -788,7 +796,7 @@ function rebuildPresenterDropdown(){
   const sel=document.getElementById('presenterSelect');const current=sel.value;
   const presenters=getPresenterList();
   sel.innerHTML='<option value="">— Choose a name —</option>';
-  presenters.forEach(p=>{const opt=document.createElement('option');opt.value=p;opt.textContent=p;if(p===current)opt.selected=true;sel.appendChild(opt);});
+  presenters.forEach(p=>{const opt=document.createElement('option');opt.value=p;opt.textContent=tx(p);if(p===current)opt.selected=true;sel.appendChild(opt);});
 }
 
 // ══════════════════════════════════════════
@@ -815,10 +823,10 @@ function renderMemories(){
   mainBlocks.forEach(block=>{
     if(!block.slots.length) return;
     // Section header row
-    rows += `<tr><td colspan="5" style="background:var(--gold-bg);font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;padding:10px 12px;border-bottom:1px solid var(--border);">${block.label}</td></tr>`;
+    rows += `<tr><td colspan="5" style="background:var(--gold-bg);font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;padding:10px 12px;border-bottom:1px solid var(--border);">${tx(block.label)}</td></tr>`;
     block.slots.forEach(s=>{
       if(s.type==='Dinner'||s.type==='Photos') return; // skip non-performance slots
-      const cleanLabel = s.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner|Cake Cutting)\s*[—\-]\s*/i,'').trim();
+      const cleanLabel = tx(s.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner|Cake Cutting)\s*[—\-]\s*/i,'').trim());
       const isLink = s.status==='Link' && s.notes && s.notes.startsWith('http');
       const labelHtml = isLink ? `<a href="${s.notes}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:2px;">${cleanLabel}</a>` : cleanLabel;
       const badge = `<span style="display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px;background:${typeBgMap[s.type]||'var(--break-bg)'};color:${typeCMap[s.type]||'var(--break-c)'};white-space:nowrap">${s.type}</span>`;
@@ -826,12 +834,12 @@ function renderMemories(){
       const hasSongs = songList.length>0 && s.type!=='Speech';
       const songsHtml = hasSongs ? songList.map(sg=>{
         const isDupe = dupeSongs.has(sg.toLowerCase());
-        return `<span style="white-space:nowrap">${sg}${isDupe?' <sup style="color:var(--gold)">*</sup>':''}</span>`;
+        return `<span style="white-space:nowrap">${tx(sg)}${isDupe?' <sup style="color:var(--gold)">*</sup>':''}</span>`;
       }).join(', ') : '—';
       const videoHtml = s.videoLink ? `<a href="${s.videoLink}" target="_blank" rel="noopener" style="font-size:13px;text-decoration:none;" title="Watch in main video">🎥</a>` : '';
       rows += `<tr>
         <td>${labelHtml}</td>
-        <td style="color:var(--text2)">${s.presenter||'—'}</td>
+        <td style="color:var(--text2)">${tx(s.presenter)||'—'}</td>
         <td style="text-align:center">${videoHtml}</td>
         <td>${badge}</td>
         <td style="color:var(--text2);font-size:12px">${songsHtml}</td>
@@ -893,10 +901,10 @@ function renderMySchedule(){
           <div class="staff-slot-eyebrow">Event Organizer — Responsibility ${myStaffSlots.length>1?i+1+' of '+myStaffSlots.length:''}</div>
           <div class="staff-time-range">${minsToTime12(startM)} — ${minsToTime12(endM)}</div>
           <div class="staff-dur">${fmtDurFromMins(durM)}</div>
-          <div class="staff-desc">${r.description}</div>
+          <div class="staff-desc">${tx(r.description)}</div>
           <span class="staff-badge">Event Organizer</span>
         </div>
-        ${r.notes?`<div class="my-slot-body"><div style="font-size:13px;color:var(--text2);">${r.notes}</div></div>`:''}
+        ${r.notes?`<div class="my-slot-body"><div style="font-size:13px;color:var(--text2);">${tx(r.notes)}</div></div>`:''}
       </div>`;
     });
     html+=`</div>`;
@@ -908,7 +916,7 @@ function renderMySchedule(){
 
     if(myPerfSlots.length>1){
       html+=`<div class="multi-slot-nav">`;
-      myPerfSlots.forEach((item,i)=>{html+=`<button class="slot-nav-btn${i===0?' active':''}" onclick="scrollToMySlot('myslot-${i}')">${minsToTime12(item.startMins)} · ${item.slot.label}</button>`;});
+      myPerfSlots.forEach((item,i)=>{html+=`<button class="slot-nav-btn${i===0?' active':''}" onclick="scrollToMySlot('myslot-${i}')">${minsToTime12(item.startMins)} · ${tx(item.slot.label)}</button>`;});
       html+=`</div>`;
     }
 
@@ -947,8 +955,8 @@ function renderMySchedule(){
         <div class="my-slot-header">
           <div class="my-slot-eyebrow">Your performance${myPerfSlots.length>1?' '+(slotIdx+1)+' of '+myPerfSlots.length:''}</div>
           <div class="my-slot-time">${minsToTime12(startMins)}</div>
-          <div class="my-slot-dur">${fmtDur(slot.duration)} · ${parentBlock?parentBlock.label:''}</div>
-          <div class="my-slot-title">${slot.status==='Link'&&slot.notes&&slot.notes.startsWith('http')?`<a href="${slot.notes}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;">${slot.label}</a>`:slot.label}</div>
+          <div class="my-slot-dur">${fmtDur(slot.duration)} · ${parentBlock?tx(parentBlock.label):''}</div>
+          <div class="my-slot-title">${slot.status==='Link'&&slot.notes&&slot.notes.startsWith('http')?`<a href="${slot.notes}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;">${tx(slot.label)}</a>`:tx(slot.label)}</div>
           <span class="my-slot-type" style="background:${typeBg};color:${typeColor}">${slot.type}</span>
         </div>`;
       if(hasSongs||slot.notes||slot.location){
@@ -958,7 +966,7 @@ function renderMySchedule(){
           html+=`<div class="my-slot-section">Songs / Performance</div>
             <div class="my-slot-songs">${songList.map(sg=>{
               const isDupe=dupeSongs.has(sg.toLowerCase());
-              return `<div class="my-slot-song-item">${sg}${isDupe?' <span style="opacity:.6;font-size:10px;color:var(--gold)">*</span>':''}</div>`;
+              return `<div class="my-slot-song-item">${tx(sg)}${isDupe?' <span style="opacity:.6;font-size:10px;color:var(--gold)">*</span>':''}</div>`;
             }).join('')}</div>`;
           if(hasDupes) html+=`<div style="font-size:11px;color:var(--text3);margin-top:6px;font-style:italic">* also performed by another act</div>`;
         }
@@ -1085,7 +1093,7 @@ function switchTab(name, btn, presenterName){
     history.replaceState(null,'',hash);
   }catch(e){}
   if(name==='myschedule') renderMySchedule();
-  if(name==='memories') renderMemories();
+  if(name==='memories'){ renderMemories(); fireConfetti('small'); }
 }
 
 // Update hash when presenter changes
@@ -1171,8 +1179,8 @@ function renderProgram(){
     const subNote=hasSubs?`<div class="prog-event-desc">${block.slots.length} items · ${fmtDur(subTotalMins(block))}</div>`:'';
     const isOpen=!!progExpanded[block.id];
     const mainLabelHtml = block.notes && block.notes.startsWith('http')
-      ? `<a href="${block.notes}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:2px;">${block.label}</a>`
-      : block.label;
+      ? `<a href="${block.notes}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:2px;">${tx(block.label)}</a>`
+      : tx(block.label);
     html+=`<div class="prog-block"><div class="prog-main-row">
       <div class="prog-time">${minsToTime12(mainTimes[bi])}</div>
       <div><div class="prog-event-name">${mainLabelHtml}</div>${desc}${subNote}</div>
@@ -1184,7 +1192,8 @@ function renderProgram(){
       html+=`<div class="prog-subs${isOpen?' open':''}" id="prog-subs-${block.id}">
         <div class="prog-sub-hdr"><span>Time</span><span>Performance</span><span>Presenter</span><span style="text-align:right">Duration</span></div>`;
       block.slots.forEach((s,si)=>{
-        const cleanLabel=s.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner)\s*[—\-]\s*/i,'').trim();
+        const cleanLabelRaw=s.label.replace(/^(Sing|Song|Dance|Speech|Video|Break|Duet|Dinner)\s*[—\-]\s*/i,'').trim();
+        const cleanLabel=tx(cleanLabelRaw);
         const isLink = s.status==='Link' && s.notes && s.notes.startsWith('http');
         const labelHtml = isLink
           ? `<a href="${s.notes}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:2px;">${cleanLabel}</a>`
@@ -1197,7 +1206,7 @@ function renderProgram(){
           tooltipInner+=`<div class="tt-title">Songs / Performance</div>`;
           tooltipInner+=songList.map(sg=>{
             const isDupe=dupeSongs.has(sg.toLowerCase());
-            return `<div class="tt-song">${sg}${isDupe?' <span style="opacity:.7;font-size:10px">*</span>':''}</div>`;
+            return `<div class="tt-song">${tx(sg)}${isDupe?' <span style="opacity:.7;font-size:10px">*</span>':''}</div>`;
           }).join('');
           if(songList.some(sg=>dupeSongs.has(sg.toLowerCase()))){
             tooltipInner+=`<div style="font-size:10px;color:#a09080;margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,.1)">* also performed by another act</div>`;
@@ -1210,7 +1219,7 @@ function renderProgram(){
         html+=`<div class="prog-sub-row">
           <div class="prog-sub-time">${s.duration>0?minsToTime12(subTimes[si]):''}</div>
           <div class="prog-sub-name" data-presenter="${s.presenter||''}"><span>${labelHtml}</span></div>
-          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${s.presenter||'—'}${videoIconHtml}${hasDetails?`<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip info-tooltip-right">${tooltipInner}</div></div>`:''}</div>
+          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${tx(s.presenter)||'—'}${videoIconHtml}${hasDetails?`<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip info-tooltip-right">${tooltipInner}</div></div>`:''}</div>
           <div class="prog-sub-dur">${s.duration>0?fmtDur(s.duration):'—'}</div>
         </div>`;
       });
@@ -1568,10 +1577,120 @@ function endTour(){
   document.getElementById('tourOverlay').style.display='none';
 }
 
+// ══════════════════════════════════════════
+//  LANGUAGE TOGGLE (EN / MR / HI)
+// ══════════════════════════════════════════
+const translations = {
+  en: {
+    tab_memories: 'Memories', tab_program: 'Program', tab_myschedule: 'My Schedule',
+    tab_guide: '? Guide', tab_manage: 'Manage Program', tab_settings: 'Event Details',
+    eyebrow: 'Evening Program', btn_print: 'Print / Export PDF',
+    sec_performances: 'Performances', sec_mainvideo: 'Main Event Video',
+    mem_message: 'Thank you for attending and showering us with all your love & blessings!!',
+    mem_photos_label: 'Main Event Professional Photos', mem_photos_sub: 'Professional photos from the evening',
+    mem_video_label: 'Main Event Video', mem_video_sub: 'Watch the full evening on YouTube',
+    mem_upload_label: 'Upload your photos here', mem_upload_callout: '📤 Please upload your photos & videos from this event here'
+  },
+  mr: {
+    tab_memories: 'आठवणी', tab_program: 'कार्यक्रम', tab_myschedule: 'माझे वेळापत्रक',
+    tab_guide: '? मार्गदर्शक', tab_manage: 'कार्यक्रम व्यवस्थापन', tab_settings: 'तपशील',
+    eyebrow: 'संध्याकाळचा कार्यक्रम', btn_print: 'प्रिंट / पीडीएफ',
+    sec_performances: 'सादरीकरण', sec_mainvideo: 'मुख्य व्हिडिओ',
+    mem_message: 'आमच्या कार्यक्रमास उपस्थित राहून आणि तुमचे प्रेम व आशीर्वाद दिल्याबद्दल धन्यवाद!!',
+    mem_photos_label: 'मुख्य कार्यक्रमाचे व्यावसायिक फोटो', mem_photos_sub: 'संध्याकाळचे व्यावसायिक फोटो',
+    mem_video_label: 'मुख्य कार्यक्रमाचा व्हिडिओ', mem_video_sub: 'युट्यूबवर संपूर्ण संध्याकाळ पहा',
+    mem_upload_label: 'इथे तुमचे फोटो अपलोड करा', mem_upload_callout: '📤 कृपया या कार्यक्रमातील तुमचे फोटो आणि व्हिडिओ इथे अपलोड करा'
+  },
+  hi: {
+    tab_memories: 'यादें', tab_program: 'कार्यक्रम', tab_myschedule: 'मेरा समय',
+    tab_guide: '? गाइड', tab_manage: 'कार्यक्रम प्रबंधन', tab_settings: 'विवरण',
+    eyebrow: 'शाम का कार्यक्रम', btn_print: 'प्रिंट / पीडीएफ',
+    sec_performances: 'प्रस्तुतियाँ', sec_mainvideo: 'मुख्य वीडियो',
+    mem_message: 'हमारे कार्यक्रम में आने और अपना प्यार व आशीर्वाद देने के लिए धन्यवाद!!',
+    mem_photos_label: 'मुख्य कार्यक्रम की पेशेवर तस्वीरें', mem_photos_sub: 'शाम की पेशेवर तस्वीरें',
+    mem_video_label: 'मुख्य कार्यक्रम का वीडियो', mem_video_sub: 'यूट्यूब पर पूरी शाम देखें',
+    mem_upload_label: 'अपनी तस्वीरें यहाँ अपलोड करें', mem_upload_callout: '📤 कृपया इस कार्यक्रम की अपनी तस्वीरें और वीडियो यहाँ अपलोड करें'
+  }
+};
+let currentLang = 'en';
+
+// Transliteration map: English text -> {mr: Marathi Devanagari, hi: Hindi Devanagari}
+const translitMap = {"Meet & Greet": {"mr": "भेट आणि स्वागत", "hi": "भेंट और स्वागत"}, "Celebrations and Speeches": {"mr": "उत्सव आणि भाषणे", "hi": "उत्सव और भाषण"}, "Dinner & Photos": {"mr": "जेवण आणि फोटो", "hi": "भोजन और फ़ोटो"}, "Cake Cutting and Thank You Speeches": {"mr": "केक कापणे आणि आभार भाषणे", "hi": "केक काटना और धन्यवाद भाषण"}, "Dancing/DJ": {"mr": "नाच/डीजे", "hi": "नाच/डीजे"}, "Gaapa Gosti / Chat / Tea": {"mr": "गप्पा गोष्टी / चहा", "hi": "गपशप / चाय"}, "Dinner": {"mr": "जेवण", "hi": "भोजन"}, "Photos": {"mr": "फोटो", "hi": "फ़ोटो"}, "Intermission": {"mr": "मध्यंतर", "hi": "मध्यांतर"}, "Opening": {"mr": "उद्घाटन", "hi": "उद्घाटन"}, "Sing — NSNT": {"mr": "गायन — एनएसएनटी", "hi": "गायन — एनएसएनटी"}, "Speech — Ruchi": {"mr": "भाषण — रुची", "hi": "भाषण — रुचि"}, "Dance — ZNMD": {"mr": "नृत्य — झेडएनएमडी", "hi": "नृत्य — ज़ेडएनएमडी"}, "Dance — Anamika and Mahima": {"mr": "नृत्य — अनामिका आणि महिमा", "hi": "नृत्य — अनामिका और महिमा"}, "Sing — Swati & Mayank": {"mr": "गायन — स्वाती आणि मयंक", "hi": "गायन — स्वाती और मयंक"}, "Dance — Anamika & Dipti": {"mr": "नृत्य — अनामिका आणि दीप्ती", "hi": "नृत्य — अनामिका और दीप्ति"}, "Speech — Navneet": {"mr": "भाषण — नवनीत", "hi": "भाषण — नवनीत"}, "Dance — Shilpi": {"mr": "नृत्य — शिल्पी", "hi": "नृत्य — शिल्पी"}, "Speech — Rajendra": {"mr": "भाषण — राजेंद्र", "hi": "भाषण — राजेंद्र"}, "Dance — Marathi group": {"mr": "नृत्य — मराठी गट", "hi": "नृत्य — मराठी समूह"}, "Dance — Anamika and Shrish": {"mr": "नृत्य — अनामिका आणि श्रीश", "hi": "नृत्य — अनामिका और श्रीश"}, "Dance — Belmont group": {"mr": "नृत्य — बेलमॉन्ट गट", "hi": "नृत्य — बेलमॉन्ट समूह"}, "Sing — Leena & Nirav": {"mr": "गायन — लीना आणि निरव", "hi": "गायन — लीना और निरव"}, "Speech — Chaitali": {"mr": "भाषण — चैताली", "hi": "भाषण — चैताली"}, "Speech — Neelesh": {"mr": "भाषण — नीलेश", "hi": "भाषण — नीलेश"}, "Speech — Rajashree": {"mr": "भाषण — राजश्री", "hi": "भाषण — राजश्री"}, "Sing  , Cake Cutting": {"mr": "गायन, केक कापणे", "hi": "गायन, केक काटना"}, "Speech — Mihir": {"mr": "भाषण — मिहीर", "hi": "भाषण — मिहिर"}, "Speech — Maya": {"mr": "भाषण — माया", "hi": "भाषण — माया"}, "Speech — Dipti": {"mr": "भाषण — दीप्ती", "hi": "भाषण — दीप्ति"}, "Video — Mandar": {"mr": "व्हिडिओ — मंदार", "hi": "वीडियो — मंदार"}, "Special Credits": {"mr": "विशेष आभार", "hi": "विशेष आभार"}, "Anamika": {"mr": "अनामिका", "hi": "अनामिका"}, "Anamika / Dipti": {"mr": "अनामिका / दीप्ती", "hi": "अनामिका / दीप्ति"}, "Cal": {"mr": "कॅल", "hi": "कैल"}, "Chaitali": {"mr": "चैताली", "hi": "चैताली"}, "Dipti": {"mr": "दीप्ती", "hi": "दीप्ति"}, "Dipti and friends": {"mr": "दीप्ती आणि मित्र", "hi": "दीप्ति और दोस्त"}, "Jaya and friends": {"mr": "जया आणि मित्र", "hi": "जया और दोस्त"}, "Leena / Nirav": {"mr": "लीना / निरव", "hi": "लीना / निरव"}, "Mandar": {"mr": "मंदार", "hi": "मंदार"}, "Maya": {"mr": "माया", "hi": "माया"}, "Melissa": {"mr": "मेलिसा", "hi": "मेलिसा"}, "Melvin": {"mr": "मेल्विन", "hi": "मेल्विन"}, "Mihir": {"mr": "मिहीर", "hi": "मिहिर"}, "Navneet": {"mr": "नवनीत", "hi": "नवनीत"}, "Neelesh": {"mr": "नीलेश", "hi": "नीलेश"}, "Organizers": {"mr": "आयोजक", "hi": "आयोजक"}, "Poonam / Dipti / Maya": {"mr": "पूनम / दीप्ती / माया", "hi": "पूनम / दीप्ति / माया"}, "Rajashree": {"mr": "राजश्री", "hi": "राजश्री"}, "Rajendra": {"mr": "राजेंद्र", "hi": "राजेंद्र"}, "Rajendra Badadare": {"mr": "राजेंद्र बडदारे", "hi": "राजेंद्र बडदारे"}, "Rajeshwari and friends": {"mr": "राजेश्वरी आणि मित्र", "hi": "राजेश्वरी और दोस्त"}, "Ruchi": {"mr": "रुची", "hi": "रुचि"}, "Ruchi and friends": {"mr": "रुची आणि मित्र", "hi": "रुचि और दोस्त"}, "Samina and friends": {"mr": "समिना आणि मित्र", "hi": "समीना और दोस्त"}, "Shilpi": {"mr": "शिल्पी", "hi": "शिल्पी"}, "Swati / Mayank": {"mr": "स्वाती / मयंक", "hi": "स्वाती / मयंक"}, "Tarun": {"mr": "तरुण", "hi": "तरुण"}, "Tej": {"mr": "तेज", "hi": "तेज"}, "Aajkal, Shararath, Koi Kahe Kehta Rahe": {"mr": "आजकल, शरारत, कोई कहे कहता रहे", "hi": "आजकल, शरारत, कोई कहे कहता रहे"}, "Desi Girl": {"mr": "देसी गर्ल", "hi": "देसी गर्ल"}, "Duet Song": {"mr": "युगुल गीत", "hi": "युगल गीत"}, "Ek Ladki ko Dekha to Aaisa Laga, Dil Dhadakne Do, Yaar bina chain kha ree": {"mr": "एक लड़की को देखा तो ऐसा लगा, दिल धड़कने दो, यार बिना चैन कहाँ", "hi": "एक लड़की को देखा तो ऐसा लगा, दिल धड़कने दो, यार बिना चैन कहाँ"}, "Ek Ladki ko, Aaye ho zhindagi me Tum, Hawa ke sath sath, Aati Kya Zhandala, Vo Sikhandar hi, Baar Baar ye din aaye": {"mr": "एक लड़की को, आए हो ज़िंदगी में तुम, हवा के साथ साथ, आती क्या खंडाला, वो सिकंदर ही, बार बार ये दिन आए", "hi": "एक लड़की को, आए हो ज़िंदगी में तुम, हवा के साथ साथ, आती क्या खंडाला, वो सिकंदर ही, बार बार ये दिन आए"}, "Happy Birthday to you": {"mr": "हॅपी बर्थडे टू यू", "hi": "हैप्पी बर्थडे टू यू"}, "Hello Hello, Bijuria Bijuria": {"mr": "हॅलो हॅलो, बिजुरिया बिजुरिया", "hi": "हैलो हैलो, बिजुरिया बिजुरिया"}, "Kali Teri Choti": {"mr": "काली तेरी चोटी", "hi": "काली तेरी चोटी"}, "Rasputin, Shararath, Zoobi Doobi - 3 Idiots": {"mr": "रासपुतिन, शरारत, झूबी दूबी - 3 इडियट्स", "hi": "रासपुतिन, शरारत, ज़ूबी डूबी - 3 इडियट्स"}, "Shaky Shaky, Hawa Hawa, Gulabi Saadi": {"mr": "शेकी शेकी, हवा हवा, गुलाबी साडी", "hi": "शेकी शेकी, हवा हवा, गुलाबी साड़ी"}, "Tumsa Koi Pyara, Ladki Badi Anjani Hai": {"mr": "तुमसा कोई प्यारा, लडकी बडी अनजानी है", "hi": "तुमसा कोई प्यारा, लड़की बड़ी अनजानी है"}, "Photographer": {"mr": "छायाचित्रकार", "hi": "छायाकार"}, "DJ": {"mr": "डीजे", "hi": "डीजे"}, "Appetizers & Tea": {"mr": "नाश्ता आणि चहा", "hi": "नाश्ता और चाय"}, "Coffee": {"mr": "कॉफी", "hi": "कॉफी"}, "Transition — Appetizers out, Dinner in": {"mr": "संक्रमण — नाश्ता बंद, जेवण सुरू", "hi": "परिवर्तन — नाश्ता बंद, भोजन शुरू"}, "Cake Cutting Setup": {"mr": "केक कापण्याची तयारी", "hi": "केक काटने की तैयारी"}, "Dinner Service": {"mr": "जेवण सेवा", "hi": "भोजन सेवा"}, "Cake Serving / Coffee": {"mr": "केक वाटप / कॉफी", "hi": "केक वितरण / कॉफी"}, "Dessert & Tea": {"mr": "मिष्टान्न आणि चहा", "hi": "मिठाई और चाय"}, "Hair and Saree Preparation / Make up": {"mr": "केस आणि साडी तयारी / मेकअप", "hi": "बाल और साड़ी तैयारी / मेकअप"}, "Hall Setup": {"mr": "सभागृह तयारी", "hi": "हॉल सेटअप"}, "Room Setup": {"mr": "खोली तयारी", "hi": "कमरा सेटअप"}, "Cal Breakroom": {"mr": "कॅल विश्रांती कक्ष", "hi": "कैल विश्राम कक्ष"}, "Leave Home": {"mr": "घरून निघणे", "hi": "घर से निकलना"}, "Arrive Crowne Plaza": {"mr": "क्राउन प्लाझा येथे पोहोचणे", "hi": "क्राउन प्लाज़ा पहुँचना"}, "Settle In/Appetizer/Family Photos": {"mr": "स्थिरावणे/नाश्ता/कौटुंबिक फोटो", "hi": "व्यवस्थित होना/नाश्ता/परिवार फ़ोटो"}, "Dipti Breakroom": {"mr": "दीप्ती विश्रांती कक्ष", "hi": "दीप्ति विश्राम कक्ष"}, "Dipti Welcome and Photos": {"mr": "दीप्ती स्वागत आणि फोटो", "hi": "दीप्ति स्वागत और फ़ोटो"}, "Dipti Breakroom 2": {"mr": "दीप्ती विश्रांती कक्ष २", "hi": "दीप्ति विश्राम कक्ष २"}, "Dipti Program Start - Warning": {"mr": "दीप्ती कार्यक्रम सुरू - सूचना", "hi": "दीप्ति कार्यक्रम शुरू - सूचना"}, "Dipti Program Start": {"mr": "दीप्ती कार्यक्रम सुरू", "hi": "दीप्ति कार्यक्रम शुरू"}, "Dipti Breakroom 3": {"mr": "दीप्ती विश्रांती कक्ष ३", "hi": "दीप्ति विश्राम कक्ष ३"}, "Dipti Thank you/Dancing": {"mr": "दीप्ती आभार/नाच", "hi": "दीप्ति धन्यवाद/नाच"}, "Cal Dinner": {"mr": "कॅल जेवण", "hi": "कैल भोजन"}, "Serve gluten free cake for Khurshid": {"mr": "खुर्शीदसाठी ग्लूटेन-मुक्त केक द्या", "hi": "खुर्शीद के लिए ग्लूटेन-मुक्त केक दें"}, "Hall Cleanup": {"mr": "सभागृह स्वच्छता", "hi": "हॉल की सफ़ाई"}, "Pay Melvin": {"mr": "मेल्विनला पैसे द्या", "hi": "मेल्विन को भुगतान करें"}, "Gratitude to Serving staff": {"mr": "सेवा कर्मचाऱ्यांना धन्यवाद", "hi": "सेवा कर्मचारियों को धन्यवाद"}, "Leave for Home": {"mr": "घराकडे निघणे", "hi": "घर के लिए निकलना"}};
+
+// Returns transliterated text if available for currentLang, else original
+function tx(text){
+  if(currentLang==='en' || !text) return text;
+  const entry = translitMap[text];
+  if(entry && entry[currentLang]) return entry[currentLang];
+  return text;
+}
+
+function setLanguage(lang){
+  currentLang = lang;
+  const dict = translations[lang] || translations.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]) el.textContent = dict[key];
+  });
+  try{ localStorage.setItem('dipti_lang', lang); }catch(e){}
+  // Re-render all data-driven tabs so content text picks up the new language
+  renderMemories();
+  renderProgram();
+  rebuildPresenterDropdown();
+  if(document.getElementById('panel-myschedule')?.classList.contains('active')) renderMySchedule();
+  if(document.getElementById('panel-manage')?.classList.contains('active')) renderManage();
+}
+
+
+function fireConfetti(intensity){
+  const canvas = document.getElementById('confettiCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#e8879c','#c9952a','#f4a7b9','#a87820','#7b2fa0','#1e4a8a'];
+  const count = intensity === 'big' ? 140 : 45;
+  const particles = [];
+  for(let i=0;i<count;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: -20 - Math.random()*canvas.height*0.3,
+      r: 4+Math.random()*5,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      vx: -1.5+Math.random()*3,
+      vy: 2+Math.random()*3,
+      rot: Math.random()*360,
+      vrot: -6+Math.random()*12,
+      shape: Math.random()>0.5?'rect':'circle'
+    });
+  }
+  let frame=0;
+  const maxFrames = intensity === 'big' ? 130 : 80;
+  function tick(){
+    frame++;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vrot; p.vy+=0.04;
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.color;
+      if(p.shape==='rect'){ ctx.fillRect(-p.r,-p.r*0.6,p.r*2,p.r*1.2); }
+      else { ctx.beginPath(); ctx.arc(0,0,p.r*0.8,0,Math.PI*2); ctx.fill(); }
+      ctx.restore();
+    });
+    if(frame<maxFrames){ requestAnimationFrame(tick); }
+    else { ctx.clearRect(0,0,canvas.width,canvas.height); }
+  }
+  tick();
+}
+
+
 mainBlocks=defaultData();
 render();
 renderMemories();
 handleHashOnLoad();
+fireConfetti('big');
 </script>
 </body>
 </html>
