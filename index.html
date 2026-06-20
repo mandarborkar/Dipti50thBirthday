@@ -492,6 +492,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <option value="ta">தமிழ்</option>
       <option value="te">తెలుగు</option>
     </select>
+    <button class="tab active" data-tab="memories" data-i18n="tab_memories" onclick="switchTab('memories',this)">Memories</button>
+    <button class="tab" data-tab="program" data-i18n="tab_program" onclick="switchTab('program',this)">Program</button>
     <select id="moreNav" onchange="handleMoreNav(this)" class="more-nav-select" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px;cursor:pointer;min-width:104px;flex-shrink:0;">
       <option value="" data-i18n="more_label">More ▾</option>
       <option value="myschedule" data-i18n="tab_myschedule">My Schedule</option>
@@ -499,8 +501,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <option value="manage" data-i18n="tab_manage">Manage Program</option>
       <option value="settings" data-i18n="tab_settings">Event Details</option>
     </select>
-    <button class="tab active" data-tab="memories" data-i18n="tab_memories" onclick="switchTab('memories',this)">Memories</button>
-    <button class="tab" data-tab="program" data-i18n="tab_program" onclick="switchTab('program',this)">Program</button>
     <div class="tab-spacer"></div>
     <div class="tab-actions">
       <button class="btn btn-gold print-btn" onclick="exportPrint()" data-i18n="btn_print">Print / Export PDF</button>
@@ -523,7 +523,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
           </a>
           <a href="https://youtu.be/kukjN9FmgsQ?si=qQsFgpTME3RcvqFM&t=1" target="_blank" rel="noopener" class="mem-link">
             <span class="mem-link-icon">🎥</span>
-            <div><div class="mem-link-label" data-i18n="mem_video_label">Main Event Video</div><div class="mem-link-sub" data-i18n="mem_video_sub">Watch the full evening on YouTube</div></div>
+            <div><div class="mem-link-label" data-i18n="mem_video_label">Main Event Video</div><div class="mem-link-sub" data-i18n="mem_video_sub">Watch the full evening on YouTube — stick around till the end, the Easter eggs are always in the end credits!</div></div>
           </a>
           <a href="https://photos.app.goo.gl/VYY1CTcykPSuSn899" target="_blank" rel="noopener" class="mem-link">
             <span class="mem-link-icon">📸</span>
@@ -1607,7 +1607,7 @@ const translations = {
     sec_performances: 'Performances', sec_mainvideo: 'Main Event Video',
     mem_message: 'Thank you for attending and showering us with all your love & blessings!!',
     mem_photos_label: 'Main Event Professional Photos', mem_photos_sub: 'Professional photos from the evening',
-    mem_video_label: 'Main Event Video', mem_video_sub: 'Watch the full evening on YouTube',
+    mem_video_label: 'Main Event Video', mem_video_sub: 'Watch the full evening on YouTube — stick around till the end, the Easter eggs are always in the end credits!',
     mem_upload_label: 'Upload your photos here', mem_upload_callout: '📤 Please upload your photos & videos from this event here'
   },
   mr: {
@@ -1617,7 +1617,7 @@ const translations = {
     sec_performances: 'सादरीकरण', sec_mainvideo: 'मुख्य व्हिडिओ',
     mem_message: 'आमच्या कार्यक्रमास उपस्थित राहून आणि तुमचे प्रेम व आशीर्वाद दिल्याबद्दल धन्यवाद!!',
     mem_photos_label: 'मुख्य कार्यक्रमाचे व्यावसायिक फोटो', mem_photos_sub: 'संध्याकाळचे व्यावसायिक फोटो',
-    mem_video_label: 'मुख्य कार्यक्रमाचा व्हिडिओ', mem_video_sub: 'युट्यूबवर संपूर्ण संध्याकाळ पहा',
+    mem_video_label: 'मुख्य कार्यक्रमाचा व्हिडिओ', mem_video_sub: 'युट्यूबवर संपूर्ण संध्याकाळ पहा — शेवटपर्यंत पहा, एंड क्रेडिट्समध्ये नेहमी छुप्या गोष्टी असतात!',
     mem_upload_label: 'इथे तुमचे फोटो अपलोड करा', mem_upload_callout: '📤 कृपया या कार्यक्रमातील तुमचे फोटो आणि व्हिडिओ इथे अपलोड करा'
   },
   hi: {
@@ -1627,7 +1627,7 @@ const translations = {
     sec_performances: 'प्रस्तुतियाँ', sec_mainvideo: 'मुख्य वीडियो',
     mem_message: 'हमारे कार्यक्रम में आने और अपना प्यार व आशीर्वाद देने के लिए धन्यवाद!!',
     mem_photos_label: 'मुख्य कार्यक्रम की पेशेवर तस्वीरें', mem_photos_sub: 'शाम की पेशेवर तस्वीरें',
-    mem_video_label: 'मुख्य कार्यक्रम का वीडियो', mem_video_sub: 'यूट्यूब पर पूरी शाम देखें',
+    mem_video_label: 'मुख्य कार्यक्रम का वीडियो', mem_video_sub: 'यूट्यूब पर पूरी शाम देखें — अंत तक देखें, एंड क्रेडिट्स में हमेशा कुछ खास छिपा होता है!',
     mem_upload_label: 'अपनी तस्वीरें यहाँ अपलोड करें', mem_upload_callout: '📤 कृपया इस कार्यक्रम की अपनी तस्वीरें और वीडियो यहाँ अपलोड करें'
   },
   ta: {
@@ -1637,7 +1637,7 @@ const translations = {
     sec_performances: 'நிகழ்த்துதல்கள்', sec_mainvideo: 'முதன்மை வீடியோ',
     mem_message: 'எங்கள் நிகழ்ச்சிக்கு வந்து உங்கள் அன்பையும் ஆசீர்வாதத்தையும் பொழிந்ததற்கு நன்றி!!',
     mem_photos_label: 'முதன்மை நிகழ்ச்சியின் தொழில்முறை புகைப்படங்கள்', mem_photos_sub: 'மாலையின் தொழில்முறை புகைப்படங்கள்',
-    mem_video_label: 'முதன்மை நிகழ்ச்சி வீடியோ', mem_video_sub: 'யூடியூபில் முழு மாலையையும் பாருங்கள்',
+    mem_video_label: 'முதன்மை நிகழ்ச்சி வீடியோ', mem_video_sub: 'யூடியூபில் முழு மாலையையும் பாருங்கள் — இறுதி வரை பாருங்கள், இறுதி கடன் பட்டியலில் எப்போதும் சிறப்பு தருணங்கள் உள்ளன!',
     mem_upload_label: 'உங்கள் புகைப்படங்களை இங்கே பதிவேற்றவும்', mem_upload_callout: '📤 இந்த நிகழ்ச்சியின் உங்கள் புகைப்படங்கள் மற்றும் வீடியோக்களை இங்கே பதிவேற்றவும்'
   },
   te: {
@@ -1647,7 +1647,7 @@ const translations = {
     sec_performances: 'ప్రదర్శనలు', sec_mainvideo: 'ముఖ్య వీడియో',
     mem_message: 'మా కార్యక్రమానికి వచ్చి మీ ప్రేమను మరియు ఆశీర్వాదాలను అందించినందుకు ధన్యవాదాలు!!',
     mem_photos_label: 'ముఖ్య కార్యక్రమం యొక్క వృత్తిపరమైన ఫోటోలు', mem_photos_sub: 'సాయంత్రం యొక్క వృత్తిపరమైన ఫోటోలు',
-    mem_video_label: 'ముఖ్య కార్యక్రమ వీడియో', mem_video_sub: 'యూట్యూబ్‌లో పూర్తి సాయంత్రం చూడండి',
+    mem_video_label: 'ముఖ్య కార్యక్రమ వీడియో', mem_video_sub: 'యూట్యూబ్‌లో పూర్తి సాయంత్రం చూడండి — చివరి వరకు చూడండి, ఎండ్ క్రెడిట్స్‌లో ప్రత్యేక క్షణాలు ఉంటాయి!',
     mem_upload_label: 'మీ ఫోటోలను ఇక్కడ అప్‌లోడ్ చేయండి', mem_upload_callout: '📤 దయచేసి ఈ కార్యక్రమం యొక్క మీ ఫోటోలు మరియు వీడియోలను ఇక్కడ అప్‌లోడ్ చేయండి'
   }
 };
