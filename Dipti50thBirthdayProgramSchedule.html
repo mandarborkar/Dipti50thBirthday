@@ -271,6 +271,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .tab-actions{display:none;}
   .tour-guide-btn{font-size:11px;padding:7px 10px;white-space:nowrap;}
   .lang-toggle-select{font-size:11px;padding:5px 7px;min-width:64px;}
+  .more-nav-select{font-size:11px;padding:5px 7px;min-width:78px;}
 
   .program-wrap{padding:.9rem .85rem 5rem;}
   .prog-block{margin-bottom:1.3rem;}
@@ -484,19 +485,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <div class="tab-bar">
   <div class="tab-bar-inner">
-    <button class="tab active" data-tab="memories" data-i18n="tab_memories" onclick="switchTab('memories',this)">Memories</button>
-    <button class="tab" data-tab="program" data-i18n="tab_program" onclick="switchTab('program',this)">Program</button>
-    <button class="tab" data-tab="myschedule" data-i18n="tab_myschedule" onclick="switchTab('myschedule',this)">My Schedule</button>
-    <button class="btn btn-sm btn-ghost tour-guide-btn" onclick="startTour()" style="font-size:12px;border-color:var(--border2);margin:0 4px;flex-shrink:0;" title="Guided tour" data-i18n="tab_guide">? Guide</button>
-    <button class="tab" data-tab="manage" data-i18n="tab_manage" onclick="switchTab('manage',this)">Manage Program</button>
-    <button class="tab" data-tab="settings" data-i18n="tab_settings" onclick="switchTab('settings',this)">Event Details</button>
-    <select id="langToggle" onchange="setLanguage(this.value)" class="lang-toggle-select" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px;cursor:pointer;min-width:84px;flex-shrink:0;">
+    <select id="langToggle" onchange="setLanguage(this.value)" class="lang-toggle-select" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px 0 0;cursor:pointer;min-width:84px;flex-shrink:0;">
       <option value="en">English</option>
       <option value="mr">मराठी</option>
       <option value="hi">हिन्दी</option>
       <option value="ta">தமிழ்</option>
       <option value="te">తెలుగు</option>
     </select>
+    <select id="moreNav" onchange="handleMoreNav(this)" class="more-nav-select" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px;cursor:pointer;min-width:104px;flex-shrink:0;">
+      <option value="" data-i18n="more_label">More ▾</option>
+      <option value="myschedule" data-i18n="tab_myschedule">My Schedule</option>
+      <option value="guide" data-i18n="tab_guide">? Guide</option>
+      <option value="manage" data-i18n="tab_manage">Manage Program</option>
+      <option value="settings" data-i18n="tab_settings">Event Details</option>
+    </select>
+    <button class="tab active" data-tab="memories" data-i18n="tab_memories" onclick="switchTab('memories',this)">Memories</button>
+    <button class="tab" data-tab="program" data-i18n="tab_program" onclick="switchTab('program',this)">Program</button>
     <div class="tab-spacer"></div>
     <div class="tab-actions">
       <button class="btn btn-gold print-btn" onclick="exportPrint()" data-i18n="btn_print">Print / Export PDF</button>
@@ -1085,7 +1089,7 @@ function renderFullSchedule(){
 function switchTab(name, btn, presenterName){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
+  if(btn) btn.classList.add('active');
   document.getElementById('panel-'+name).classList.add('active');
   // Update URL hash for bookmarking (may fail in proxy environments — safe to ignore)
   try{
@@ -1096,6 +1100,19 @@ function switchTab(name, btn, presenterName){
   }catch(e){}
   if(name==='myschedule') renderMySchedule();
   if(name==='memories'){ renderMemories(); fireConfetti('small'); }
+}
+
+// Handles selection from the "More" dropdown (My Schedule / Guide / Manage Program / Event Details)
+function handleMoreNav(selectEl){
+  const value = selectEl.value;
+  if(!value) return;
+  if(value==='guide'){
+    startTour();
+  } else {
+    switchTab(value, null);
+  }
+  // Reset dropdown back to placeholder so it can be reselected later
+  selectEl.value='';
 }
 
 // Update hash when presenter changes
@@ -1117,18 +1134,20 @@ function handleHashOnLoad(){
     const parts = hash.split('/');
     const tabName = parts[0];
     const person  = parts[1] ? decodeURIComponent(parts[1]) : '';
-    const tabBtn  = document.querySelector(`.tab[data-tab="${tabName}"]`);
-    if(tabBtn){
-      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-      tabBtn.classList.add('active');
-      document.getElementById('panel-'+tabName)?.classList.add('active');
-      if(tabName==='myschedule' && person){
-        const sel = document.getElementById('presenterSelect');
-        setTimeout(()=>{
-          if(sel){ sel.value=person; renderMySchedule(); }
-        }, 50);
-      }
+    const validPanels = ['memories','program','myschedule','manage','settings'];
+    if(!validPanels.includes(tabName)) return;
+    const tabBtn = document.querySelector(`.tab[data-tab="${tabName}"]`); // exists for memories/program only
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    if(tabBtn) tabBtn.classList.add('active');
+    document.getElementById('panel-'+tabName)?.classList.add('active');
+    if(tabName==='myschedule' && person){
+      const sel = document.getElementById('presenterSelect');
+      setTimeout(()=>{
+        if(sel){ sel.value=person; renderMySchedule(); }
+      }, 50);
+    } else if(tabName==='myschedule'){
+      renderMySchedule();
     }
   }catch(e){}
 }
@@ -1528,18 +1547,16 @@ function startTour(){
 function showTourStep(){
   const step = tourSteps[tourIdx];
   // Switch to the right tab silently (no hash update)
-  const tabBtn = document.querySelector(`.tab[data-tab="${step.tab}"]`);
-  if(tabBtn){
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-    tabBtn.classList.add('active');
-    document.getElementById('panel-'+step.tab)?.classList.add('active');
-    if(step.tab==='myschedule'){
-      // Pre-select Ruchi as the example
-      const sel=document.getElementById('presenterSelect');
-      if(sel&&!sel.value){ sel.value='Ruchi'; renderMySchedule(); }
-      else if(sel&&sel.value){ renderMySchedule(); }
-    }
+  const tabBtn = document.querySelector(`.tab[data-tab="${step.tab}"]`); // exists for memories/program only
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  if(tabBtn) tabBtn.classList.add('active');
+  document.getElementById('panel-'+step.tab)?.classList.add('active');
+  if(step.tab==='myschedule'){
+    // Pre-select Ruchi as the example
+    const sel=document.getElementById('presenterSelect');
+    if(sel&&!sel.value){ sel.value='Ruchi'; renderMySchedule(); }
+    else if(sel&&sel.value){ renderMySchedule(); }
   }
   // Expand performances for the program steps that need it
   if(step.tab==='program'&&tourIdx===1){
@@ -1585,7 +1602,7 @@ function endTour(){
 const translations = {
   en: {
     tab_memories: 'Memories', tab_program: 'Program', tab_myschedule: 'My Schedule',
-    tab_guide: '? Guide', tab_manage: 'Manage Program', tab_settings: 'Event Details',
+    tab_guide: '? Guide', tab_manage: 'Manage Program', tab_settings: 'Event Details', more_label: 'More ▾',
     eyebrow: 'Evening Program', btn_print: 'Print / Export PDF',
     sec_performances: 'Performances', sec_mainvideo: 'Main Event Video',
     mem_message: 'Thank you for attending and showering us with all your love & blessings!!',
@@ -1595,7 +1612,7 @@ const translations = {
   },
   mr: {
     tab_memories: 'आठवणी', tab_program: 'कार्यक्रम', tab_myschedule: 'माझे वेळापत्रक',
-    tab_guide: '? मार्गदर्शक', tab_manage: 'कार्यक्रम व्यवस्थापन', tab_settings: 'तपशील',
+    tab_guide: '? मार्गदर्शक', tab_manage: 'कार्यक्रम व्यवस्थापन', tab_settings: 'तपशील', more_label: 'अधिक ▾',
     eyebrow: 'संध्याकाळचा कार्यक्रम', btn_print: 'प्रिंट / पीडीएफ',
     sec_performances: 'सादरीकरण', sec_mainvideo: 'मुख्य व्हिडिओ',
     mem_message: 'आमच्या कार्यक्रमास उपस्थित राहून आणि तुमचे प्रेम व आशीर्वाद दिल्याबद्दल धन्यवाद!!',
@@ -1605,7 +1622,7 @@ const translations = {
   },
   hi: {
     tab_memories: 'यादें', tab_program: 'कार्यक्रम', tab_myschedule: 'मेरा समय',
-    tab_guide: '? गाइड', tab_manage: 'कार्यक्रम प्रबंधन', tab_settings: 'विवरण',
+    tab_guide: '? गाइड', tab_manage: 'कार्यक्रम प्रबंधन', tab_settings: 'विवरण', more_label: 'अधिक ▾',
     eyebrow: 'शाम का कार्यक्रम', btn_print: 'प्रिंट / पीडीएफ',
     sec_performances: 'प्रस्तुतियाँ', sec_mainvideo: 'मुख्य वीडियो',
     mem_message: 'हमारे कार्यक्रम में आने और अपना प्यार व आशीर्वाद देने के लिए धन्यवाद!!',
@@ -1615,7 +1632,7 @@ const translations = {
   },
   ta: {
     tab_memories: 'நினைவுகள்', tab_program: 'நிகழ்ச்சி', tab_myschedule: 'என் நேரம்',
-    tab_guide: '? வழிகாட்டி', tab_manage: 'நிகழ்ச்சி மேலாண்மை', tab_settings: 'விவரங்கள்',
+    tab_guide: '? வழிகாட்டி', tab_manage: 'நிகழ்ச்சி மேலாண்மை', tab_settings: 'விவரங்கள்', more_label: 'மேலும் ▾',
     eyebrow: 'மாலை நிகழ்ச்சி', btn_print: 'அச்சிடு / PDF',
     sec_performances: 'நிகழ்த்துதல்கள்', sec_mainvideo: 'முதன்மை வீடியோ',
     mem_message: 'எங்கள் நிகழ்ச்சிக்கு வந்து உங்கள் அன்பையும் ஆசீர்வாதத்தையும் பொழிந்ததற்கு நன்றி!!',
@@ -1625,7 +1642,7 @@ const translations = {
   },
   te: {
     tab_memories: 'జ్ఞాపకాలు', tab_program: 'కార్యక్రమం', tab_myschedule: 'నా సమయం',
-    tab_guide: '? గైడ్', tab_manage: 'కార్యక్రమ నిర్వహణ', tab_settings: 'వివరాలు',
+    tab_guide: '? గైడ్', tab_manage: 'కార్యక్రమ నిర్వహణ', tab_settings: 'వివరాలు', more_label: 'మరిన్ని ▾',
     eyebrow: 'సాయంత్రం కార్యక్రమం', btn_print: 'ప్రింట్ / PDF',
     sec_performances: 'ప్రదర్శనలు', sec_mainvideo: 'ముఖ్య వీడియో',
     mem_message: 'మా కార్యక్రమానికి వచ్చి మీ ప్రేమను మరియు ఆశీర్వాదాలను అందించినందుకు ధన్యవాదాలు!!',
