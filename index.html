@@ -10,11 +10,11 @@
 <meta property="og:description" content="Evening program, schedule, photos and memories from Dipti's 50th Birthday celebration.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mandarborkar.github.io/Dipti50thBirthday/">
-<meta property="og:image" content="https://raw.githubusercontent.com/mandarborkar/Dipti50thBirthday/main/ThenandNowDipti.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/mandarborkar/Dipti50thBirthday/main/ThenandNowDipti.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Dipti's 50th Birthday">
 <meta name="twitter:description" content="Evening program, schedule, photos and memories from Dipti's 50th Birthday celebration.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/mandarborkar/Dipti50thBirthday/main/ThenandNowDipti.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/mandarborkar/Dipti50thBirthday/main/ThenandNowDipti.jpg">
 
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e8879c'/%3E%3Ctext x='50' y='68' font-size='55' font-family='Georgia,serif' font-weight='700' fill='white' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
@@ -485,7 +485,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <div class="tab-bar">
   <div class="tab-bar-inner">
-    <select id="langToggle" onchange="setLanguage(this.value)" class="lang-toggle-select" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px 0 0;cursor:pointer;min-width:84px;flex-shrink:0;">
+    <select id="langToggle" onchange="setLanguage(this.value)" class="lang-toggle-select" aria-label="Select language" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px 0 0;cursor:pointer;min-width:84px;flex-shrink:0;">
       <option value="en">English</option>
       <option value="mr">मराठी</option>
       <option value="hi">हिन्दी</option>
@@ -494,7 +494,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </select>
     <button class="tab active" data-tab="memories" data-i18n="tab_memories" onclick="switchTab('memories',this)">Memories</button>
     <button class="tab" data-tab="program" data-i18n="tab_program" onclick="switchTab('program',this)">Program</button>
-    <select id="moreNav" onchange="handleMoreNav(this)" class="more-nav-select" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px;cursor:pointer;min-width:104px;flex-shrink:0;">
+    <select id="moreNav" onchange="handleMoreNav(this)" class="more-nav-select" aria-label="More navigation options" style="font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text);margin:0 4px;cursor:pointer;min-width:104px;flex-shrink:0;">
       <option value="" data-i18n="more_label">More ▾</option>
       <option value="myschedule" data-i18n="tab_myschedule">My Schedule</option>
       <option value="guide" data-i18n="tab_guide">? Guide</option>
@@ -1236,11 +1236,11 @@ function renderProgram(){
         if(s.notes){tooltipInner+=`<div class="tt-notes">${s.notes}</div>`;}
         if(s.videoLink){tooltipInner+=`<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.12)"><a href="${s.videoLink}" target="_blank" rel="noopener" style="color:#f4a7b9;font-size:11px;text-decoration:none;">🎥 Watch in main event video</a></div>`;}
         // Video link icon for the row
-        const videoIconHtml = s.videoLink ? `<a href="${s.videoLink}" target="_blank" rel="noopener" title="Watch in main event video" style="font-size:13px;text-decoration:none;flex-shrink:0;">🎥</a>` : '';
+        const videoIconHtml = s.videoLink ? `<a href="${s.videoLink}" target="_blank" rel="noopener" title="Watch in main event video" aria-label="Watch ${esc(s.label)} in main event video" style="font-size:13px;text-decoration:none;flex-shrink:0;">🎥</a>` : '';
         html+=`<div class="prog-sub-row">
           <div class="prog-sub-time">${s.duration>0?minsToTime12(subTimes[si]):''}</div>
           <div class="prog-sub-name" data-presenter="${s.presenter||''}"><span>${labelHtml}</span></div>
-          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${tx(s.presenter)||'—'}${videoIconHtml}${hasDetails?`<div class="info-wrap"><button class="info-btn" tabindex="0">i</button><div class="info-tooltip info-tooltip-right">${tooltipInner}</div></div>`:''}</div>
+          <div class="prog-sub-presenter"><span class="prog-type-badge ptb-${s.type}">${s.type}</span>${tx(s.presenter)||'—'}${videoIconHtml}${hasDetails?`<div class="info-wrap"><button class="info-btn" tabindex="0" aria-label="More details for ${esc(s.label)}">i</button><div class="info-tooltip info-tooltip-right">${tooltipInner}</div></div>`:''}</div>
           <div class="prog-sub-dur">${s.duration>0?fmtDur(s.duration):'—'}</div>
         </div>`;
       });
